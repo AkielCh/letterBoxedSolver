@@ -1,10 +1,10 @@
-// math.test.js
+
 
 
 
 const app = require('./app');
 
-describe('When letter is selected',()=>{
+describe('When given a word',()=>{
   it('should allow you to add any letter from a different array',()=>{
     let grid =[
       ["L","R","K"],
