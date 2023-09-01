@@ -2,14 +2,22 @@
 
 
 
-const math = require('./app');
+const app = require('./app');
 
-describe('Math Functions', () => {
-  it('should add two numbers correctly', () => {
-    expect(math.add(1, 2)).toBe(3);
-  });
+describe('When letter is selected',()=>{
+  it('should allow you to add any letter from a different array',()=>{
+    let grid =[
+      ["L","R","K"],
+      ["A","T","H"],
+      ["Z","E","D"],
+      ["I","O","C"],
+    ]
 
-  it('should subtract two numbers correctly', () => {
-    expect(math.subtract(5, 3)).toBe(2);
-  });
-});
+    const word ="RA";
+    const letter = "D";
+    const result = app.canAddLetter(grid,word,letter);
+    expect(result).toBe(true)
+
+  })
+})
+
