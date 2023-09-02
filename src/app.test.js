@@ -49,8 +49,24 @@ describe('When word variable is empty',()=>{
       ["I", "O", "C"],
     ];
     const word = "";
-    const letter = "R"; // Adding "R" to an empty word
+    const letter = "R"; 
     const result = app.canAddLetter(grid, word, letter);
     expect(result).toBe(true);
+  });
+})
+
+
+describe('When given a word ',()=>{
+  it('should not allow you to add the same letter as the last letter of word', () => {
+    const grid = [
+      ["L", "R", "K"],
+      ["A", "T", "H"],
+      ["Z", "E", "D"],
+      ["I", "O", "C"],
+    ];
+    const word = "LO";
+    const letter = "O"; 
+    const result = app.canAddLetter(grid, word, letter);
+    expect(result).toBe(false);
   });
 })
