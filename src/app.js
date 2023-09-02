@@ -5,9 +5,9 @@ const dictionary = new Set([
   'cherry',
   'date',
   'RAD',
-  'Lead'
+  'lead'
   // Add more valid words here
-]);
+].map(dictionaryWord => dictionaryWord.toLowerCase()));
 
 
 function canAddLetter(grid, word, letter) {
@@ -45,7 +45,7 @@ function addLetter(grid, word, letter) {
   }}
 
  function isWord(word){
-  if (dictionary.has(word)){
+  if (dictionary.has(word.toLowerCase())){
     return true;
   }
   else{
