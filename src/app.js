@@ -43,6 +43,14 @@ function addLetter(grid, word, letter) {
     return word;
   }}
 
+  describe('When given a final word',()=>{
+    it('should return true if word is in dictionary',()=>{
+      const word ="RAD";
+      const result = app.isWord(word);
+      expect(result).toBe(true)
+    })
+  })
+
 
 
   
