@@ -43,10 +43,17 @@ function addLetter(grid, word, letter) {
     return word;
   }}
 
- 
+ function isWord(word){
+  if (dictionary.has(word)){
+    return true;
+  }
+  else{
+    return false;
+  }
+ }
 
 
 
   
-  module.exports = {canAddLetter, addLetter };
+  module.exports = {canAddLetter, addLetter, isWord };
   
