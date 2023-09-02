@@ -167,3 +167,11 @@ describe('When given a final word',()=>{
     expect(result).toBe(true)
   })
 })
+
+describe('When given a final word',()=>{
+  it('should return false if word is not in dictionary',()=>{
+    const word ="RAZ";
+    const result = app.isWord(word);
+    expect(result).toBe(false)
+  })
+})
