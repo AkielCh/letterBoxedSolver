@@ -150,3 +150,12 @@ describe('When given a final word',()=>{
     expect(result).toBe(true)
   })
 })
+
+
+describe('When given a final word',()=>{
+  it('should return true if word is in dictionary regardless of CASE SENSITIVITY',()=>{
+    const word ="LEAD";
+    const result = app.isWord(word);
+    expect(result).toBe(true)
+  })
+})

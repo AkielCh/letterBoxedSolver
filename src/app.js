@@ -4,7 +4,8 @@ const dictionary = new Set([
   'banana',
   'cherry',
   'date',
-  'RAD'
+  'RAD',
+  'Lead'
   // Add more valid words here
 ]);
 
