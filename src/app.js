@@ -26,6 +26,13 @@ function canAddLetter(grid, word, letter) {
  }
 }
 
+function addLetter(grid, word, letter) {
+  if (canAddLetter(grid, word, letter)) {
+    return word + letter;
+  } else {
+    return word;
+  }}
+
   
-  module.exports = { canAddLetter };
+  module.exports = { addLetter,canAddLetter };
   
