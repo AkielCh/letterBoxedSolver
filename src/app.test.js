@@ -108,3 +108,19 @@ describe('When given a word',()=>{
     expect(result).toBe("RA")
   })
 })
+
+describe('When given a word',()=>{
+  it('should add letter to empty word',()=>{
+    const grid =[
+      ["L","R","K"],
+      ["A","T","H"],
+      ["Z","E","D"],
+      ["I","O","C"],
+    ]
+
+    const word ="";
+    const letter = "I";
+    const result = app.addLetter(grid,word,letter);
+    expect(result).toBe("I")
+  })
+})
