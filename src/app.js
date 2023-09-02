@@ -1,3 +1,13 @@
+// import dictionary from "./dictionary";
+const dictionary = new Set([
+  'apple',
+  'banana',
+  'cherry',
+  'date',
+  'RAD'
+  // Add more valid words here
+]);
+
 
 function canAddLetter(grid, word, letter) {
  const lastLetterOfWord = word.slice(-1);
@@ -33,6 +43,8 @@ function addLetter(grid, word, letter) {
     return word;
   }}
 
+
+
   
-  module.exports = { addLetter,canAddLetter };
+  module.exports = {canAddLetter, addLetter };
   

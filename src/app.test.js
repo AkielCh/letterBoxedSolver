@@ -4,6 +4,7 @@
 
 const app = require('./app');
 
+
 //Check whether letter can be added to word
 
 describe('When given a word',()=>{
@@ -124,3 +125,21 @@ describe('When given a word',()=>{
     expect(result).toBe("I")
   })
 })
+
+
+describe('When given a word',()=>{
+  it('should not add letter to word if letter is the same as last letter of word',()=>{
+    const grid =[
+      ["L","R","K"],
+      ["A","T","H"],
+      ["Z","E","D"],
+      ["I","O","C"],
+    ]
+
+    const word ="LO";
+    const letter = "O";
+    const result = app.addLetter(grid,word,letter);
+    expect(result).toBe("LO")
+  })
+})
+
