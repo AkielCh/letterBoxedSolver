@@ -4,6 +4,8 @@
 
 const app = require('./app');
 
+//Check whether letter can be added to word
+
 describe('When given a word',()=>{
   it('should allow you to add any letter from a different subarray',()=>{
     let grid =[
@@ -69,4 +71,23 @@ describe('When given a word ',()=>{
     const result = app.canAddLetter(grid, word, letter);
     expect(result).toBe(false);
   });
+})
+
+
+//Add letter to word
+
+describe('When given a word',()=>{
+  it('should add letter to word',()=>{
+    const grid =[
+      ["L","R","K"],
+      ["A","T","H"],
+      ["Z","E","D"],
+      ["I","O","C"],
+    ]
+
+    const word ="RA";
+    const letter = "D";
+    const result = app.addLetter(grid,word,letter);
+    expect(result).toBe("RAD")
+  })
 })
