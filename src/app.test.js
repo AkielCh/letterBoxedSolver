@@ -22,7 +22,6 @@ describe('When given a word',()=>{
 })
 
 
-
 describe('When given a word',()=>{
   it('should prevent the adding of any letter from the same subarray',()=>{
     let grid =[
@@ -38,4 +37,20 @@ describe('When given a word',()=>{
     expect(result).toBe(false)
 
   })
+})
+
+
+describe('When word variable is empty',()=>{
+  it('should allow you to add the first letter to empty word', () => {
+    const grid = [
+      ["L", "R", "K"],
+      ["A", "T", "H"],
+      ["Z", "E", "D"],
+      ["I", "O", "C"],
+    ];
+    const word = "";
+    const letter = "R"; // Adding "R" to an empty word
+    const result = app.canAddLetter(grid, word, letter);
+    expect(result).toBe(true);
+  });
 })
