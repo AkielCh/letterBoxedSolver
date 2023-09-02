@@ -18,7 +18,7 @@ function canAddLetter(grid, word, letter) {
   }
  }
 
- if (lastLetterSubArray !==letterToAddSubArray){
+ if (lastLetterSubArray !==letterToAddSubArray || word === ""){
   return true;
  } 
  else{
