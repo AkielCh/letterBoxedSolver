@@ -159,3 +159,11 @@ describe('When given a final word',()=>{
     expect(result).toBe(true)
   })
 })
+
+describe('When given a final word',()=>{
+  it('should return true if word in dictionary is a combination of uppercase and lowercase letters',()=>{
+    const word ="RaD";
+    const result = app.isWord(word);
+    expect(result).toBe(true)
+  })
+})
