@@ -91,3 +91,20 @@ describe('When given a word',()=>{
     expect(result).toBe("RAD")
   })
 })
+
+
+describe('When given a word',()=>{
+  it('should not add letter to word if letter cannot be added',()=>{
+    const grid =[
+      ["L","R","K"],
+      ["A","T","H"],
+      ["Z","E","D"],
+      ["I","O","C"],
+    ]
+
+    const word ="RA";
+    const letter = "T";
+    const result = app.addLetter(grid,word,letter);
+    expect(result).toBe("RA")
+  })
+})
