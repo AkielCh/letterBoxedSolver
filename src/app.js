@@ -2,7 +2,7 @@
 
 const dictionary = require("./dictionary");
 
-
+const wordList = [];
 
 function canAddLetter(grid, word, letter) {
  const lastLetterOfWord = word.slice(-1);
@@ -49,9 +49,12 @@ function addLetter(grid, word, letter) {
   }
  }
 
-
-
-
+ function addWord (word){
+  if (isWord(word)){
+    wordList.push(word);
+    return wordList
+  }
+ }
   
-  module.exports = {canAddLetter, addLetter, isWord };
+  module.exports = {canAddLetter, addLetter, isWord, addWord };
   
