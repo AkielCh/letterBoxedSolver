@@ -1,13 +1,7 @@
-// import dictionary from "./dictionary";
-const dictionary = new Set([
-  'apple',
-  'banana',
-  'cherry',
-  'date',
-  'RAD',
-  'lead'
-  // Add more valid words here
-].map(dictionaryWord => dictionaryWord.toLowerCase()));
+
+
+const dictionary = require("./dictionary");
+
 
 
 function canAddLetter(grid, word, letter) {
@@ -16,19 +10,21 @@ function canAddLetter(grid, word, letter) {
  let lastLetterSubArray;
  let letterToAddSubArray;
 
+ //find subarray that contains last letter of word
  for (const subArray of grid){
   if (subArray.includes(lastLetterOfWord)){
     lastLetterSubArray=subArray;
     break;
   }
  }
+ //find subarray that contains letter to add
  for (const subArray of grid){
   if (subArray.includes(letterToAdd)){
     letterToAddSubArray =subArray;
     break;
   }
  }
-
+//if last letter subarray is not the same as letter to add subarray or word is empty, return true
  if (lastLetterSubArray !==letterToAddSubArray || word === ""){
   return true;
  } 
@@ -52,6 +48,7 @@ function addLetter(grid, word, letter) {
     return false;
   }
  }
+
 
 
 

@@ -143,6 +143,8 @@ describe('When given a word',()=>{
   })
 })
 
+//Check whether word is in dictionary
+
 describe('When given a final word',()=>{
   it('should return true if word is in dictionary',()=>{
     const word ="RAD";
@@ -175,3 +177,14 @@ describe('When given a final word',()=>{
     expect(result).toBe(false)
   })
 })
+
+//add word to list of words
+
+describe('When given a word to submit',()=>{
+  it('should add word to list of words',()=>{
+    const word ="RAD";
+    const result = app.addWord(word);
+    expect(result).toEqual(["RAD"])
+  })
+})
+

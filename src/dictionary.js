@@ -6,8 +6,9 @@ const dictionary = new Set([
     'banana',
     'cherry',
     'date',
-    'RAD'
-    // Add more valid words here
-  ]);
+    'RAD',
+    'lead'
+   
+  ].map(dictionaryWord => dictionaryWord.toLowerCase()));
 
-  export default dictionary;
+  module.exports = dictionary;
