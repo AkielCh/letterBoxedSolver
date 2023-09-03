@@ -182,9 +182,20 @@ describe('When given a final word',()=>{
 
 describe('When given a word to submit',()=>{
   it('should add word to list of words',()=>{
+    const wordList =[]
     const word ="RAD";
-    const result = app.addWord(word);
+    const result = app.addWord(word,wordList);
     expect(result).toEqual(["RAD"])
   })
 })
 
+
+//
+describe('When given a word to submit',()=>{
+  it('should add word to list of words',()=>{
+    const wordList =["TAR"]
+    const word ="RAD";
+    const result = app.addWord(word,wordList);
+    expect(result).toEqual(["TAR","RAD"])
+  })
+})
