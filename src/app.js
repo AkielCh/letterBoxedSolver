@@ -51,7 +51,7 @@ function addLetter(grid, word, letter) {
  function addWord (word, wordList){
   if (isWord(word)){
     wordList.push(word);
-    return wordList
+    return [wordList];
   }
   else{
     return wordList;

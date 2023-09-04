@@ -185,18 +185,19 @@ describe('When given a word to submit',()=>{
     const wordList =[];
     const word ="RAD";
     const result = app.addWord(word,wordList);
-    expect(result).toEqual(["RAD"])
+    expect(result[0]).toEqual(["RAD"])
   })
 })
 
 
 //
 describe('When given a word to submit',()=>{
-  it('should add word to list of words',()=>{
+  it('should add word to list of words ELEMENT ALREADY IN wordList',
+  ()=>{
     const wordList =["TAR"];
     const word ="RAD";
     const result = app.addWord(word,wordList);
-    expect(result).toEqual(["TAR","RAD"])
+    expect(result[0]).toEqual(["TAR","RAD"])
   })
 })
 
@@ -215,5 +216,14 @@ describe('When given a word to submit',()=>{
     const word ="RAZ";
     const result = app.addWord(word,wordList);
     expect(result).toEqual(["TAR"])
+  })
+})
+
+describe('When given a word to submit',()=>{
+  it('should add word to list of words and take the last letter of the word and assign it to the letter variable',()=>{
+    const wordList =[];
+    const word ="RAD";
+    const result = app.addWord(word,wordList);
+    expect(result[1]).toEqual("D")
   })
 })
