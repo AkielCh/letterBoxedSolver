@@ -182,7 +182,7 @@ describe('When given a final word',()=>{
 
 describe('When given a word to submit',()=>{
   it('should add word to list of words',()=>{
-    const wordList =[]
+    const wordList =[];
     const word ="RAD";
     const result = app.addWord(word,wordList);
     expect(result).toEqual(["RAD"])
@@ -193,9 +193,18 @@ describe('When given a word to submit',()=>{
 //
 describe('When given a word to submit',()=>{
   it('should add word to list of words',()=>{
-    const wordList =["TAR"]
+    const wordList =["TAR"];
     const word ="RAD";
     const result = app.addWord(word,wordList);
     expect(result).toEqual(["TAR","RAD"])
+  })
+})
+
+describe('When given a word to submit',()=>{
+  it('should not add word to list of words if word is not in dictionary',()=>{
+    const wordList =[];
+    const word ="RAZ";
+    const result = app.addWord(word,wordList);
+    expect(result).toEqual([])
   })
 })

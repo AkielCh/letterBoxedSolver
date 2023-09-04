@@ -53,6 +53,9 @@ function addLetter(grid, word, letter) {
     wordList.push(word);
     return wordList
   }
+  else{
+    return wordList;
+  }
  }
   
   module.exports = {canAddLetter, addLetter, isWord, addWord };
