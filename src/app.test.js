@@ -208,3 +208,12 @@ describe('When given a word to submit',()=>{
     expect(result).toEqual([])
   })
 })
+
+describe('When given a word to submit',()=>{
+  it('should not add word to list of words if word is not in dictionary wordList already has element in',()=>{
+    const wordList =["TAR"];
+    const word ="RAZ";
+    const result = app.addWord(word,wordList);
+    expect(result).toEqual(["TAR"])
+  })
+})
