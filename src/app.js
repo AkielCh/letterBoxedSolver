@@ -51,7 +51,8 @@ function addLetter(grid, word, letter) {
  function addWord (word, wordList){
   if (isWord(word)){
     wordList.push(word);
-    return [wordList];
+    const lastLetter = word.slice(-1);
+    return [wordList, lastLetter];
   }
   else{
     return wordList;
