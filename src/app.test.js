@@ -234,8 +234,7 @@ describe('When given a grid',()=>{
   it('should generate a single-letter word from a 1x1 grid',()=>{
     const grid =[
       ["L"],
-    ]
-  
+        ]
     const result = app.generatePossibleWords(grid);
     expect(result).toEqual(["L"])
   })

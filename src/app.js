@@ -59,8 +59,16 @@ function addLetter(grid, word, letter) {
   }
  }
 
-
+function generatePossibleWords(grid){
+    const possibleWords = [];
+    for (const row of grid) {
+      for (const letter of row) {
+        possibleWords.push(letter);
+      }
+    }
+    return possibleWords;
+  }
   
 
-  module.exports = {canAddLetter, addLetter, isWord, addWord };
+  module.exports = {canAddLetter, addLetter, isWord, addWord, generatePossibleWords };
   
