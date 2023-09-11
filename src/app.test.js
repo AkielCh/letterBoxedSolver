@@ -251,15 +251,25 @@ describe('When given a grid',()=>{
 })
 
 describe('When given a grid',()=>{
-  it('should search the dictionary for words and return error if no words are found',()=>{
+  it('should search the dictionary for words and return empty array if no words are found',()=>{
     const grid =[
       ["Z","F"],
         ]
     const result = app.generatePossibleWords(grid);
-    expect(result).toEqual(["No words found"])
+    expect(result).toEqual([])
   })
 })
 
+describe('When given a grid',()=>{
+  it('should search the dictionarry for words containing those letters and add to a possible word list - TWO ROWS, 3 ELEMENTS',()=>{
+    const grid =[
+      ["C","T","R"],
+      ["A","D","E"],
+        ]
+    const result = app.generatePossibleWords(grid);
+    expect(result).toEqual(["cherry","date","rad","apple"])
+  })
+})
 
 // describe('When given a grid',()=>{
 //   it('should generate a single letter and two letter word from a 1x2 grid',()=>{
