@@ -9,7 +9,7 @@ const dictionary = new Set([
     'RAD',
     'lead',
     'L',
-    'CAT', 'CATR', 'CAR', 'CA', 'CT', 'CTR', 'CR',
+   
 
    
   ].map(dictionaryWord => dictionaryWord.toLowerCase()));

@@ -116,6 +116,19 @@ function addLetter(grid, word, letter) {
 
 
 
+function generatePossibleWords(grid) {
+  const letterToSearch = grid[0][0].toLowerCase(); 
+  const possibleWords = [];
+
+  for (const word of dictionary) {
+    if (word.includes(letterToSearch)) {
+      possibleWords.push(word);
+    }
+  }
+
+  return possibleWords;
+
+}
 
 //   // Function to explore adjacent positions and build words
 //   function wordSearch(row, col, wordSoFar) {

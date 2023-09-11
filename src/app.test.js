@@ -236,7 +236,7 @@ describe('When given a grid',()=>{
       ["C"],
         ]
     const result = app.generatePossibleWords(grid);
-    expect(result).toEqual(["C"])
+    expect(result).toEqual(["cherry"])
   })
 })
 
