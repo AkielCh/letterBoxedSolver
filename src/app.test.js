@@ -261,13 +261,13 @@ describe('When given a grid',()=>{
 })
 
 describe('When given a grid',()=>{
-  it('should search the dictionarry for words containing those letters and add to a possible word list - TWO ROWS, 3 ELEMENTS',()=>{
+  it('should search the dictionary for words containing those letters and add to a possible word list - TWO ROWS, 3 ELEMENTS',()=>{
     const grid =[
       ["C","T","R"],
       ["A","D","E"],
         ]
     const result = app.generatePossibleWords(grid);
-    expect(result).toEqual(["cherry","date","rad","apple"])
+    expect(result).toEqual(["apple","banana","cherry","date","rad","lead"])
   })
 })
 

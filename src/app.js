@@ -121,11 +121,13 @@ function generatePossibleWords(grid) {
   const possibleWords = new Set();
 
   for (const word of dictionary) {
-    for (let col = 0; col < grid[0].length; col++){
-      if (word.includes(grid[0][col].toLowerCase())) {
-       possibleWords.add(word);
+    for (let row = 0; row < grid.length; row++){
+      for (let col = 0; col < grid[row].length; col++){
+       if (word.includes(grid[row][col].toLowerCase())) {
+        possibleWords.add(word);
     }
   }
+}
 }
   return Array.from(possibleWords)
 
