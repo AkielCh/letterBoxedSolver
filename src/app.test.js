@@ -240,6 +240,15 @@ describe('When given a grid',()=>{
   })
 })
 
+describe('When given a grid',()=>{
+  it('should search the dictionary for words containing those letters - ONE ROW, 3 ELEMENTS',()=>{
+    const grid =[
+      ["C","T","R"],
+        ]
+    const result = app.generatePossibleWords(grid);
+    expect(result).toEqual(["cherry","date","RAD"])
+  })
+})
 // describe('When given a grid',()=>{
 //   it('should generate a single letter and two letter word from a 1x2 grid',()=>{
 //     const grid =[
