@@ -117,16 +117,17 @@ function addLetter(grid, word, letter) {
 
 
 function generatePossibleWords(grid) {
-  const letterToSearch = grid[0][0].toLowerCase(); 
-  const possibleWords = [];
+  // const letterToSearch = grid[0][0].toLowerCase(); 
+  const possibleWords = new Set();
 
   for (const word of dictionary) {
-    if (word.includes(letterToSearch)) {
-      possibleWords.push(word);
+    for (let col = 0; col < grid[0].length; col++){
+      if (word.includes(grid[0][col].toLowerCase())) {
+       possibleWords.add(word);
     }
   }
-
-  return possibleWords;
+}
+  return Array.from(possibleWords)
 
 }
 

@@ -246,9 +246,11 @@ describe('When given a grid',()=>{
       ["C","T","R"],
         ]
     const result = app.generatePossibleWords(grid);
-    expect(result).toEqual(["cherry","date","RAD"])
+    expect(result).toEqual(["cherry","date","rad"])
   })
 })
+
+
 // describe('When given a grid',()=>{
 //   it('should generate a single letter and two letter word from a 1x2 grid',()=>{
 //     const grid =[
