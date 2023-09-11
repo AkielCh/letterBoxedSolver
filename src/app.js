@@ -48,6 +48,8 @@ function addLetter(grid, word, letter) {
   }
  }
 
+
+
  function addWord (word, wordList){
   if (isWord(word)){
     wordList.push(word);
@@ -59,16 +61,108 @@ function addLetter(grid, word, letter) {
   }
  }
 
-function generatePossibleWords(grid){
-    const possibleWords = [];
-    for (const row of grid) {
-      for (const letter of row) {
-        possibleWords.push(letter);
-      }
-    }
-    return possibleWords;
-  }
-  
+//  function generatePossibleWords(grid) {
+//   const possibleWords = [];
+ 
+//   function wordSearch(row,col,wordSoFar){
+//     possibleWords.push(wordSoFar);
+//   }
+
+ 
+//   for (let row = 0; row < grid.length; row++) {
+//     for (let col = 0; col < grid[row].length; col++) {
+//       wordSearch(row, col, grid[row][col]);
+//     }
+//   }
+
+//   return possibleWords;
+// }
+
+// function generatePossibleWords(grid) {
+//   const possibleWords = [];
+
+//   // Function to explore adjacent positions
+//   function wordSearch(row, col, wordSoFar) {
+//     if (row >= 0 && row < grid.length && col >= 0 && col < grid[0].length) {
+//       const letter = grid[row][col];
+//       possibleWords.push(wordSoFar + letter);
+
+//       // Explore adjacent positions (up, down, left, right)
+//       const directions = [
+//         { dx: -1, dy: 0 }, // Left
+//         { dx: 1, dy: 0 },  // Right
+//         { dx: 0, dy: -1 }, // Up
+//         { dx: 0, dy: 1 },  // Down
+//       ];
+
+//       for (const direction of directions) {
+//         const newRow = row + direction.dy;
+//         const newCol = col + direction.dx;
+//         wordSearch(newRow, newCol, wordSoFar + letter);
+//       }
+//     }
+//   }
+
+//   for (let row = 0; row < grid.length; row++) {
+//     for (let col = 0; col < grid[row].length; col++) {
+//       wordSearch(row, col, grid[row][col]);
+//     }
+//   }
+
+//   return possibleWords;
+// }
+
+
+
+
+
+
+//   // Function to explore adjacent positions and build words
+//   function wordSearch(row, col, wordSoFar) {
+//     // Check if the current word is a valid word
+//     if (isWord(wordSoFar)) {
+//       possibleWords.push(wordSoFar);
+//     }
+
+//     // Explore adjacent positions (up, down, left, right)
+//     const directions = [
+//       { dx: 1, dy: 0 },  // Right
+//       { dx: 0, dy: -1 }, // Up
+//       { dx: -1, dy: 0 }, // Left
+//       { dx: 0, dy: 1 },  // Down
+//     ];
+
+//     for (const direction of directions) {
+//       const newRow = row + direction.dy;
+//       const newCol = col + direction.dx;
+
+//       // Check if the new position is within the grid bounds
+//       if (newRow >= 0 && newRow < grid.length && newCol >= 0 && newCol < grid[0].length) {
+//         const letter = grid[newRow][newCol];
+
+//         // Check if the letter can be added to the current word
+//         if (canAddLetter(grid, wordSoFar, letter)) {
+//           // Recursively explore the new position with the updated word
+//           wordSearch(newRow, newCol, wordSoFar + letter);
+//         }
+//       }
+//     }
+//   }
+
+//   // Iterate through each cell in the grid and start exploring words
+//   for (let row = 0; row < grid.length; row++) {
+//     for (let col = 0; col < grid[row].length; col++) {
+//       wordSearch(row, col, grid[row][col]);
+//     }
+//   }
+
+//   // Check if no words were found and return an empty array
+//   if (possibleWords.length === 0) {
+//     return [];
+//   }
+
+//   return possibleWords;
+// }
 
   module.exports = {canAddLetter, addLetter, isWord, addWord, generatePossibleWords };
   

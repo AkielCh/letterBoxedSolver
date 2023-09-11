@@ -7,7 +7,10 @@ const dictionary = new Set([
     'cherry',
     'date',
     'RAD',
-    'lead'
+    'lead',
+    'L',
+    'CAT', 'CATR', 'CAR', 'CA', 'CT', 'CTR', 'CR',
+
    
   ].map(dictionaryWord => dictionaryWord.toLowerCase()));
 

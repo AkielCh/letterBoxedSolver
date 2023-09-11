@@ -231,12 +231,33 @@ describe('When given a word to submit',()=>{
 //Possible Word Generation
 
 describe('When given a grid',()=>{
-  it('should generate a single-letter word from a 1x1 grid',()=>{
+  it('should search the dictionary for words containing that letter',()=>{
     const grid =[
-      ["L"],
+      ["C"],
         ]
     const result = app.generatePossibleWords(grid);
-    expect(result).toEqual(["L"])
+    expect(result).toEqual(["C"])
   })
 })
 
+// describe('When given a grid',()=>{
+//   it('should generate a single letter and two letter word from a 1x2 grid',()=>{
+//     const grid =[
+//       ["A","B"],
+//         ]
+//     const result = app.generatePossibleWords(grid);
+//     expect(result).toEqual(["A","AB"])
+//   })
+// })
+
+// describe('When given a grid',()=>{
+//   it('should generate words from a 2x2 grid with adjacent letters', () => {
+//     const grid = [
+//       ['C'],
+//       ['T'],
+//     ];
+//     const result = app.generatePossibleWords(grid);
+//     expect(result).toEqual(['CAT', 'CATR', 'CAR', 'CA', 'CT', 'CTR', 'CR']);
+//   });
+// })
+  
