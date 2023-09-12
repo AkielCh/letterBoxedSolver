@@ -84,7 +84,7 @@ function generatePossibleWords(grid) {
       possibleWords.push(word);
     }
   }
-  return possibleWords;
+  return possibleWords.length > 0 ? possibleWords : console.log("No words found");
 }
 
 
