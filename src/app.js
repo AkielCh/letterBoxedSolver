@@ -32,6 +32,7 @@ function canAddLetter(grid, word, letter) {
  }
 }
 
+//For letterBoxed Game
 function addLetter(grid, word, letter) {
   if (canAddLetter(grid, word, letter)) {
     return word + letter;
@@ -39,6 +40,8 @@ function addLetter(grid, word, letter) {
     return word;
   }}
 
+
+  //For letterBoxed Game
  function isWord(word){
   if (dictionary.has(word.toLowerCase())){
     return true;
@@ -61,77 +64,41 @@ function addLetter(grid, word, letter) {
   }
  }
 
+
+
+
+
+
+
+
+//FIRST LOOP ATTEMPT  ----------------
+// function validWord(word, grid){
+//   for (let row = 0; row < grid.length; row++){
+//     for (let col = 0; col < grid[row].length; col++){
+//      if (!word.includes(grid[row][col].toLowerCase())) {
+//       return false;
+//   }
+//   else{
+//     return true;
+// }
+// }}}
+
 //  function generatePossibleWords(grid) {
-//   const possibleWords = [];
- 
-//   function wordSearch(row,col,wordSoFar){
-//     possibleWords.push(wordSoFar);
-//   }
+//   const possibleWords = new Set();
 
- 
-//   for (let row = 0; row < grid.length; row++) {
-//     for (let col = 0; col < grid[row].length; col++) {
-//       wordSearch(row, col, grid[row][col]);
+//   for (const word of dictionary) {
+//     if (validWord(word, grid)){
+//       possibleWords.push(word);
 //     }
-//   }
+// return Array.from(possibleWords)
+// }}
 
-//   return possibleWords;
-// }
-
-// function generatePossibleWords(grid) {
-//   const possibleWords = [];
-
-//   // Function to explore adjacent positions
-//   function wordSearch(row, col, wordSoFar) {
-//     if (row >= 0 && row < grid.length && col >= 0 && col < grid[0].length) {
-//       const letter = grid[row][col];
-//       possibleWords.push(wordSoFar + letter);
-
-//       // Explore adjacent positions (up, down, left, right)
-//       const directions = [
-//         { dx: -1, dy: 0 }, // Left
-//         { dx: 1, dy: 0 },  // Right
-//         { dx: 0, dy: -1 }, // Up
-//         { dx: 0, dy: 1 },  // Down
-//       ];
-
-//       for (const direction of directions) {
-//         const newRow = row + direction.dy;
-//         const newCol = col + direction.dx;
-//         wordSearch(newRow, newCol, wordSoFar + letter);
-//       }
-//     }
-//   }
-
-//   for (let row = 0; row < grid.length; row++) {
-//     for (let col = 0; col < grid[row].length; col++) {
-//       wordSearch(row, col, grid[row][col]);
-//     }
-//   }
-
-//   return possibleWords;
-// }
+// ---------------------------------------------
 
 
 
 
-
-function generatePossibleWords(grid) {
-  // const letterToSearch = grid[0][0].toLowerCase(); 
-  const possibleWords = new Set();
-
-  for (const word of dictionary) {
-    for (let row = 0; row < grid.length; row++){
-      for (let col = 0; col < grid[row].length; col++){
-       if (word.includes(grid[row][col].toLowerCase())) {
-        possibleWords.add(word);
-    }
-  }
-}
-}
-  return Array.from(possibleWords)
-
-}
+//RECURSIVE ATTEMPT
 
 //   // Function to explore adjacent positions and build words
 //   function wordSearch(row, col, wordSoFar) {

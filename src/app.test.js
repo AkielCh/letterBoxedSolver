@@ -230,46 +230,73 @@ describe('When given a word to submit',()=>{
 
 //Possible Word Generation
 
-describe('When given a grid',()=>{
-  it('should search the dictionary for words containing that letter',()=>{
-    const grid =[
-      ["C"],
-        ]
-    const result = app.generatePossibleWords(grid);
-    expect(result).toEqual(["cherry"])
-  })
-})
+// describe('When given a grid',()=>{
+//   it('should search the dictionary for words containing that letter',()=>{
+//     const grid =[
+//       ["C"],
+//         ]
+//     const result = app.generatePossibleWords(grid);
+//     expect(result).toEqual(["cherry"])
+//   })
+// })
 
-describe('When given a grid',()=>{
-  it('should search the dictionary for words containing those letters and add to a possible word list - ONE ROW, 3 ELEMENTS',()=>{
-    const grid =[
-      ["C","T","R"],
-        ]
-    const result = app.generatePossibleWords(grid);
-    expect(result).toEqual(["cherry","date","rad"])
-  })
-})
+// describe('When given a grid',()=>{
+//   it('should search the dictionary for words containing those letters and add to a possible word list - ONE ROW, 3 ELEMENTS',()=>{
+//     const grid =[
+//       ["C","T","R"],
+//         ]
+//     const result = app.generatePossibleWords(grid);
+//     expect(result).toEqual(["cherry","date","rad"])
+//   })
+// })
 
-describe('When given a grid',()=>{
-  it('should search the dictionary for words and return empty array if no words are found',()=>{
-    const grid =[
-      ["Z","F"],
-        ]
-    const result = app.generatePossibleWords(grid);
-    expect(result).toEqual([])
-  })
-})
+// describe('When given a grid',()=>{
+//   it('should search the dictionary for words and return empty array if no words are found',()=>{
+//     const grid =[
+//       ["Z","F"],
+//         ]
+//     const result = app.generatePossibleWords(grid);
+//     expect(result).toEqual([])
+//   })
+// })
 
-describe('When given a grid',()=>{
-  it('should search the dictionary for words containing those letters and add to a possible word list - TWO ROWS, 3 ELEMENTS',()=>{
+// describe('When given a grid',()=>{
+//   it('should search the dictionary for words containing those letters and add to a possible word list - TWO ROWS, 3 ELEMENTS',()=>{
+//     const grid =[
+//       ["C","T","R"],
+//       ["A","D","E"],
+//         ]
+//     const result = app.generatePossibleWords(grid);
+//     expect(result).toEqual(["apple","banana","cherry","date","rad","lead"])
+//   })
+// })
+
+// describe('When given a grid',()=>{
+//   it('should search the dictionary for words only containing the letters in the grid',()=>{
+//     const grid =[
+//       ["C", "R"],
+//       ["A","T"]
+//     ]
+
+//     const result = app.generatePossibleWords(grid);
+//     expect(result).toEqual(["cat"])
+//   })
+// })
+
+// Comment out above
+
+describe('When given a word',()=>{
+  it('should check to see all letters in the word are contained in the grid',()=>{
     const grid =[
-      ["C","T","R"],
-      ["A","D","E"],
-        ]
-    const result = app.generatePossibleWords(grid);
-    expect(result).toEqual(["apple","banana","cherry","date","rad","lead"])
-  })
-})
+      ["C", "R"],
+      ["A","T"]
+    ]
+    const word ="cat";
+    const result = app.wordCotainsLetters(grid,word);
+    expect(result).toBe(true)
+  }
+)}
+  )
 
 // describe('When given a grid',()=>{
 //   it('should generate a single letter and two letter word from a 1x2 grid',()=>{

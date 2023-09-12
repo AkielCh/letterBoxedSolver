@@ -11,6 +11,7 @@ const dictionary = new Set([
     'RAD',
     'lead',
     'L',
+    'cat'
    
 
    
