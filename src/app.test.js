@@ -285,7 +285,7 @@ describe('When given a word to submit',()=>{
 
 // Comment out above
 
-describe('When given a word',()=>{
+describe('When given a word to compare with grid',()=>{
   it('should check to see all letters in the word are contained in the grid',()=>{
     const grid =[
       ["C", "R"],
@@ -295,8 +295,21 @@ describe('When given a word',()=>{
     const result = app.wordContainsValidLetters(grid,word);
     expect(result).toBe(true)
   }
-)}
+)
+ } )
+
+  describe('When given a word to compare with grid',()=>{
+    it('should check to see all letters in the word are contained in the grid. NO LETTERS IN GRID',()=>{
+      const grid =[
+        ["C", "R"],
+        ["A","T"]
+      ]
+      const word ="YES";
+      const result = app.wordContainsValidLetters(grid,word);
+      expect(result).toBe(false)
+    }
   )
+  })
 
 // describe('When given a grid',()=>{
 //   it('should generate a single letter and two letter word from a 1x2 grid',()=>{
