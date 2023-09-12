@@ -324,6 +324,18 @@ describe('When given a word to compare with grid',()=>{
   )
   })
 
+  describe('When given a word to compare with grid',()=>{
+    it('should check to see if all letters in the word are contained in the grid - REMOVE CASE SENSITIVITY',()=>{
+      const grid =[
+        ["C", "R"],
+        ["A","T"]
+      ]
+      const word ="cat";
+      const result = app.wordContainsValidLetters(grid,word);
+      expect(result).toBe(true)
+    } )
+  })
+
 
 
 // describe('When given a grid',()=>{
