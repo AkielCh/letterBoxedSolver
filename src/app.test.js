@@ -291,8 +291,8 @@ describe('When given a word',()=>{
       ["C", "R"],
       ["A","T"]
     ]
-    const word ="cat";
-    const result = app.wordCotainsLetters(grid,word);
+    const word ="CAT";
+    const result = app.wordContainsValidLetters(grid,word);
     expect(result).toBe(true)
   }
 )}

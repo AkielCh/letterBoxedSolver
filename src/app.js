@@ -66,8 +66,38 @@ function addLetter(grid, word, letter) {
 
 
 
+function wordContainsValidLetters(grid,word){
+  const mergedGridArray = grid.flat();
+  for (const letter of word){
+    if (!mergedGridArray.includes(letter)){
+      return false;
+    }
+  }
+  return true;
+}
 
 
+// function generatePossibleWords(grid) {
+//   // const letterToSearch = grid[0][0].toLowerCase(); 
+//   const possibleWords = new Set();
+//   const mergedGridArray = grid.flat();
+
+//   for (const word of dictionary) {
+//       for(const letter of word){
+//         if(!mergedGridArray.includes(letter)){
+//           return console.log("letter not in grid");
+//         }
+//         else{
+//         return true;
+//         }
+//       }
+//       if (word){
+//         possibleWords.add(word);
+//       }
+       
+
+//     }
+//   }
 
 
 
@@ -147,5 +177,5 @@ function addLetter(grid, word, letter) {
 //   return possibleWords;
 // }
 
-  module.exports = {canAddLetter, addLetter, isWord, addWord, generatePossibleWords };
+  module.exports = {canAddLetter, addLetter, isWord, addWord,  wordContainsValidLetters };
   
