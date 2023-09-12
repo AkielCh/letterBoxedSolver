@@ -67,7 +67,7 @@ function addLetter(grid, word, letter) {
 
 
 function wordContainsValidLetters(grid,word){
-  const mergedGridArray = grid.flat();
+  const mergedGridArray = grid.flat().map(letter => letter.toLowerCase());
   for (const letter of word){
     if (!mergedGridArray.includes(letter)){
       return false;

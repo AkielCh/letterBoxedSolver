@@ -291,7 +291,7 @@ describe('When given a word to compare with grid',()=>{
       ["C", "R"],
       ["A","T"]
     ]
-    const word ="CAT";
+    const word ="cat";
     const result = app.wordContainsValidLetters(grid,word);
     expect(result).toBe(true)
   }
