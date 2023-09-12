@@ -7,11 +7,13 @@ const dictionary = new Set([
     'by',
     'Ying',
     'cherry',
+    'cat',
     'date',
     'RAD',
+    'rat',
+    'tar',
     'lead',
     'L',
-    'cat'
    
 
    

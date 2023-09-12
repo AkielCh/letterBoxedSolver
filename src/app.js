@@ -65,7 +65,7 @@ function addLetter(grid, word, letter) {
  }
 
 
-
+//second loop attempt
 function wordContainsValidLetters(grid,word){
   const mergedGridArray = grid.flat().map(letter => letter.toLowerCase());
   for (const letter of word){
@@ -76,29 +76,16 @@ function wordContainsValidLetters(grid,word){
   return true;
 }
 
+function generatePossibleWords(grid) {
+  const possibleWords = [];
 
-// function generatePossibleWords(grid) {
-//   // const letterToSearch = grid[0][0].toLowerCase(); 
-//   const possibleWords = new Set();
-//   const mergedGridArray = grid.flat();
-
-//   for (const word of dictionary) {
-//       for(const letter of word){
-//         if(!mergedGridArray.includes(letter)){
-//           return console.log("letter not in grid");
-//         }
-//         else{
-//         return true;
-//         }
-//       }
-//       if (word){
-//         possibleWords.add(word);
-//       }
-       
-
-//     }
-//   }
-
+  for (const word of dictionary) {
+    if (wordContainsValidLetters(grid,word)){
+      possibleWords.push(word);
+    }
+  }
+  return possibleWords;
+}
 
 
 //FIRST LOOP ATTEMPT  ----------------
@@ -177,5 +164,5 @@ function wordContainsValidLetters(grid,word){
 //   return possibleWords;
 // }
 
-  module.exports = {canAddLetter, addLetter, isWord, addWord,  wordContainsValidLetters };
+  module.exports = {canAddLetter, addLetter, isWord, addWord,  wordContainsValidLetters, generatePossibleWords };
   

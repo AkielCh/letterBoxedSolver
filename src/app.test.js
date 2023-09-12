@@ -336,7 +336,27 @@ describe('When given a word to compare with grid',()=>{
     } )
   })
 
+  describe('When given a grid',()=>{
+    it('should return a list of words from the dictionary that contain the letters in the grid',()=>{
+      const grid =[
+        ["C", "R"],
+        ["A","T"]
+      ]
+      const result = app.generatePossibleWords(grid);
+      expect(result).toEqual(["cat","rat","tar"])
+    } )
+  })
 
+  describe('When given a grid',()=>{
+    it('should return a console.log message if there are no words in the dictionary that contain the letters in the grid',()=>{
+      const grid =[
+        ["Z", "F"],
+        ["A","T"]
+      ]
+      const result = app.generatePossibleWords(grid);
+      expect(result).toEqual(console.log("No words found"))
+    } )
+  })
 
 // describe('When given a grid',()=>{
 //   it('should generate a single letter and two letter word from a 1x2 grid',()=>{
