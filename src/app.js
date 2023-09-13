@@ -52,7 +52,7 @@ function addLetter(grid, word, letter) {
  }
 
 
-
+//For letterBoxed Game
  function addWord (word, wordList){
   if (isWord(word)){
     wordList.push(word);
@@ -66,7 +66,7 @@ function addLetter(grid, word, letter) {
 
 
 //second loop attempt
-function wordContainsValidLetters(grid,word){
+function dictionaryWordContainsValidLetters(grid,word){
   const mergedGridArray = grid.flat().map(letter => letter.toLowerCase());
   for (const letter of word){
     if (!mergedGridArray.includes(letter)){
@@ -77,15 +77,17 @@ function wordContainsValidLetters(grid,word){
 }
 
 function generatePossibleWords(grid) {
-  const possibleWords = [];
+  const possibleWordsArray = [];
 
   for (const word of dictionary) {
-    if (wordContainsValidLetters(grid,word)){
-      possibleWords.push(word);
+    if (dictionaryWordContainsValidLetters(grid,word)){
+      possibleWordsArray.push(word);
     }
   }
-  return possibleWords.length > 0 ? possibleWords : console.log("No words found");
+  return possibleWordsArray.length > 0 ? possibleWordsArray : console.log("No words found");
 }
+
+
 
 
 //FIRST LOOP ATTEMPT  ----------------
@@ -100,14 +102,14 @@ function generatePossibleWords(grid) {
 // }
 // }}}
 
-//  function generatePossibleWords(grid) {
-//   const possibleWords = new Set();
+//  function generatepossibleWordsArray(grid) {
+//   const possibleWordsArray = new Set();
 
 //   for (const word of dictionary) {
 //     if (validWord(word, grid)){
-//       possibleWords.push(word);
+//       possibleWordsArray.push(word);
 //     }
-// return Array.from(possibleWords)
+// return Array.from(possibleWordsArray)
 // }}
 
 // ---------------------------------------------
@@ -121,7 +123,7 @@ function generatePossibleWords(grid) {
 //   function wordSearch(row, col, wordSoFar) {
 //     // Check if the current word is a valid word
 //     if (isWord(wordSoFar)) {
-//       possibleWords.push(wordSoFar);
+//       possibleWordsArray.push(wordSoFar);
 //     }
 
 //     // Explore adjacent positions (up, down, left, right)
@@ -157,12 +159,12 @@ function generatePossibleWords(grid) {
 //   }
 
 //   // Check if no words were found and return an empty array
-//   if (possibleWords.length === 0) {
+//   if (possibleWordsArray.length === 0) {
 //     return [];
 //   }
 
-//   return possibleWords;
+//   return possibleWordsArray;
 // }
 
-  module.exports = {canAddLetter, addLetter, isWord, addWord,  wordContainsValidLetters, generatePossibleWords };
+  module.exports = {canAddLetter, addLetter, isWord, addWord,  dictionaryWordContainsValidLetters, generatePossibleWords , addValidWord};
   

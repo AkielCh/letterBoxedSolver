@@ -292,7 +292,7 @@ describe('When given a word to compare with grid',()=>{
       ["A","T"]
     ]
     const word ="cat";
-    const result = app.wordContainsValidLetters(grid,word);
+    const result = app.dictionaryWordContainsValidLetters(grid,word);
     expect(result).toBe(true)
   }
 )
@@ -305,7 +305,7 @@ describe('When given a word to compare with grid',()=>{
         ["A","T"]
       ]
       const word ="YES";
-      const result = app.wordContainsValidLetters(grid,word);
+      const result = app.dictionaryWordContainsValidLetters(grid,word);
       expect(result).toBe(false)
     }
   )
@@ -318,7 +318,7 @@ describe('When given a word to compare with grid',()=>{
         ["A","T"]
       ]
       const word ="RATE";
-      const result = app.wordContainsValidLetters(grid,word);
+      const result = app.dictionaryWordContainsValidLetters(grid,word);
       expect(result).toBe(false)
     }
   )
@@ -331,7 +331,7 @@ describe('When given a word to compare with grid',()=>{
         ["A","T"]
       ]
       const word ="cat";
-      const result = app.wordContainsValidLetters(grid,word);
+      const result = app.dictionaryWordContainsValidLetters(grid,word);
       expect(result).toBe(true)
     } )
   })
@@ -383,6 +383,16 @@ describe('When given a word to compare with grid',()=>{
       expect(result).toEqual(["card","cat","cherry","crank","date","hinder","rad","raid", "rat","rate","tar","tide","under","yard"])
     } )
   })
+
+  describe('When given a word from possibleWordsArray',()=>{
+    it('should add word to a list of valid words',()=>{
+      const validWordsArray =[];
+      const word ="RAD";
+      result = app.addValidWord(word,validWordsArray);
+      expect(result).toEqual(["RAD"])
+    })
+  })
+
 
 // describe('When given a grid',()=>{
 //   it('should generate a single letter and two letter word from a 1x2 grid',()=>{
