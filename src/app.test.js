@@ -367,10 +367,22 @@ describe('When given a word to compare with grid',()=>{
         ["Y","I"]
       ]
       const result = app.generatePossibleWords(grid);
-      expect(result).toEqual(["cat", "date","rad","raid", "rat","rate","tar","tide","yard"])
+      expect(result).toEqual(["card","cat", "date","rad","raid", "rat","rate","tar","tide","yard"])
     } )
   })
 
+  describe('When given a grid',()=>{
+    it('should return a list of words from the dictionary that contain the letters in the grid -FULL GRID',()=>{
+      const grid =[
+        ["C", "R","K"],
+        ["A","T","H"],
+        ["E","D","U"],
+        ["Y","I","N"]
+      ]
+      const result = app.generatePossibleWords(grid);
+      expect(result).toEqual(["card","cat","cherry","crank","date","hinder","rad","raid", "rat","rate","tar","tide","under","yard"])
+    } )
+  })
 
 // describe('When given a grid',()=>{
 //   it('should generate a single letter and two letter word from a 1x2 grid',()=>{
