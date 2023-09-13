@@ -5,15 +5,19 @@ const dictionary = new Set([
     'apple',
     'banana',
     'by',
-    'Ying',
     'cherry',
     'cat',
     'date',
-    'RAD',
-    'rat',
-    'tar',
     'lead',
     'L',
+    'RAD',
+    'raid',
+    'rat',
+    'rate',
+    'tar',
+    'tide',
+    'yard',
+    'Ying',
    
 
    
