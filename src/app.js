@@ -87,7 +87,10 @@ function generatePossibleWords(grid) {
   return possibleWordsArray.length > 0 ? possibleWordsArray : console.log("No words found");
 }
 
-
+function addValidWord(word, validWordsArray){
+  validWordsArray.push(word);
+  return validWordsArray;
+}
 
 
 //FIRST LOOP ATTEMPT  ----------------
