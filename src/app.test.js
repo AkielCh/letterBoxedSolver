@@ -359,7 +359,7 @@ describe('When given a word to compare with grid',()=>{
   })
 
   describe('When given a grid',()=>{
-    it('should return a list of words from the dictionary that contain the letters in the grid - 3 ROWS',()=>{
+    it('should return a list of words from the dictionary that contain the letters in the grid - 4 ROWS',()=>{
       const grid =[
         ["C", "R"],
         ["A","T"],
@@ -370,6 +370,7 @@ describe('When given a word to compare with grid',()=>{
       expect(result).toEqual(["cat", "date","rad","raid", "rat","rate","tar","tide","yard"])
     } )
   })
+
 
 // describe('When given a grid',()=>{
 //   it('should generate a single letter and two letter word from a 1x2 grid',()=>{
