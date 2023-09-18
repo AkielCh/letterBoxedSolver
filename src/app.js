@@ -48,6 +48,24 @@ function canAddLetter(grid, word, letter) {
 }
 
 
+function canAddWord(grid, word) {
+  for (let i = 0; i < word.length - 1; i++) {
+    const letter = word[i];
+    const nextLetter = word[i + 1];
+if (!nextLetter == undefined){
+   
+    const currentLetterSubArray = grid.find(subArray => subArray.includes(letter));
+    const nextLetterSubArray = grid.find(subArray => subArray.includes(nextLetter));
+
+    if (currentLetterSubArray === nextLetterSubArray){
+      return false;
+    }
+  }}
+
+ 
+  return true;
+}
+
 
 
 
