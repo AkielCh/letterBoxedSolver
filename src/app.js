@@ -3,34 +3,54 @@
 const dictionary = require("./dictionary");
 
 
-function canAddLetter(grid, word, letter) {
- const lastLetterOfWord = word.slice(-1);
- const letterToAdd = letter;
- let lastLetterSubArray;
- let letterToAddSubArray;
+// function canAddLetter(grid, word, letter) {
+//  const lastLetterOfWord = word.slice(-1);
+//  const letterToAdd = letter;
+//  let lastLetterSubArray;
+//  let letterToAddSubArray;
 
- //find subarray that contains last letter of word
- for (const subArray of grid){
-  if (subArray.includes(lastLetterOfWord)){
-    lastLetterSubArray=subArray;
-    break;
+//  //find subarray that contains last letter of word
+//  for (const subArray of grid){
+//   if (subArray.includes(lastLetterOfWord)){
+//     lastLetterSubArray=subArray;
+//     break;
+//   }
+//  }
+//  //find subarray that contains letter to add
+//  for (const subArray of grid){
+//   if (subArray.includes(letterToAdd)){
+//     letterToAddSubArray =subArray;
+//     break;
+//   }
+//  }
+// //if last letter subarray is not the same as letter to add subarray or word is empty, return true
+//  if (lastLetterSubArray !==letterToAddSubArray || word === ""){
+//   return true;
+//  } 
+//  else{
+//   return false;
+//  }
+// }
+
+function canAddLetter(grid, word, letter) {
+  if (word === "") {
+    return true; // An empty word can always have letters added.
   }
- }
- //find subarray that contains letter to add
- for (const subArray of grid){
-  if (subArray.includes(letterToAdd)){
-    letterToAddSubArray =subArray;
-    break;
-  }
- }
-//if last letter subarray is not the same as letter to add subarray or word is empty, return true
- if (lastLetterSubArray !==letterToAddSubArray || word === ""){
-  return true;
- } 
- else{
-  return false;
- }
+
+  const lastLetterOfWord = word.slice(-1);
+
+  // Find subarrays that contain the last letter of the word and the letter to add.
+  const lastLetterSubArray = grid.find(subArray => subArray.includes(lastLetterOfWord));
+  const letterToAddSubArray = grid.find(subArray => subArray.includes(letter));
+
+  // If either subarray is not found or they are not the same, return true.
+  return !lastLetterSubArray || !letterToAddSubArray || lastLetterSubArray !== letterToAddSubArray;
 }
+
+
+
+
+
 
 //For letterBoxed Game
 function addLetter(grid, word, letter) {
@@ -68,13 +88,17 @@ function addLetter(grid, word, letter) {
 //second loop attempt
 function dictionaryWordContainsValidLetters(grid,word){
   const mergedGridArray = grid.flat().map(letter => letter.toLowerCase());
-  for (const letter of word){
-    if (!mergedGridArray.includes(letter)){
-      return false;
-    }
-  }
-  return true;
+
+ return word.split("").every(letter => mergedGridArray.includes(letter))
 }
+
+//   for (const letter of word){
+//     if (!mergedGridArray.includes(letter)){
+//       return false;
+//     }
+//   }
+//   return true;
+// }
 
 function generatePossibleWords(grid) {
   const possibleWordsArray = [];
@@ -87,10 +111,22 @@ function generatePossibleWords(grid) {
   return possibleWordsArray.length > 0 ? possibleWordsArray : console.log("No words found");
 }
 
-function addValidWord(word, validWordsArray){
-  validWordsArray.push(word);
-  return validWordsArray;
+function addValidWords(possibleWordsArray, grid) {
+  const validWords = [];
+
+  possibleWordsArray.forEach(word => {
+    if (canAddWord(grid, word)) {
+      validWords.push(word);
+    }
+  });
+
+  return validWords;
 }
+
+
+// You should have a canAddWord function to check if a word can be added to the grid.
+
+
 
 
 //FIRST LOOP ATTEMPT  ----------------
@@ -169,5 +205,5 @@ function addValidWord(word, validWordsArray){
 //   return possibleWordsArray;
 // }
 
-  module.exports = {canAddLetter, addLetter, isWord, addWord,  dictionaryWordContainsValidLetters, generatePossibleWords , addValidWord};
+  module.exports = {canAddLetter, addLetter, isWord, addWord,  dictionaryWordContainsValidLetters, generatePossibleWords , addValidWords, canAddWord};
   

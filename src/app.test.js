@@ -383,15 +383,61 @@ describe('When given a word to compare with grid',()=>{
       expect(result).toEqual(["card","cat","cherry","crank","date","hinder","rad","raid", "rat","rate","tar","tide","under","yard"])
     } )
   })
+  
+  // describe('When given a word from possibleWordsArray',()=>{
+  //   it('should only add words if canAddWord is true',()=>{
+  //     const grid =[
+  //       ["C", "R","K"],
+  //       ["A","T","H"],
+  //       ["E","D","U"],
+  //       ["Y","I","N"]
+  //     ]
+  //     const possibleWordsArray =[
+  //       "card","cat","cherry","crank","date","hinder","rad","raid", "rat","rate","tar","tide","under","yard"
+  //     ]
+  //     result = app.addValidWords(possibleWordsArray,grid);
+  //     expect(result).toEqual(["card","rad","raid","yard"])
+  //   }
+  //   )
+  // })
 
-  describe('When given a word from possibleWordsArray',()=>{
-    it('should add word to a list of valid words',()=>{
-      const validWordsArray =[];
-      const word ="RAD";
-      result = app.addValidWord(word,validWordsArray);
-      expect(result).toEqual(["RAD"])
+
+  describe('When given a word ',()=>{
+    it('should check whether the letters in the word are valid',()=>{
+      const grid =[
+        ["C", "R","K"],
+        ["A","T","H"],
+        ["E","D","U"],
+        ["Y","I","N"]
+      ]
+      const word ="card";
+      const result = app.canAddWord(grid,word);
+      expect(result).toBe(true)
+
     })
-  })
+    })
+
+
+  // describe('When given a word from possibleWordsArray',()=>{
+  //   it('should add word to a list of valid words',()=>{
+  //     const validWordsArray =[];
+  //     const word ="RAD";
+  //     result = app.addValidWord(word,validWordsArray);
+  //     expect(result).toEqual(["RAD"])
+  //   })
+  // })
+
+  // describe('When given words from possibleWordsArray',()=>{
+  //   it('should add word to a list of valid words validWordsArray contains element',()=>{
+  //     const validWordsArray =["Rad"];
+  //     const word="Yes" ;
+  //     result = app.addValidWord(word,validWordsArray);
+  //     expect(result).toEqual(["Rad","Yes"])
+  //   })
+  // })
+
+
+
 
 
 // describe('When given a grid',()=>{
