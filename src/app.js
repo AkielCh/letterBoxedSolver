@@ -122,7 +122,16 @@ function generatePossibleWords(grid) {
   return possibleWordsArray.length > 0 ? possibleWordsArray : console.log("No words found");
 }
 
-
+function orderLettersByRareness(grid){
+  const orderedLetters = [];
+  const mergedGridArray = grid.flat().map(letter => letter.toLowerCase());
+  for (const letter of rarenessArray){
+    if (mergedGridArray.includes(letter)){
+      orderedLetters.push(letter);
+    }
+  }
+  return orderedLetters;
+}
 
 function addValidWords(possibleWordsArray, grid) {
   const validWords = [];
