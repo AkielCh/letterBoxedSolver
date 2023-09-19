@@ -1,6 +1,7 @@
 
 
 const dictionary = require("./dictionary");
+const rarenessArray = require("./rarenessArray");
 
 
 // function canAddLetter(grid, word, letter) {
@@ -47,27 +48,19 @@ function canAddLetter(grid, word, letter) {
   return !lastLetterSubArray || !letterToAddSubArray || lastLetterSubArray !== letterToAddSubArray;
 }
 
-
 function canAddWord(grid, word) {
-  for (let i = 0; i < word.length - 1; i++) {
+  for (let i = 0; i < word.length ; i++) {
     const letter = word[i];
     const nextLetter = word[i + 1];
-if (!nextLetter == undefined){
-   
     const currentLetterSubArray = grid.find(subArray => subArray.includes(letter));
     const nextLetterSubArray = grid.find(subArray => subArray.includes(nextLetter));
 
-    if (currentLetterSubArray === nextLetterSubArray){
+    if (currentLetterSubArray === nextLetterSubArray) {
       return false;
     }
-  }}
-
- 
+  }
   return true;
 }
-
-
-
 
 
 //For letterBoxed Game
@@ -128,6 +121,8 @@ function generatePossibleWords(grid) {
   }
   return possibleWordsArray.length > 0 ? possibleWordsArray : console.log("No words found");
 }
+
+
 
 function addValidWords(possibleWordsArray, grid) {
   const validWords = [];
@@ -223,5 +218,5 @@ function addValidWords(possibleWordsArray, grid) {
 //   return possibleWordsArray;
 // }
 
-  module.exports = {canAddLetter, addLetter, isWord, addWord,  dictionaryWordContainsValidLetters, generatePossibleWords , addValidWords, canAddWord};
+  module.exports = {canAddLetter, addLetter, isWord, addWord,  dictionaryWordContainsValidLetters, generatePossibleWords , addValidWords, canAddWord, orderLettersByRareness};
   

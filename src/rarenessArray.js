@@ -1,0 +1,31 @@
+const rarenessArray = new Set([
+    'q',
+    'j',
+    'z',
+    'x',
+    'v',
+    'k',
+    'w',
+    'y',
+    'f',
+    'b',
+    'g',
+    'h',
+    'm',
+    'p',
+    'd',
+    'u',
+    'c',
+    'l',
+    's',
+    'n',
+    't',
+    'o',
+    'i',
+    'r',
+    'a',
+    'e',
+    ]);
+
+
+    module.exports = rarenessArray;
