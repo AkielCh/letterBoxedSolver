@@ -425,7 +425,7 @@ describe('When given a word to compare with grid',()=>{
           ["E","D","U"],
           ["Y","I","N"]
         ]
-        const word ="cat";
+        const word ="CAT";
         const result = app.canAddWord(grid,word);
         expect(result).toBe(false)
   
