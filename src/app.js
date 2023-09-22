@@ -49,12 +49,20 @@ function canAddLetter(grid, word, letter) {
 }
 
 function canAddWord(grid, word) {
+  // word.split("").every((letter,index, array)=>{
+  //   return !grid.some((subArray)=>{
+  //     const hasLetter =subArray.includes(letter)
+  //     const hasNextLetter = subArray.includes(array[index+1])
+  //     return hasLetter && hasNextLetter
+  //   })
+
+  // })
+  
   for (let i = 0; i < word.length ; i++) {
     const letter = word[i];
     const nextLetter = word[i + 1];
     const currentLetterSubArray = grid.find(subArray => subArray.includes(letter));
     const nextLetterSubArray = grid.find(subArray => subArray.includes(nextLetter));
-
     if (currentLetterSubArray === nextLetterSubArray) {
       return false;
     }

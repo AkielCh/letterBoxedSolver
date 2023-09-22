@@ -403,34 +403,34 @@ describe('When given a word to compare with grid',()=>{
 
 //to discuss with mentor  
 
-  // describe('When given a word ',()=>{
-  //   it('should check whether the letters in the word are valid',()=>{
-  //     const grid =[
-  //       ["C", "R","K"],
-  //       ["A","T","H"],
-  //       ["E","D","U"],
-  //       ["Y","I","N"]
-  //     ]
-  //     const word ="card";
-  //     const result = app.canAddWord(grid,word);
-  //     expect(result).toEqual(true)
-  //   })
-  //   })
+  describe('When given a word ',()=>{
+    it('should check whether the letters in the word are valid',()=>{
+      const grid =[
+        ["C", "R","K"],
+        ["A","T","H"],
+        ["E","D","U"],
+        ["Y","I","N"]
+      ]
+      const word ="CARD";
+      const result = app.canAddWord(grid,word);
+      expect(result).toEqual(true)
+    })
+    })
 
-  //   describe('When given a word ',()=>{
-  //     it('should check whether the letters in the word are valid',()=>{
-  //       const grid =[
-  //         ["C", "R","K"],
-  //         ["A","T","H"],
-  //         ["E","D","U"],
-  //         ["Y","I","N"]
-  //       ]
-  //       const word ="cat";
-  //       const result = app.canAddWord(grid,word);
-  //       expect(result).toBe(false)
+    describe('When given a word ',()=>{
+      it('should check whether the letters in the word are valid',()=>{
+        const grid =[
+          ["C", "R","K"],
+          ["A","T","H"],
+          ["E","D","U"],
+          ["Y","I","N"]
+        ]
+        const word ="cat";
+        const result = app.canAddWord(grid,word);
+        expect(result).toBe(false)
   
-  //     })
-  //     })
+      })
+      })
 
      describe('When passed a grid', ()=>{
       it('should order the letters in the grid based on rareness',()=>{
@@ -442,6 +442,9 @@ describe('When given a word to compare with grid',()=>{
         expect(result).toEqual(["q","k","h","t","r","a"])
       })
      })
+
+   
+
 
   // describe('When given a word from possibleWordsArray',()=>{
   //   it('should add word to a list of valid words',()=>{
