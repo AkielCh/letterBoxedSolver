@@ -384,22 +384,25 @@ describe('When given a word to compare with grid',()=>{
     } )
   })
   
-  // describe('When given a word from possibleWordsArray',()=>{
-  //   it('should only add words if canAddWord is true',()=>{
-  //     const grid =[
-  //       ["C", "R","K"],
-  //       ["A","T","H"],
-  //       ["E","D","U"],
-  //       ["Y","I","N"]
-  //     ]
-  //     const possibleWordsArray =[
-  //       "card","cat","cherry","crank","date","hinder","rad","raid", "rat","rate","tar","tide","under","yard"
-  //     ]
-  //     result = app.addValidWords(possibleWordsArray,grid);
-  //     expect(result).toEqual(["card","rad","raid","yard"])
-  //   }
-  //   )
-  // })
+  describe('When given a word from possibleWordsArray',()=>{
+    it.only('should only add words if canAddWord is true',()=>{
+      const grid =[
+        ["C", "R","K"],
+        ["A","T","H"],
+        ["E","D","U"],
+        ["Y","I","N"]
+      ]
+      const lowercaseGrid = grid.map(row => row.map(char => char.toLowerCase()));
+      const possibleWordsArray =[
+        "card","cat","cherry","crank","date","hinder","rad","raid", "rat","rate","tar","tide","under","yard"
+      ]
+      result = app.addValidWords(possibleWordsArray,lowercaseGrid);
+      expect(result).toEqual(["card","rad","raid","yard"])
+    }
+    )
+  })
+
+  
 
 //to discuss with mentor  
 
@@ -431,6 +434,7 @@ describe('When given a word to compare with grid',()=>{
   
       })
       })
+      
 
      describe('When passed a grid', ()=>{
       it('should order the letters in the grid based on rareness',()=>{

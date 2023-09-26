@@ -144,7 +144,6 @@ function orderLettersByRareness(grid){
 
 function addValidWords(possibleWordsArray, grid) {
   const validWords = [];
-
   possibleWordsArray.forEach(word => {
     if (canAddWord(grid, word)) {
       validWords.push(word);
