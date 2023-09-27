@@ -456,9 +456,9 @@ describe('When given a word to compare with grid',()=>{
         ["E","D","U"],
         ["Y","I","N"]
       ]
-      const lowercaseGrid = grid.map(row => row.map(char => char.toLowerCase()));
+      // const lowercaseGrid = grid.map(row => row.map(char => char.toLowerCase()));
       const solution =["c","r","k","a","t","h","e","d","u","y","i","n"]
-      const result = app.solutionContainsAllLetters(lowercaseGrid,solution);
+      const result = app.solutionContainsAllLetters(grid,solution);
       expect(result).toBe(true)
       }) 
     })

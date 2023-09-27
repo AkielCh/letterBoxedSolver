@@ -131,6 +131,7 @@ function generatePossibleWords(grid) {
   return possibleWordsArray.length > 0 ? possibleWordsArray : console.log("No words found");
 }
 
+//Optimisation
 function orderLettersByRareness(grid){
   const orderedLetters = [];
   const mergedGridArray = grid.flat().map(letter => letter.toLowerCase());
@@ -153,7 +154,10 @@ function addValidWords(possibleWordsArray, grid) {
   return validWords;
 }
 
-
+function solutionContainsAllLetters(grid, solution) {
+  const mergedGridArray =grid.flat().map(letter => letter.toLowerCase());
+ return mergedGridArray.every(letter => solution.includes(letter));
+}
 
 // You should have a canAddWord function to check if a word can be added to the grid.
 
