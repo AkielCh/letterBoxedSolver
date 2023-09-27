@@ -449,7 +449,7 @@ describe('When given a word to compare with grid',()=>{
 
 
     describe('Given a solution and a grid',()=>{
-      it.only('should check if the solution contains all the letters of the grid',()=>{
+      it('should check if the solution contains all the letters of the grid',()=>{
         const grid =[
         ["C", "R","K"],
         ["A","T","H"],
@@ -463,6 +463,20 @@ describe('When given a word to compare with grid',()=>{
       }) 
     })
 
+    describe('Given a solution and a grid',()=>{
+      it('should check if the solution contains all the letters of the grid TWO WORDS',()=>{
+        const grid =[
+        ["C", "R","K"],
+        ["A","T","H"],
+        ["E","D","U"],
+        ["Y","I","N"]
+      ]
+      // const lowercaseGrid = grid.map(row => row.map(char => char.toLowerCase()));
+      const solution =["caey","rtdi","khun"]
+      const result = app.solutionContainsAllLetters(grid,solution);
+      expect(result).toBe(true)
+      }) 
+    })
    
 
 

@@ -156,7 +156,8 @@ function addValidWords(possibleWordsArray, grid) {
 
 function solutionContainsAllLetters(grid, solution) {
   const mergedGridArray =grid.flat().map(letter => letter.toLowerCase());
- return mergedGridArray.every(letter => solution.includes(letter));
+  
+ return mergedGridArray.every(letter => mergedSolutionArray.includes(letter));
 }
 
 // You should have a canAddWord function to check if a word can be added to the grid.
