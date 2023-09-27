@@ -385,7 +385,7 @@ describe('When given a word to compare with grid',()=>{
   })
   
   describe('When given a word from possibleWordsArray',()=>{
-    it.only('should only add words if canAddWord is true',()=>{
+    it('should only add words if canAddWord is true',()=>{
       const grid =[
         ["C", "R","K"],
         ["A","T","H"],
@@ -402,7 +402,7 @@ describe('When given a word to compare with grid',()=>{
     )
   })
 
-  
+
 
 //to discuss with mentor  
 
@@ -446,6 +446,22 @@ describe('When given a word to compare with grid',()=>{
         expect(result).toEqual(["q","k","h","t","r","a"])
       })
      })
+
+
+    describe('Given a solution and a grid',()=>{
+      it.only('should check if the solution contains all the letters of the grid',()=>{
+        const grid =[
+        ["C", "R","K"],
+        ["A","T","H"],
+        ["E","D","U"],
+        ["Y","I","N"]
+      ]
+      const lowercaseGrid = grid.map(row => row.map(char => char.toLowerCase()));
+      const solution =["c","r","k","a","t","h","e","d","u","y","i","n"]
+      const result = app.solutionContainsAllLetters(lowercaseGrid,solution);
+      expect(result).toBe(true)
+      }) 
+    })
 
    
 

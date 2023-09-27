@@ -154,6 +154,7 @@ function addValidWords(possibleWordsArray, grid) {
 }
 
 
+
 // You should have a canAddWord function to check if a word can be added to the grid.
 
 
@@ -235,5 +236,5 @@ function addValidWords(possibleWordsArray, grid) {
 //   return possibleWordsArray;
 // }
 
-  module.exports = {canAddLetter, addLetter, isWord, addWord,  dictionaryWordContainsValidLetters, generatePossibleWords , addValidWords, canAddWord, orderLettersByRareness};
+  module.exports = {canAddLetter, addLetter, isWord, addWord,  dictionaryWordContainsValidLetters, generatePossibleWords , addValidWords, canAddWord, orderLettersByRareness,solutionContainsAllLetters};
   
