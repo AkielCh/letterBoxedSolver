@@ -160,6 +160,9 @@ function solutionContainsAllLetters(grid, solution) {
  return mergedGridArray.every(letter => mergedSolutionArray.includes(letter));
 }
 
+
+//FOCUS ON RECURSIVE Solution finder
+
 // You should have a canAddWord function to check if a word can be added to the grid.
 
 
