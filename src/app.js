@@ -144,17 +144,28 @@ function orderLettersByRareness(grid){
 }
 
 function addValidWords(possibleWordsArray, grid) {
-  const validWords = [];
+  const validWordsArray = [];
   possibleWordsArray.forEach(word => {
     if (canAddWord(grid, word)) {
-      validWords.push(word);
+      validWordsArray.push(word);
     }
   });
 
-  return validWords;
+  return validWordsArray;
 }
 
+function genersateSolutions(validWordsArray){
+  const solutionsArray = [];
+  for (const word of validWordsArray){
+    let lastLetter = word.slice(-1);
+    solutionsArray.push(word);
+     for (const word of validWordsArray){
+      if (word[0] === lastLetter){
+        
 
+  }
+  return solutionsArray;
+}
 
 
 function solutionContainsAllLetters(grid, solution) {
