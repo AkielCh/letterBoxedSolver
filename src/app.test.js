@@ -401,8 +401,15 @@ describe('When given a word to compare with grid',()=>{
     }
     )
   })
-
-
+  
+  
+  describe('When given a list of  valid words',()=>{
+    it('should create a list of words with each word starting with the last letter of the previous word',()=>{
+      const validWordsArray =["card","rainy","darker","yard"];
+      const result = app.generateSolutions(validWordsArray);
+      expect(result).toEqual(["card","darker","rainy","yard"])
+    })
+  })
 
 //to discuss with mentor  
 
@@ -434,6 +441,8 @@ describe('When given a word to compare with grid',()=>{
   
       })
       })
+
+
       
 
      describe('When passed a grid', ()=>{
@@ -477,6 +486,8 @@ describe('When given a word to compare with grid',()=>{
       expect(result).toBe(true)
       }) 
     })
+
+    
    
 
 

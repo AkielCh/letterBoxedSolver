@@ -154,6 +154,9 @@ function addValidWords(possibleWordsArray, grid) {
   return validWords;
 }
 
+
+
+
 function solutionContainsAllLetters(grid, solution) {
   const mergedGridArray =grid.flat().map(letter => letter.toLowerCase());
   const mergedSolutionArray =solution.flat().join("")
