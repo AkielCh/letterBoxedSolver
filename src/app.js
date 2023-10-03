@@ -154,16 +154,24 @@ function addValidWords(possibleWordsArray, grid) {
   return validWordsArray;
 }
 
-function genersateSolutions(validWordsArray){
+function generateSolutions(validWordsArray){
   const solutionsArray = [];
-  for (const word of validWordsArray){
-    let lastLetter = word.slice(-1);
-    solutionsArray.push(word);
-     for (const word of validWordsArray){
-      if (word[0] === lastLetter){
-        
+  let firstWord = validWordsArray[0];
+  solutionsArray.push(firstWord);
+  let lastLetter = firstWord.slice(-1);
 
+  function findNextWord(lastLetter){
+    for (const word of validWordsArray){
+      if (word[0] === lastLetter && !solutionsArray.includes(word)){
+        solutionsArray.push(word);
+        console.log(solutionsArray);
+        lastLetter = word.slice(-1);
+        findNextWord(lastLetter);
+      }
+    }
   }
+  findNextWord(lastLetter);
+  
   return solutionsArray;
 }
 
@@ -258,5 +266,5 @@ function solutionContainsAllLetters(grid, solution) {
 //   return possibleWordsArray;
 // }
 
-  module.exports = {canAddLetter, addLetter, isWord, addWord,  dictionaryWordContainsValidLetters, generatePossibleWords , addValidWords, canAddWord, orderLettersByRareness,solutionContainsAllLetters};
+  module.exports = {canAddLetter, addLetter, isWord, addWord,  dictionaryWordContainsValidLetters, generatePossibleWords , addValidWords, canAddWord, orderLettersByRareness,solutionContainsAllLetters, generateSolutions};
   
