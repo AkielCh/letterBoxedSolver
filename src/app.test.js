@@ -404,12 +404,20 @@ describe('When given a word to compare with grid',()=>{
   
   
   describe('When given a list of  valid words',()=>{
-    it.only('should create a list of words with each word starting with the last letter of the previous word',()=>{
+    it('should create a list of words with each word starting with the last letter of the previous word',()=>{
       const validWordsArray =["card","rainy","darker","yard","bean","cheese"];
       const result = app.generateSolutions(validWordsArray);
       expect(result).toEqual(["card","darker","rainy","yard"])
     })
   }) 
+
+  describe('When given a list of valid words',()=>{
+    it.only('should return an empty array if no solutions are found',()=>{
+      const validWordsArray =["card","brain","tarker","yard"];
+      const result = app.generateSolutions(validWordsArray);
+      expect(result).toEqual(["card"])
+    })
+  })
 
 //to discuss with mentor  
 
