@@ -154,31 +154,65 @@ function addValidWords(possibleWordsArray, grid) {
   return validWordsArray;
 }
 
-function generateSolutions(validWordsArray){
+// function generateSolutions(validWordsArray, grid){
+//   const solutionsArray = [];
+//   let firstWord = validWordsArray[0];
+//   solutionsArray.push(firstWord);
+//   // let lastLetter = firstWord.slice(-1);
+
+//   function findNextWord(lastLetter){
+//     for (const word of validWordsArray){
+//       if (word[0] === lastLetter && !solutionsArray.includes(word)) {
+//         solutionsArray.push(word);
+//         console.log(solutionsArray);
+//         lastLetter = word.slice(-1);
+//         if (!solutionContainsAllLetters(grid, solutionsArray) && solutionsArray.length < 4) { 
+//           findNextWord(lastLetter);
+//         }
+//         else{
+//           break;
+//         }
+//       }
+//     }
+//     return lastLetter;
+//   }
+//  findNextWord(firstWord.slice(-1));
+  
+//   return solutionsArray;
+// }
+
+
+function generateSolutions(validWordsArray, grid){
   const solutionsArray = [];
   let firstWord = validWordsArray[0];
   solutionsArray.push(firstWord);
-  let lastLetter = firstWord.slice(-1);
+  // let lastLetter = firstWord.slice(-1);
 
-  function findNextWord(lastLetter){
-    for (const word of validWordsArray){
-      if (word[0] === lastLetter && !solutionsArray.includes(word)){
-        solutionsArray.push(word);
-        console.log(solutionsArray);
-        lastLetter = word.slice(-1);
-        findNextWord(lastLetter);
+  function findNextWord(lastLetter,n){
+      let i = n;
+      while (solutionsArray.length < 4 && !solutionContainsAllLetters(grid, solutionsArray)){
+        const word = validWordsArray[i];
+        if (word[0] === lastLetter && !solutionsArray.includes(word)) {
+          solutionsArray.push(word);
+          console.log(solutionsArray);
+          lastLetter = word.slice(-1);
       }
+      i++;
     }
+    return [solutionsArray,n] ;
   }
-  findNextWord(lastLetter);
+
+
+ findNextWord(firstWord.slice(-1),0);
   
-  return solutionsArray;
+  return solutionContainsAllLetters(grid, solutionsArray)?solutionsArray:findNextWord(firstWord.slice(-1),n + 1)
 }
 
 
-function solutionContainsAllLetters(grid, solution) {
+
+function solutionContainsAllLetters(grid, solutionsArray) {
   const mergedGridArray =grid.flat().map(letter => letter.toLowerCase());
-  const mergedSolutionArray =solution.flat().join("")
+  const mergedSolutionArray =solutionsArray.flat().join("")
  return mergedGridArray.every(letter => mergedSolutionArray.includes(letter));
 }
 
