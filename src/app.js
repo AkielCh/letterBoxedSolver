@@ -154,67 +154,124 @@ function addValidWords(possibleWordsArray, grid) {
   return validWordsArray;
 }
 
-// function generateSolutions(validWordsArray, grid){
-//   const solutionsArray = [];
-//   let firstWord = validWordsArray[0];
-//   solutionsArray.push(firstWord);
-//   // let lastLetter = firstWord.slice(-1);
-
-//   function findNextWord(lastLetter){
-//     for (const word of validWordsArray){
-//       if (word[0] === lastLetter && !solutionsArray.includes(word)) {
-//         solutionsArray.push(word);
-//         console.log(solutionsArray);
-//         lastLetter = word.slice(-1);
-//         if (!solutionContainsAllLetters(grid, solutionsArray) && solutionsArray.length < 4) { 
-//           findNextWord(lastLetter);
-//         }
-//         else{
-//           break;
-//         }
-//       }
-//     }
-//     return lastLetter;
-//   }
-//  findNextWord(firstWord.slice(-1));
-  
-//   return solutionsArray;
-// }
-
+// 1st try
 
 function generateSolutions(validWordsArray, grid){
   const solutionsArray = [];
-  let firstWord = validWordsArray[0];
-  solutionsArray.push(firstWord);
-  // let lastLetter = firstWord.slice(-1);
+  solutionsArray.push(validWordsArray[0]);
+  // let lastLetter = validWordsArray[0].slice(-1);
 
   function findNextWord(lastLetter,n){
-      let i = n;
-      while (solutionsArray.length < 4 && !solutionContainsAllLetters(grid, solutionsArray)){
-        const word = validWordsArray[i];
-        if (word[0] === lastLetter && !solutionsArray.includes(word)) {
-          solutionsArray.push(word);
-          console.log(solutionsArray);
-          lastLetter = word.slice(-1);
+
+    for (let i = n; i < validWordsArray.length; i++){
+      let word = validWordsArray[i];
+      if (word[0] === lastLetter && !solutionsArray.includes(word)) {
+        solutionsArray.push(word);
+        console.log(solutionsArray);
+        lastLetter = word.slice(-1);
+        if (!solutionContainsAllLetters(grid, solutionsArray) && solutionsArray.length < 4) { 
+          findNextWord(lastLetter);
+        }
+        else{
+          break;
+        }
       }
-      i++;
     }
-    return [solutionsArray,n] ;
+    return lastLetter;
   }
-
-
- findNextWord(firstWord.slice(-1),0);
+ findNextWord(lastLetter,n );
   
-  return solutionContainsAllLetters(grid, solutionsArray)?solutionsArray:findNextWord(firstWord.slice(-1),n + 1)
+  return solutionsArray;
 }
 
 
+//2nd try
+// function generateSolutions(validWordsArray, grid){
+//   const solutionsArray = [];
+//   solutionsArray.push(validWordsArray[0]);
+//   // let lastLetter = validWordsArray[0].slice(-1);
+  
+
+//   function findNextWord(lastLetter,n){
+//       let i = n;
+//       while (solutionsArray.length < 4 && !solutionContainsAllLetters(grid, solutionsArray)){
+//         const word = validWordsArray[i];
+//         if (word[0] === lastLetter && !solutionsArray.includes(word)) {
+//           solutionsArray.push(word);
+//           console.log(solutionsArray);
+//           lastLetter = word.slice(-1);
+//       }
+//       i++;
+//     }
+//     return [solutionsArray,n] ;
+//   }
+
+
+//  findNextWord(firstWord.slice(-1),0);
+  
+//   return solutionContainsAllLetters(grid, solutionsArray)?solutionsArray:findNextWord(firstWord.slice(-1),n + 1)
+// }
+
+// 3rd try
+// function generateSolutions(validWordsArray, grid){
 
 function solutionContainsAllLetters(grid, solutionsArray) {
   const mergedGridArray =grid.flat().map(letter => letter.toLowerCase());
   const mergedSolutionArray =solutionsArray.flat().join("")
  return mergedGridArray.every(letter => mergedSolutionArray.includes(letter));
 }
+
+
+
+
+//CHATGPT help
+
+// function generateSolutions(validWordsArray, grid) {
+//   let solutionsArray = [];
+//   solutionsArray.push(validWordsArray[0]);
+//   let lastLetter = validWordsArray[0].slice(-1);
+
+//   function findNextWord(lastLetter, n) {
+//     const startingIndex = n === undefined ? 0 : n;
+//     const validWords = [];
+
+//     for (let i = startingIndex; i < validWordsArray.length; i++) {
+//       const word = validWordsArray[i];
+
+//       if (!solutionsArray.includes(word) && word[0] === lastLetter) {
+//         validWords.push(word);
+//       }
+//     }
+
+//     return validWords;
+//   }
+
+//   // Initialize the solutions array with the first word.
+
+//   while (solutionsArray.length < 4) {
+//     const nextWords = findNextWord(lastLetter);
+
+//     if (nextWords.length === 0) {
+//       // If no more words can be added, reset and try with the next starting word.
+//       lastLetter = "";
+//       const nextStartingIndex = validWordsArray.findIndex(word => word[0] === solutionsArray[0].slice(-1));
+//       if (nextStartingIndex === -1) {
+//         break; // No more starting words available.
+//       }
+//       solutionsArray.push(validWordsArray[nextStartingIndex]);
+//       lastLetter = solutionsArray[solutionsArray.length - 1].slice(-1);
+//     } else {
+//       // Add the valid words to the solution.
+//       solutionsArray = solutionsArray.concat(nextWords);
+//       lastLetter = solutionsArray[solutionsArray.length - 1].slice(-1);
+//     }
+//   }
+
+//   return solutionContainsAllLetters(grid, solutionsArray) && solutionsArray.length <= 5 ? solutionsArray : [];
+// }
+
+
+
 
 
 //FOCUS ON RECURSIVE Solution finder
