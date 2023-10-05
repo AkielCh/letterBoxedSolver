@@ -224,51 +224,51 @@ function solutionContainsAllLetters(grid, solutionsArray) {
 
 
 
-//CHATGPT help
+// CHATGPT help
 
-// function generateSolutions(validWordsArray, grid) {
-//   let solutionsArray = [];
-//   solutionsArray.push(validWordsArray[0]);
-//   let lastLetter = validWordsArray[0].slice(-1);
+function generateSolutions(validWordsArray, grid) {
+  let solutionsArray = [];
+  solutionsArray.push(validWordsArray[0]);
+  let lastLetter = validWordsArray[0].slice(-1);
 
-//   function findNextWord(lastLetter, n) {
-//     const startingIndex = n === undefined ? 0 : n;
-//     const validWords = [];
+  function findNextWord(lastLetter, n) {
+    const startingIndex = n === undefined ? 0 : n;
+    const validWords = [];
 
-//     for (let i = startingIndex; i < validWordsArray.length; i++) {
-//       const word = validWordsArray[i];
+    for (let i = startingIndex; i < validWordsArray.length; i++) {
+      const word = validWordsArray[i];
 
-//       if (!solutionsArray.includes(word) && word[0] === lastLetter) {
-//         validWords.push(word);
-//       }
-//     }
+      if (!solutionsArray.includes(word) && word[0] === lastLetter) {
+        validWords.push(word);
+      }
+    }
 
-//     return validWords;
-//   }
+    return validWords;
+  }
 
-//   // Initialize the solutions array with the first word.
+  // Initialize the solutions array with the first word.
 
-//   while (solutionsArray.length < 4) {
-//     const nextWords = findNextWord(lastLetter);
+  while (solutionsArray.length < 4) {
+    const nextWords = findNextWord(lastLetter);
 
-//     if (nextWords.length === 0) {
-//       // If no more words can be added, reset and try with the next starting word.
-//       lastLetter = "";
-//       const nextStartingIndex = validWordsArray.findIndex(word => word[0] === solutionsArray[0].slice(-1));
-//       if (nextStartingIndex === -1) {
-//         break; // No more starting words available.
-//       }
-//       solutionsArray.push(validWordsArray[nextStartingIndex]);
-//       lastLetter = solutionsArray[solutionsArray.length - 1].slice(-1);
-//     } else {
-//       // Add the valid words to the solution.
-//       solutionsArray = solutionsArray.concat(nextWords);
-//       lastLetter = solutionsArray[solutionsArray.length - 1].slice(-1);
-//     }
-//   }
+    if (nextWords.length === 0) {
+      // If no more words can be added, reset and try with the next starting word.
+      lastLetter = "";
+      const nextStartingIndex = validWordsArray.findIndex(word => word[0] === solutionsArray[0].slice(-1));
+      if (nextStartingIndex === -1) {
+        break; // No more starting words available.
+      }
+      solutionsArray.push(validWordsArray[nextStartingIndex]);
+      lastLetter = solutionsArray[solutionsArray.length - 1].slice(-1);
+    } else {
+      // Add the valid words to the solution.
+      solutionsArray = solutionsArray.concat(nextWords);
+      lastLetter = solutionsArray[solutionsArray.length - 1].slice(-1);
+    }
+  }
 
-//   return solutionContainsAllLetters(grid, solutionsArray) && solutionsArray.length <= 5 ? solutionsArray : [];
-// }
+  return solutionContainsAllLetters(grid, solutionsArray) && solutionsArray.length <= 5 ? solutionsArray : [];
+}
 
 
 
