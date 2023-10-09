@@ -155,27 +155,40 @@ function addValidWords(possibleWordsArray, grid) {
 }
 
 function generateSolutions(validWordsArray){
-  const solutionsArray = [];
-  let firstWord = validWordsArray[0];
-  solutionsArray.push(firstWord);
+  // const solutionsArray = [];
+  // let firstWord = validWordsArray[0];
+  // solutionsArray.push(firstWord);
   // let lastLetter = firstWord.slice(-1);
 
-  function findNextWord(lastLetter){
-    for (const word of validWordsArray){
-      if (word[0] === lastLetter && !solutionsArray.includes(word)) {
-        solutionsArray.push(word);
-        console.log(solutionsArray);
-        lastLetter = word.slice(-1);
-        findNextWord(lastLetter);
+  function findNextWord(validWordArray,prevNum,currentNum,solutionsArray)
+  { if (solutionsArray.length >= 4){
+    return solutionsArray}
+  else {	
+    if (validWordArray[currentNum] && validWordArray[prevNum].slice(-1) === validWordArray[currentNum].slice(-1)  && !solutionsArray.includes(validWordArray[currentNum])){
+      solutionsArray.push(validWordArray[currentNum]);
+            return findNextWord(validWordArray, currentNum, 0, solutionsArray)
       }
-    }
-    return lastLetter;
+    else{
+      return findNextWord(validWordArray,prevNum,currentNum +1,solutionsArray)}
   }
- findNextWord(firstWord.slice(-1));
   
-  return solutionsArray;
+}
+  findNextWord(validWordsArray,0,1,[])
 }
 
+/*
+findNextWord(solutionsArray = [] ,validWordsArray,0){
+	if (solutionsArray >=4{
+		return solutionsArray}
+	if (solutionsArray == []){
+		solutionsArray.push(validWords[currentNum]);
+		}
+	if (solutionsArray[solutionsArray.length - 1].slice(-1) === validWordsArray[currentNum].slice(-1) && !	solutionsArray.includes(validWordsArray[currentNum]){
+		solutionsArray.push(currentWord);
+ 		return findNextWord(solutionsArray,validWordsArray,currentNum);
+		}
+	else	return findNextWord(solutionsArray,validWordsArray,currentNum  + 1)
+		}*/
 
 function solutionContainsAllLetters(grid, solutionsArray) {
   const mergedGridArray =grid.flat().map(letter => letter.toLowerCase());
