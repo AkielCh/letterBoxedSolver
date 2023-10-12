@@ -154,26 +154,48 @@ function addValidWords(possibleWordsArray, grid) {
   return validWordsArray;
 }
 
-function generateSolutions(validWordsArray){
+// function generateSolutions(validWordsArray){
   // const solutionsArray = [];
   // let firstWord = validWordsArray[0];
   // solutionsArray.push(firstWord);
   // let lastLetter = firstWord.slice(-1);
 
-  function findNextWord(validWordArray,prevNum,currentNum,solutionsArray)
-  { if (solutionsArray.length >= 4){
-    return solutionsArray}
-  else {	
-    if (validWordArray[currentNum] && validWordArray[prevNum].slice(-1) === validWordArray[currentNum].slice(-1)  && !solutionsArray.includes(validWordArray[currentNum])){
-      solutionsArray.push(validWordArray[currentNum]);
-            return findNextWord(validWordArray, currentNum, 0, solutionsArray)
-      }
-    else{
-      return findNextWord(validWordArray,prevNum,currentNum +1,solutionsArray)}
-  }
+//   function findNextWord(validWordArray,prevNum,currentNum,solutionsArray)
+//   { if (solutionsArray.length >= 4){
+//     return solutionsArray}
+//   else {	
+//     if (validWordArray[currentNum] && validWordArray[prevNum].slice(-1) === validWordArray[currentNum].slice(-1)  && !solutionsArray.includes(validWordArray[currentNum])){
+//       solutionsArray.push(validWordArray[currentNum]);
+//             return findNextWord(validWordArray, currentNum, 0, solutionsArray)
+//       }
+//     else{
+//       return findNextWord(validWordArray,prevNum,currentNum +1,solutionsArray)}
+//   }
   
-}
-  findNextWord(validWordsArray,0,1,[])
+// }
+//   findNextWord(validWordsArray,0,1,[])
+// }
+
+function findSolutions(validWordsArray,solutionArray, n, grid){
+  if (solutionContainsAllLetters(grid,solutionArray)){
+    return [solutionArray]
+  }
+  if (n===0){
+    return []
+  } 
+  const nextLetter = solutionArray[solutionArray.length - 1].slice(-1);
+
+  const possibleNextWords = validWordsArray.filter((word)=>{
+    return word.startsWith(nextLetter)
+  })
+
+ const  possibleNextSolutions = possibleNextWords.map((word)=>{
+      return [...solutionArray,word]
+  })
+
+   return possibleNextSolutions.map((solution)=>{
+     return findSolutions(validWordsArray, solution, n - 1, grid)
+  }).flat()
 }
 
 /*
@@ -291,5 +313,4 @@ function solutionContainsAllLetters(grid, solutionsArray) {
 //   return possibleWordsArray;
 // }
 
-  module.exports = {canAddLetter, addLetter, isWord, addWord,  dictionaryWordContainsValidLetters, generatePossibleWords , addValidWords, canAddWord, orderLettersByRareness,solutionContainsAllLetters, generateSolutions};
-  
+  module.exports = {canAddLetter, addLetter, isWord, addWord,  dictionaryWordContainsValidLetters, generatePossibleWords , addValidWords, canAddWord, orderLettersByRareness,solutionContainsAllLetters, findSolutions}

@@ -411,9 +411,11 @@ describe('When given a word to compare with grid',()=>{
         ["E","D"],
         ["Y","I","N"]
       ]
+      const solutionArray =["card"]
       const validWordsArray =["card","rainy","darker","yard","bean","cheese"];
-      const result = app.generateSolutions(validWordsArray,grid);
-      expect(result).toEqual(["card","darker","rainy","yard"])
+      const result = app.findSolutions(validWordsArray,solutionArray,5, grid );
+      expect(result).toEqual([["card","darker","rainy",]])
+      console.log(result)
     })
   }) 
 
