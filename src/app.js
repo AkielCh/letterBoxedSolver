@@ -176,6 +176,10 @@ function addValidWords(possibleWordsArray, grid) {
 //   findNextWord(validWordsArray,0,1,[])
 // }
 
+function generateSolutions(validWordsArray,solutionArray, n, grid){
+  return findSolutions(validWordsArray,solutionArray, n, grid).flat()
+}
+
 function findSolutions(validWordsArray,solutionArray, n, grid){
   if (solutionContainsAllLetters(grid,solutionArray)){
     return [solutionArray]
@@ -300,4 +304,4 @@ function solutionContainsAllLetters(grid, solutionsArray) {
 //   return possibleWordsArray;
 // }
 
-  module.exports = {canAddLetter, addLetter, isWord, addWord,  dictionaryWordContainsValidLetters, generatePossibleWords , addValidWords, canAddWord, orderLettersByRareness,solutionContainsAllLetters, findSolutions}
+  module.exports = {canAddLetter, addLetter, isWord, addWord,  dictionaryWordContainsValidLetters, generatePossibleWords , addValidWords, canAddWord, orderLettersByRareness,solutionContainsAllLetters, findSolutions, generateSolutions}
