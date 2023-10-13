@@ -154,27 +154,6 @@ function addValidWords(possibleWordsArray, grid) {
   return validWordsArray;
 }
 
-// function generateSolutions(validWordsArray){
-  // const solutionsArray = [];
-  // let firstWord = validWordsArray[0];
-  // solutionsArray.push(firstWord);
-  // let lastLetter = firstWord.slice(-1);
-
-//   function findNextWord(validWordArray,prevNum,currentNum,solutionsArray)
-//   { if (solutionsArray.length >= 4){
-//     return solutionsArray}
-//   else {	
-//     if (validWordArray[currentNum] && validWordArray[prevNum].slice(-1) === validWordArray[currentNum].slice(-1)  && !solutionsArray.includes(validWordArray[currentNum])){
-//       solutionsArray.push(validWordArray[currentNum]);
-//             return findNextWord(validWordArray, currentNum, 0, solutionsArray)
-//       }
-//     else{
-//       return findNextWord(validWordArray,prevNum,currentNum +1,solutionsArray)}
-//   }
-  
-// }
-//   findNextWord(validWordsArray,0,1,[])
-// }
 
 function generateSolutions(validWordsArray,solutionArray, n, grid){
   return findSolutions(validWordsArray,solutionArray, n, grid).flat()
@@ -250,58 +229,6 @@ function solutionContainsAllLetters(grid, solutionsArray) {
 // return Array.from(possibleWordsArray)
 // }}
 
-// ---------------------------------------------
 
-
-
-
-//RECURSIVE ATTEMPT
-
-//   // Function to explore adjacent positions and build words
-//   function wordSearch(row, col, wordSoFar) {
-//     // Check if the current word is a valid word
-//     if (isWord(wordSoFar)) {
-//       possibleWordsArray.push(wordSoFar);
-//     }
-
-//     // Explore adjacent positions (up, down, left, right)
-//     const directions = [
-//       { dx: 1, dy: 0 },  // Right
-//       { dx: 0, dy: -1 }, // Up
-//       { dx: -1, dy: 0 }, // Left
-//       { dx: 0, dy: 1 },  // Down
-//     ];
-
-//     for (const direction of directions) {
-//       const newRow = row + direction.dy;
-//       const newCol = col + direction.dx;
-
-//       // Check if the new position is within the grid bounds
-//       if (newRow >= 0 && newRow < grid.length && newCol >= 0 && newCol < grid[0].length) {
-//         const letter = grid[newRow][newCol];
-
-//         // Check if the letter can be added to the current word
-//         if (canAddLetter(grid, wordSoFar, letter)) {
-//           // Recursively explore the new position with the updated word
-//           wordSearch(newRow, newCol, wordSoFar + letter);
-//         }
-//       }
-//     }
-//   }
-
-//   // Iterate through each cell in the grid and start exploring words
-//   for (let row = 0; row < grid.length; row++) {
-//     for (let col = 0; col < grid[row].length; col++) {
-//       wordSearch(row, col, grid[row][col]);
-//     }
-//   }
-
-//   // Check if no words were found and return an empty array
-//   if (possibleWordsArray.length === 0) {
-//     return [];
-//   }
-
-//   return possibleWordsArray;
-// }
 
   module.exports = {canAddLetter, addLetter, isWord, addWord,  dictionaryWordContainsValidLetters, generatePossibleWords , addValidWords, canAddWord, orderLettersByRareness,solutionContainsAllLetters, findSolutions, generateSolutions}
