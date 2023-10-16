@@ -188,46 +188,9 @@ function solutionContainsAllLetters(grid, solutionsArray) {
  return mergedGridArray.every(letter => mergedSolutionArray.includes(letter));
 }
 
-//}
-// function findNextWord(validWordArray,prevNum,currentNum)
-// if
-// validWordArray[prevNum].slice(-1) == validWordArray[currentNum].slice(-1) {
-// 	solutionsArray.push(findNextWord(validWordArray,currentNum, 0)
-	
-// else
-// findNextWord(validWordArray,prevNum,CurrentNum +1)}
-
-	
-
-
-//FOCUS ON RECURSIVE Solution finder
-
-// You should have a canAddWord function to check if a word can be added to the grid.
 
 
 
-
-//FIRST LOOP ATTEMPT  ----------------
-// function validWord(word, grid){
-//   for (let row = 0; row < grid.length; row++){
-//     for (let col = 0; col < grid[row].length; col++){
-//      if (!word.includes(grid[row][col].toLowerCase())) {
-//       return false;
-//   }
-//   else{
-//     return true;
-// }
-// }}}
-
-//  function generatepossibleWordsArray(grid) {
-//   const possibleWordsArray = new Set();
-
-//   for (const word of dictionary) {
-//     if (validWord(word, grid)){
-//       possibleWordsArray.push(word);
-//     }
-// return Array.from(possibleWordsArray)
-// }}
 
 
 
