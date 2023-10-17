@@ -435,7 +435,7 @@ describe('When given a word to compare with grid',()=>{
   })
 
   describe('When given a list of valid words',()=>{
-    it.only('should create a list of words with each word starting with the last letter of the previous word',()=>{
+    it('should create a list of words with each word starting with the last letter of the previous word',()=>{
       const grid=[
         ["C", "R","K","L"],
         ["A"],
@@ -448,6 +448,24 @@ describe('When given a word to compare with grid',()=>{
       expect(result).toEqual([])
     })
   })
+
+  
+  describe('When given a list of valid words',()=>{
+    it.only('should create a list of words valid solutions',()=>{
+      const grid=[
+        ["S", "M","R",],
+        ["K","U","A"],
+        ["I","O","D"],
+        ["G","B","J"]
+      ]
+      const solutionArray =["adjuror"]
+      const validWordsArray =["adjuror","skimboard","ragas","rigs","rigorous","rugs"];
+      const result = app.generateSolutions(validWordsArray,solutionArray,5, grid );
+      expect(result).toEqual([["adjuror","ragas","skimboard"],["adjuror","rigs","skimboard"],["adjuror","rigorous","skimboard"],["adjuror","rugs","skimboard"]])
+    })
+  })
+  
+
 
   describe('When given a list of valid words',()=>{
     it('should return an empty array if no solutions are found',()=>{

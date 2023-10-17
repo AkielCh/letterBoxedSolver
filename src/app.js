@@ -105,7 +105,7 @@ function addLetter(grid, word, letter) {
  }
 
 
-//second loop attempt
+
 function dictionaryWordContainsValidLetters(grid,word){
   const mergedGridArray = grid.flat().map(letter => letter.toLowerCase());
 
@@ -156,7 +156,7 @@ function addValidWords(possibleWordsArray, grid) {
 
 
 function generateSolutions(validWordsArray,solutionArray, n, grid){
-  return findSolutions(validWordsArray,solutionArray, n, grid).flat()
+  return findSolutions(validWordsArray,solutionArray, n, grid)
 }
 
 function findSolutions(validWordsArray,solutionArray, n, grid){
@@ -169,7 +169,7 @@ function findSolutions(validWordsArray,solutionArray, n, grid){
   const nextLetter = solutionArray[solutionArray.length - 1].slice(-1);
 
   const possibleNextWords = validWordsArray.filter((word)=>{
-    return word.startsWith(nextLetter)
+    return word.startsWith(nextLetter) 
   })
 
  const  possibleNextSolutions = possibleNextWords.map((word)=>{
