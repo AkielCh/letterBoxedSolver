@@ -27,4 +27,4 @@ const dictionary = new Set([
    
   ].map(dictionaryWord => dictionaryWord.toLowerCase()));
 
-  module.exports = dictionary;
+  export default dictionary;

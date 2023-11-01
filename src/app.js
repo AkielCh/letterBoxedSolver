@@ -1,5 +1,5 @@
-const dictionary = require("./dictionary");
-const rarenessArray = require("./rarenessArray");
+import dictionary from "./dictionary.js";
+import rarenessArray from "./rarenessArray.js";
 
 // function canAddLetter(grid, word, letter) {
 //  const lastLetterOfWord = word.slice(-1);
@@ -201,7 +201,7 @@ function solutionContainsAllLetters(grid, solutionsArray) {
   );
 }
 
-module.exports = {
+export default {
   canAddLetter,
   addLetter,
   isWord,

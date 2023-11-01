@@ -1,4 +1,4 @@
-const app = require("./app");
+import app from "./app";
 
 //Check whether letter can be added to word
 
@@ -486,7 +486,7 @@ describe("When given a list of valid words", () => {
 });
 
 describe("When given a list of valid words", () => {
-  it.only("should create a list of words valid solutions", () => {
+  it("should create a list of words valid solutions", () => {
     const grid = [
       ["S", "M", "R"],
       ["K", "U", "A"],
