@@ -201,6 +201,30 @@ function solutionContainsAllLetters(grid, solutionsArray) {
   );
 }
 
+const gridInputs = document.querySelectorAll(".gridInput");
+const gridOutputElements = document.querySelectorAll(".output");
+
+function validateGridInput(event, index) {
+  const inputKey = event.which || event.keyCode;
+  const inputChar = String.fromCharCode(inputKey);
+  const isAlphabetic =
+    (inputKey >= 65 && inputKey <= 90) || (inputKey >= 97 && inputKey <= 122);
+  if (isAlphabetic) {
+    const inputValue = event.target.value + inputChar;
+    if (inputValue.length <= 3) {
+      event.target.value = inputValue;
+      gridOutputElements[index].textContent = inputValue;
+    }
+  }
+  // event.preventDefault();
+}
+
+gridInputs.forEach((inputElement, index) => {
+  inputElement.addEventListener("keypress", (event) => {
+    validateGridInput(event, index);
+  });
+});
+
 export default {
   canAddLetter,
   addLetter,

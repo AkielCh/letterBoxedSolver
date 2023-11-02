@@ -465,7 +465,11 @@ describe("When given a list of valid words", () => {
 
 describe("When given a list of valid words", () => {
   it("should create a list of words with each word starting with the last letter of the previous word", () => {
-    const grid = [["C", "R", "K", "L"], ["A"], ["E", "D"], ["Y", "I", "N"]];
+    const grid = [
+      ["C", "R", "K", "L"],
+      ["A", "E", "D"],
+      ["Y", "I", "N"],
+    ];
     const solutionArray = ["card"];
     const validWordsArray = [
       "card",
@@ -520,9 +524,14 @@ describe("When given a list of valid words", () => {
 
 describe("When given a list of valid words", () => {
   it("should return an empty array if no solutions are found", () => {
+    const grid = [
+      ["C", "R", "K", "L"],
+      ["A", "E", "D"],
+      ["Y", "I", "N"],
+    ];
     const validWordsArray = ["card", "brain", "tarker", "yard"];
     const result = app.generateSolutions(validWordsArray, grid);
-    expect(result).toEqual(["card"]);
+    expect(result).toEqual([]);
   });
 });
 
