@@ -204,8 +204,11 @@ function solutionContainsAllLetters(grid, solutionsArray) {
 const gridInputs = document.querySelectorAll(".gridInput");
 const gridOutputElements = document.querySelectorAll(".output");
 
-function updateGridOutput(event, index) {
+const UsedCharacters = [];
+
+function updateGridValue(event, index) {
   const inputValue = event.target.value;
+  // console.log(inputValue);
   gridOutputElements[index].textContent = inputValue;
 }
 
@@ -213,20 +216,25 @@ function validateGridInput(event, index) {
   const inputKey = event.which || event.keyCode;
   const inputChar = String.fromCharCode(inputKey);
   const isAlphabetic =
-    (inputKey >= 65 && inputKey <= 90) || (inputKey >= 97 && inputKey <= 122);
+    (inputKey >= 65 && inputKey <= 90) ||
+    (inputKey >= 97 &&
+      inputKey <= 122 &&
+      event.target.value.length < 3 &&
+      !UsedCharacters.includes(inputChar));
   if (isAlphabetic) {
     const inputValue = event.target.value + inputChar;
-    if (inputValue.length <= 3) {
-      event.target.value = inputValue;
-      gridOutputElements[index].textContent = inputValue;
-    }
+    UsedCharacters.push(inputChar);
+    event.target.value = inputValue;
+    console.log(inputValue);
+    updateGridValue(event, index);
   }
+
   event.preventDefault();
 }
 
 gridInputs.forEach((inputElement, index) => {
   inputElement.addEventListener("input", (event) => {
-    updateGridOutput(event, index);
+    updateGridValue(event, index);
   });
   inputElement.addEventListener("keypress", (event) => {
     validateGridInput(event, index);
