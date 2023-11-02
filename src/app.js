@@ -204,6 +204,11 @@ function solutionContainsAllLetters(grid, solutionsArray) {
 const gridInputs = document.querySelectorAll(".gridInput");
 const gridOutputElements = document.querySelectorAll(".output");
 
+function updateGridOutput(event, index) {
+  const inputValue = event.target.value;
+  gridOutputElements[index].textContent = inputValue;
+}
+
 function validateGridInput(event, index) {
   const inputKey = event.which || event.keyCode;
   const inputChar = String.fromCharCode(inputKey);
@@ -216,10 +221,13 @@ function validateGridInput(event, index) {
       gridOutputElements[index].textContent = inputValue;
     }
   }
-  // event.preventDefault();
+  event.preventDefault();
 }
 
 gridInputs.forEach((inputElement, index) => {
+  inputElement.addEventListener("input", (event) => {
+    updateGridOutput(event, index);
+  });
   inputElement.addEventListener("keypress", (event) => {
     validateGridInput(event, index);
   });
