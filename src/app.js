@@ -207,7 +207,7 @@ const gridSubmitButton = document.querySelector("#gridSubmitButton");
 
 const UsedCharacters = [];
 
-function updateGridValue(event, index) {
+function updateGridOutput(event, index) {
   const inputValue = event.target.value;
   // console.log(inputValue);
   gridOutputElements[index].textContent = inputValue;
@@ -234,7 +234,7 @@ function validateGridInput(event, index) {
     console.log(UsedCharacters);
     event.target.value = inputValue;
     // console.log(inputValue);
-    updateGridValue(event, index);
+    updateGridOutput(event, index);
   }
 
   event.preventDefault();
@@ -242,21 +242,24 @@ function validateGridInput(event, index) {
 
 function handleGridSubmit(event) {
   const grid = [];
+  const maxInputLength = 3;
   const inputElementsArray = Array.from(
     document.querySelectorAll(".gridInput")
   );
-  inputElementsArray.map((inputElement) => {
-    const inputArray = inputElement.value.split("");
-    if (inputArray.length === 3) {
-      grid.push(inputArray);
-    }
-  });
-  console.log(grid);
+  const gridOutputElements = document.querySelectorAll(".output");
+  console.log(inputElementsArray);
+
+  if (hasInvalidInputLength(inputElementsArray, maxInputLength)) {
+    clearInvalidInputs(inputElementsArray, gridOutputElements, maxInputLength);
+  } else {
+    createGrid(inputElementsArray, grid);
+    console.log(grid);
+  }
 }
 
 gridInputs.forEach((inputElement, index) => {
   inputElement.addEventListener("input", (event) => {
-    updateGridValue(event, index);
+    updateGridOutput(event, index);
   });
   inputElement.addEventListener("keypress", (event) => {
     validateGridInput(event, index);
