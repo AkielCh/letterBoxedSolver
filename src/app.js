@@ -203,6 +203,7 @@ function solutionContainsAllLetters(grid, solutionsArray) {
 
 const gridInputs = document.querySelectorAll(".gridInput");
 const gridOutputElements = document.querySelectorAll(".output");
+const gridSubmitButton = document.querySelector("#gridSubmitButton");
 
 const UsedCharacters = [];
 
@@ -212,9 +213,15 @@ function updateGridValue(event, index) {
   gridOutputElements[index].textContent = inputValue;
 }
 
+//keyCode for backspace is 8
+//keyCode for delete is 46
+
 function validateGridInput(event, index) {
   const inputKey = event.which || event.keyCode;
   const inputChar = String.fromCharCode(inputKey);
+  if (inputKey === 8 || inputKey === 46) {
+    handleInputChange(event, index);
+  }
   const isAlphabetic =
     (inputKey >= 65 && inputKey <= 90) ||
     (inputKey >= 97 &&
@@ -224,12 +231,27 @@ function validateGridInput(event, index) {
   if (isAlphabetic) {
     const inputValue = event.target.value + inputChar;
     UsedCharacters.push(inputChar);
+    console.log(UsedCharacters);
     event.target.value = inputValue;
-    console.log(inputValue);
+    // console.log(inputValue);
     updateGridValue(event, index);
   }
 
   event.preventDefault();
+}
+
+function handleGridSubmit(event) {
+  const grid = [];
+  const inputElementsArray = Array.from(
+    document.querySelectorAll(".gridInput")
+  );
+  inputElementsArray.map((inputElement) => {
+    const inputArray = inputElement.value.split("");
+    if (inputArray.length === 3) {
+      grid.push(inputArray);
+    }
+  });
+  console.log(grid);
 }
 
 gridInputs.forEach((inputElement, index) => {
@@ -239,6 +261,10 @@ gridInputs.forEach((inputElement, index) => {
   inputElement.addEventListener("keypress", (event) => {
     validateGridInput(event, index);
   });
+});
+
+gridSubmitButton.addEventListener("click", (event) => {
+  handleGridSubmit(event);
 });
 
 export default {
