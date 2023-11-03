@@ -619,6 +619,7 @@ describe("Given a solution and a grid", () => {
   });
 });
 
+//Look AT
 // describe("When given the inputs to submit", () => {
 //   it.only("should check the length and return true if the length of all inputs are valid", () => {
 //     const inputElementsArray = [

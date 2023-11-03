@@ -277,6 +277,14 @@ function clearInvalidInputs(
   });
 }
 
+function createGrid(inputElementsArray, grid) {
+  inputElementsArray.map((inputElement) => {
+    const inputArray = inputElement.value.split("");
+    grid.push(inputArray);
+  });
+  return grid;
+}
+
 gridInputs.forEach((inputElement, index) => {
   inputElement.addEventListener("input", (event) => {
     updateGridOutput(event, index);
