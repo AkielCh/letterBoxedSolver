@@ -256,6 +256,11 @@ function handleGridSubmit(event) {
     console.log(grid);
   }
 }
+function hasInvalidInputLength(inputElementsArray, maxInputLength) {
+  return inputElementsArray.some(
+    (inputElement) => inputElement.value.length !== maxInputLength
+  );
+}
 
 gridInputs.forEach((inputElement, index) => {
   inputElement.addEventListener("input", (event) => {
