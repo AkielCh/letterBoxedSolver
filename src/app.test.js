@@ -619,6 +619,23 @@ describe("Given a solution and a grid", () => {
   });
 });
 
+// describe("When given the inputs to submit", () => {
+//   it.only("should check the length and return true if the length of all inputs are valid", () => {
+//     const inputElementsArray = [
+//       { value: "qwe" },
+//       { value: "rty" },
+//       { value: "uio" },
+//       { value: "asd" },
+//     ];
+//     const maxInputLength = 3;
+//     const result = app.hasInvalidInputLength(
+//       inputElementsArray,
+//       maxInputLength
+//     );
+//     expect(result).toBe(true);
+//   });
+// });
+
 // describe('When given a word from possibleWordsArray',()=>{
 //   it('should add word to a list of valid words',()=>{
 //     const validWordsArray =[];

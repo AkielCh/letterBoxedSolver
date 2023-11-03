@@ -256,10 +256,25 @@ function handleGridSubmit(event) {
     console.log(grid);
   }
 }
+
 function hasInvalidInputLength(inputElementsArray, maxInputLength) {
   return inputElementsArray.some(
     (inputElement) => inputElement.value.length !== maxInputLength
   );
+}
+
+function clearInvalidInputs(
+  inputElementsArray,
+  gridOutputElements,
+  maxInputLength
+) {
+  alert(`Please enter ${maxInputLength} letters in each box`);
+  inputElementsArray.map((inputElement, index) => {
+    if (inputElement.value.length !== maxInputLength) {
+      inputElement.value = "";
+      gridOutputElements[index].textContent = "";
+    }
+  });
 }
 
 gridInputs.forEach((inputElement, index) => {
@@ -288,4 +303,7 @@ export default {
   solutionContainsAllLetters,
   findSolutions,
   generateSolutions,
+
+  //part 2
+  hasInvalidInputLength,
 };
