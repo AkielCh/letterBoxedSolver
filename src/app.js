@@ -205,7 +205,7 @@ const gridInputs = document.querySelectorAll(".gridInput");
 const gridOutputElements = document.querySelectorAll(".output");
 const gridSubmitButton = document.querySelector("#gridSubmitButton");
 
-const UsedCharacters = [];
+const usedCharacters = [];
 
 function updateGridOutput(event, index) {
   const inputValue = event.target.value;
@@ -227,11 +227,11 @@ function validateGridInput(event, index) {
     (inputKey >= 97 &&
       inputKey <= 122 &&
       event.target.value.length < 3 &&
-      !UsedCharacters.includes(inputChar));
+      !usedCharacters.includes(inputChar));
   if (isAlphabetic) {
     const inputValue = event.target.value + inputChar;
-    UsedCharacters.push(inputChar);
-    console.log(UsedCharacters);
+    usedCharacters.push(inputChar);
+    console.log(usedCharacters);
     event.target.value = inputValue;
     // console.log(inputValue);
     updateGridOutput(event, index);
