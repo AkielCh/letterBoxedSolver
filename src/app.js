@@ -205,7 +205,7 @@ const gridInputs = document.querySelectorAll(".gridInput");
 const gridOutputElements = document.querySelectorAll(".output");
 const gridSubmitButton = document.querySelector("#gridSubmitButton");
 
-const usedCharacters = [];
+// const usedCharacters = [];
 
 function updateGridOutput(event, index) {
   const inputValue = event.target.value;
@@ -219,6 +219,9 @@ function updateGridOutput(event, index) {
 function validateGridInput(event, index) {
   const inputKey = event.which || event.keyCode;
   const inputChar = String.fromCharCode(inputKey);
+  let usedCharacters = Array.from(gridInputs)
+    .map((inputElement) => inputElement.value.split(""))
+    .flat();
   if (inputKey === 8 || inputKey === 46) {
     handleInputChange(event, index);
   }
@@ -230,11 +233,12 @@ function validateGridInput(event, index) {
       !usedCharacters.includes(inputChar));
   if (isAlphabetic) {
     const inputValue = event.target.value + inputChar;
-    usedCharacters.push(inputChar);
+    // usedCharacters.push(inputChar);
     console.log(usedCharacters);
     event.target.value = inputValue;
     // console.log(inputValue);
     updateGridOutput(event, index);
+    // console.log(used);
   }
 
   event.preventDefault();
