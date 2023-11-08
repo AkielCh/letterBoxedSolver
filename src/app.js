@@ -204,6 +204,7 @@ function solutionContainsAllLetters(grid, solutionsArray) {
 const gridInputs = document.querySelectorAll(".gridInput");
 const gridOutputElements = document.querySelectorAll(".output");
 const gridSubmitButton = document.querySelector("#gridSubmitButton");
+const solutionOutput = document.querySelector("#solutionOutput");
 
 // const usedCharacters = [];
 
@@ -211,6 +212,10 @@ function updateGridOutput(event, index) {
   const inputValue = event.target.value;
   // console.log(inputValue);
   gridOutputElements[index].textContent = inputValue;
+}
+
+function updateSolutionOutput(solution) {
+  solutionOutput.textContent = solution;
 }
 
 //keyCode for backspace is 8
@@ -258,6 +263,15 @@ function handleGridSubmit(event) {
   } else {
     createGrid(inputElementsArray, grid);
     console.log(grid);
+    const possibleWordsArray = generatePossibleWords(grid);
+    const validWordsArray = addValidWords(possibleWordsArray, grid);
+    const noOfWords = prompt("How many words?");
+    const solutionsArray = generateSolutions(validWordsArray, noOfWords, grid);
+    console.log(solutionsArray);
+    const solution = solutionsArray[0].join(" ");
+    console.log(solution);
+    updateSolutionOutput(solution);
+    let findSolutionWithLength = prompt("Length of solution 1-5");
   }
 }
 
