@@ -271,7 +271,7 @@ function handleGridSubmit(event) {
     const solution = solutionsArray[0].join(" ");
     console.log(solution);
     updateSolutionOutput(solution);
-    let findSolutionWithLength = prompt("Length of solution 1-5");
+    // let findSolutionWithLength = prompt("Length of solution 1-5");
   }
 }
 

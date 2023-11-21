@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: wheat;
+}
+
+h1 {
+  font-style: italic;
+}
+
+.gridInput {
+  border: none;
+  border-bottom: 2px solid #6bab90;
+  background-color: #e1f0c4;
+  border-radius: 0.2em 0.2em 0 0;
+  padding: 0.4em;
+  color: black;
+  font-weight: bold;
+  outline: none;
+  text-transform: uppercase;
+}
+
+.gridSubmitButton {
+  background-color: #3c3c3b;
+  border-radius: 40px;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 0;
+  cursor: pointer;
+}
+
+.gridSubmitButton:hover {
+  background-color: white;
+  border-radius: 40px;
+  color: #3c3c3b;
+  padding: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.box {
+  width: 400px;
+  height: 400px;
+}
