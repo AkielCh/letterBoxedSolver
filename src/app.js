@@ -181,7 +181,7 @@ function findSolutions(validWordsArray, solutionArray, noOfWords, grid) {
   const possibleNextWords = validWordsArray.filter((word) => {
     return word.startsWith(nextLetter) && !solutionArray.includes(word);
   });
-  console.log(nextLetter, possibleNextWords);
+  // console.log(nextLetter, possibleNextWords);
   const possibleNextSolutions = possibleNextWords.map((word) => {
     return [...solutionArray, word];
   });
@@ -315,6 +315,23 @@ gridInputs.forEach((inputElement, index) => {
 gridSubmitButton.addEventListener("click", (event) => {
   handleGridSubmit(event);
 });
+
+function createBox() {
+  const canvas = document.getElementById("canvas");
+  if (canvas.getContext) {
+    const ctx = canvas.getContext("2d");
+    // ctx.strokeRect(80, 80, 240, 240);
+    ctx.beginPath();
+    ctx.moveTo(80, 80);
+    ctx.lineTo(320, 80);
+    ctx.lineTo(320, 320);
+    ctx.lineTo(80, 320);
+    ctx.lineTo(80, 80);
+    ctx.stroke();
+  }
+}
+
+window.addEventListener("load", createBox);
 
 export default {
   canAddLetter,
