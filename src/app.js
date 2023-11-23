@@ -263,6 +263,7 @@ function handleGridSubmit(event) {
   } else {
     createGrid(inputElementsArray, grid);
     console.log(grid);
+    drawText(grid);
     const possibleWordsArray = generatePossibleWords(grid);
     const validWordsArray = addValidWords(possibleWordsArray, grid);
     const noOfWords = prompt("How many words?");
@@ -328,6 +329,19 @@ function createBox() {
     ctx.lineTo(80, 320);
     ctx.lineTo(80, 80);
     ctx.stroke();
+  }
+}
+
+function drawText(grid) {
+  const canvas = document.getElementById("canvas");
+  if (canvas.getContext) {
+    const ctx = canvas.getContext("2d");
+    ctx.font = "20px serif";
+    grid.forEach((subArray, index) => {
+      subArray.forEach((letter, index2) => {
+        ctx.fillText(letter, 100 * index2 + 100, 100 * index + 100);
+      });
+    });
   }
 }
 
