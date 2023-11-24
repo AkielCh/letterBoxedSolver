@@ -263,7 +263,7 @@ function handleGridSubmit(event) {
   } else {
     createGrid(inputElementsArray, grid);
     console.log(grid);
-    drawText(grid);
+    drawText(grid, charCoordinates);
     const possibleWordsArray = generatePossibleWords(grid);
     const validWordsArray = addValidWords(possibleWordsArray, grid);
     const noOfWords = prompt("How many words?");
@@ -332,14 +332,59 @@ function createBox() {
   }
 }
 
-function drawText(grid) {
+const charCoordinates = [
+  [
+    [80, 80],
+    [80, 160],
+    [80, 240],
+  ],
+  [
+    [160, 80],
+    [160, 160],
+    [160, 240],
+  ],
+  [
+    [240, 80],
+    [240, 160],
+    [240, 240],
+  ],
+  [
+    [320, 80],
+    [320, 160],
+    [320, 240],
+  ],
+];
+
+// function drawText(grid, charCoordinates) {
+//   const canvas = document.getElementById("canvas");
+//   if (canvas.getContext) {
+//     const ctx = canvas.getContext("2d");
+//     ctx.font = "20px serif";
+//     grid.forEach((subArray, index) => {
+//       subArray.forEach((letter, index2) => {
+//         ctx.fillText(letter, 100 * index2 + 100, 100 * index + 100);
+//       });
+//     });
+//   }
+// }
+
+function drawText(grid, charCoordinates) {
   const canvas = document.getElementById("canvas");
   if (canvas.getContext) {
     const ctx = canvas.getContext("2d");
     ctx.font = "20px serif";
+
     grid.forEach((subArray, index) => {
+      console.log(subArray, index);
       subArray.forEach((letter, index2) => {
-        ctx.fillText(letter, 100 * index2 + 100, 100 * index + 100);
+        console.log(letter, index2);
+        console.log(charCoordinates[index][index2][0]);
+        console.log(charCoordinates[index][index2][1]);
+        ctx.fillText(
+          letter,
+          charCoordinates[index][index2][0],
+          charCoordinates[index][index2][1]
+        );
       });
     });
   }
