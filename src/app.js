@@ -334,24 +334,24 @@ function createBox() {
 
 const charCoordinates = [
   [
-    [80, 80],
-    [80, 160],
-    [80, 240],
+    [120, 60],
+    [200, 60],
+    [280, 60],
   ],
   [
-    [160, 80],
-    [160, 160],
-    [160, 240],
+    [60, 120],
+    [60, 200],
+    [60, 280],
   ],
   [
-    [240, 80],
-    [240, 160],
-    [240, 240],
+    [340, 120],
+    [340, 200],
+    [340, 280],
   ],
   [
-    [320, 80],
-    [320, 160],
-    [320, 240],
+    [120, 360],
+    [200, 360],
+    [280, 360],
   ],
 ];
 
@@ -372,14 +372,10 @@ function drawText(grid, charCoordinates) {
   const canvas = document.getElementById("canvas");
   if (canvas.getContext) {
     const ctx = canvas.getContext("2d");
-    ctx.font = "20px serif";
-
+    ctx.font = "40px serif";
+    ctx.textAlign = "center";
     grid.forEach((subArray, index) => {
-      console.log(subArray, index);
       subArray.forEach((letter, index2) => {
-        console.log(letter, index2);
-        console.log(charCoordinates[index][index2][0]);
-        console.log(charCoordinates[index][index2][1]);
         ctx.fillText(
           letter,
           charCoordinates[index][index2][0],
