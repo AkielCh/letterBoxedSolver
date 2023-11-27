@@ -263,7 +263,8 @@ function handleGridSubmit(event) {
   } else {
     createGrid(inputElementsArray, grid);
     console.log(grid);
-    drawText(grid, charCoordinates);
+    const lettersArray = drawText(grid, charCoordinates);
+    // console.log(lettersArray);
     const possibleWordsArray = generatePossibleWords(grid);
     const validWordsArray = addValidWords(possibleWordsArray, grid);
     const noOfWords = prompt("How many words?");
@@ -271,7 +272,10 @@ function handleGridSubmit(event) {
     console.log(solutionsArray);
     const solution = solutionsArray[0].join(" ");
     console.log(solution);
+    drawSolution(solution, lettersArray);
     updateSolutionOutput(solution);
+    // console.log(solution.split(" "));
+    // console.log(lettersArray);
     // let findSolutionWithLength = prompt("Length of solution 1-5");
   }
 }
@@ -438,10 +442,49 @@ function drawText(grid, charCoordinates) {
         });
       });
     });
-    console.log(lettersArray);
+    // console.log(lettersArray);
+    return lettersArray;
   }
 }
 
+function drawLine(ctx, coordinates1, coordinates2) {
+  setTimeout(() => {
+    ctx.beginPath();
+    ctx.moveTo(coordinates1[0], coordinates1[1]);
+    ctx.lineTo(coordinates2[0], coordinates2[1]);
+    ctx.stroke(), 1000;
+  });
+}
+
+function drawWord(ctx, word, lettersArray) {
+  for (let i = 1; i < word.length; i++) {
+    const previousLetter = word[i - 1];
+    console.log(previousLetter);
+    const letter = word[i];
+    console.log(letter);
+    const letterObject = lettersArray.find((letterObject) => {
+      return letterObject.letter === letter;
+    });
+    const previousLetterObject = lettersArray.find((letterObject) => {
+      return letterObject.letter === previousLetter;
+    });
+    console.log(previousLetterObject);
+    console.log(letterObject);
+    drawLine(ctx, previousLetterObject.coordinates, letterObject.coordinates);
+  }
+}
+
+function drawSolution(solution, lettersArray) {
+  const solutionArray = solution.split(" ");
+  const canvas = document.getElementById("canvas");
+  if (canvas.getContext) {
+    const ctx = canvas.getContext("2d");
+    // console.log(solutionArray);
+    for (const word of solutionArray) {
+      drawWord(ctx, word, lettersArray);
+    }
+  }
+}
 window.addEventListener("load", createBox(circleCoordinates));
 
 export default {
