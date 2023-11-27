@@ -317,18 +317,22 @@ gridSubmitButton.addEventListener("click", (event) => {
   handleGridSubmit(event);
 });
 
-// (120, 80)
-// (200, 80)
-// (280, 80)
-// (320, 120)
-// (320, 200)
-// (320, 280)
-// (280, 320)
-// (200, 320)
-// (120, 320)
-// (80, 280)
-// (80, 200)
-// (80, 120)
+// function createGridObject(grid, charCoordinates) {
+//   const gridObject = {};
+//   grid.forEach((subArray, index) => {
+//     subArray.forEach((letter, index2) => {
+//       gridObject[letter] = charCoordinates[index][index2];
+//     });
+//     console.log(gridObject);
+//   });
+//   return gridObject;
+// }
+
+function Letter(letter, coordinates) {
+  this.letter = letter;
+  this.coordinates = coordinates;
+}
+
 const circleCoordinates = [
   { x: 120, y: 80 },
   { x: 200, y: 80 },
@@ -346,14 +350,19 @@ const circleCoordinates = [
 
 function createCircle(ctx, circleCoordinates) {
   for (const coordinates of circleCoordinates) {
+    // ctx.lineWidth = 5;
+    ctx.strokeStyle = "white";
+    ctx.fillStyle = "white";
     ctx.beginPath();
     ctx.arc(coordinates.x, coordinates.y, 5, 0, 2 * Math.PI);
     ctx.fill();
+    ctx.stroke();
   }
 }
 
 function createSquare(ctx) {
   // ctx.strokeRect(80, 80, 240, 240);
+  ctx.lineWidth = 5;
   ctx.beginPath();
   ctx.moveTo(80, 80);
   ctx.lineTo(320, 80);
@@ -412,6 +421,7 @@ function drawText(grid, charCoordinates) {
   const canvas = document.getElementById("canvas");
   if (canvas.getContext) {
     const ctx = canvas.getContext("2d");
+    const lettersArray = [];
     ctx.font = "40px serif";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
@@ -422,8 +432,13 @@ function drawText(grid, charCoordinates) {
           charCoordinates[index][index2][0],
           charCoordinates[index][index2][1]
         );
+        lettersArray.push({
+          letter: letter,
+          coordinates: charCoordinates[index][index2],
+        });
       });
     });
+    console.log(lettersArray);
   }
 }
 
