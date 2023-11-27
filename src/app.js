@@ -317,18 +317,58 @@ gridSubmitButton.addEventListener("click", (event) => {
   handleGridSubmit(event);
 });
 
-function createBox() {
+// (120, 80)
+// (200, 80)
+// (280, 80)
+// (320, 120)
+// (320, 200)
+// (320, 280)
+// (280, 320)
+// (200, 320)
+// (120, 320)
+// (80, 280)
+// (80, 200)
+// (80, 120)
+const circleCoordinates = [
+  { x: 120, y: 80 },
+  { x: 200, y: 80 },
+  { x: 280, y: 80 },
+  { x: 320, y: 120 },
+  { x: 320, y: 200 },
+  { x: 320, y: 280 },
+  { x: 280, y: 320 },
+  { x: 200, y: 320 },
+  { x: 120, y: 320 },
+  { x: 80, y: 280 },
+  { x: 80, y: 200 },
+  { x: 80, y: 120 },
+];
+
+function createCircle(ctx, circleCoordinates) {
+  for (const coordinates of circleCoordinates) {
+    ctx.beginPath();
+    ctx.arc(coordinates.x, coordinates.y, 5, 0, 2 * Math.PI);
+    ctx.fill();
+  }
+}
+
+function createSquare(ctx) {
+  // ctx.strokeRect(80, 80, 240, 240);
+  ctx.beginPath();
+  ctx.moveTo(80, 80);
+  ctx.lineTo(320, 80);
+  ctx.lineTo(320, 320);
+  ctx.lineTo(80, 320);
+  ctx.lineTo(80, 80);
+  ctx.stroke();
+}
+
+function createBox(circleCoordinates) {
   const canvas = document.getElementById("canvas");
   if (canvas.getContext) {
     const ctx = canvas.getContext("2d");
-    // ctx.strokeRect(80, 80, 240, 240);
-    ctx.beginPath();
-    ctx.moveTo(80, 80);
-    ctx.lineTo(320, 80);
-    ctx.lineTo(320, 320);
-    ctx.lineTo(80, 320);
-    ctx.lineTo(80, 80);
-    ctx.stroke();
+    createSquare(ctx);
+    createCircle(ctx, circleCoordinates);
   }
 }
 
@@ -349,9 +389,9 @@ const charCoordinates = [
     [340, 280],
   ],
   [
-    [120, 360],
-    [200, 360],
-    [280, 360],
+    [120, 350],
+    [200, 350],
+    [280, 350],
   ],
 ];
 
@@ -374,6 +414,7 @@ function drawText(grid, charCoordinates) {
     const ctx = canvas.getContext("2d");
     ctx.font = "40px serif";
     ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
     grid.forEach((subArray, index) => {
       subArray.forEach((letter, index2) => {
         ctx.fillText(
@@ -386,7 +427,7 @@ function drawText(grid, charCoordinates) {
   }
 }
 
-window.addEventListener("load", createBox);
+window.addEventListener("load", createBox(circleCoordinates));
 
 export default {
   canAddLetter,
