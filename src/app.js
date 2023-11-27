@@ -446,32 +446,11 @@ function drawText(grid, charCoordinates) {
     return lettersArray;
   }
 }
-
 function drawLine(ctx, coordinates1, coordinates2) {
-  setTimeout(() => {
-    ctx.beginPath();
-    ctx.moveTo(coordinates1[0], coordinates1[1]);
-    ctx.lineTo(coordinates2[0], coordinates2[1]);
-    ctx.stroke(), 1000;
-  });
-}
-
-function drawWord(ctx, word, lettersArray) {
-  for (let i = 1; i < word.length; i++) {
-    const previousLetter = word[i - 1];
-    console.log(previousLetter);
-    const letter = word[i];
-    console.log(letter);
-    const letterObject = lettersArray.find((letterObject) => {
-      return letterObject.letter === letter;
-    });
-    const previousLetterObject = lettersArray.find((letterObject) => {
-      return letterObject.letter === previousLetter;
-    });
-    console.log(previousLetterObject);
-    console.log(letterObject);
-    drawLine(ctx, previousLetterObject.coordinates, letterObject.coordinates);
-  }
+  ctx.beginPath();
+  ctx.moveTo(coordinates1[0], coordinates1[1]);
+  ctx.lineTo(coordinates2[0], coordinates2[1]);
+  ctx.stroke();
 }
 
 function drawSolution(solution, lettersArray) {
@@ -479,12 +458,49 @@ function drawSolution(solution, lettersArray) {
   const canvas = document.getElementById("canvas");
   if (canvas.getContext) {
     const ctx = canvas.getContext("2d");
-    // console.log(solutionArray);
-    for (const word of solutionArray) {
-      drawWord(ctx, word, lettersArray);
-    }
+    let delay = 0;
+    let wordIndex = 0;
+    let letterIndex = 1;
+
+    const drawNextLine = () => {
+      if (wordIndex >= solutionArray.length) {
+        // All words are drawn, clearInterval
+        clearInterval(intervalId);
+        return;
+      }
+
+      const word = solutionArray[wordIndex];
+      const previousLetter = word[letterIndex - 1];
+      const letter = word[letterIndex];
+
+      const letterObject = lettersArray.find(
+        (letterObject) => letterObject.letter === letter
+      );
+      const previousLetterObject = lettersArray.find(
+        (letterObject) => letterObject.letter === previousLetter
+      );
+
+      drawLine(ctx, previousLetterObject.coordinates, letterObject.coordinates);
+
+      letterIndex++;
+
+      if (letterIndex >= word.length) {
+        // Move to the next word
+        console.log(word);
+        ctx.clearRect(80, 80, 240, 240);
+        createBox(circleCoordinates);
+        wordIndex++;
+        letterIndex = 1;
+        delay += 2000; // Add a break of 2 seconds between words
+      }
+
+      delay += 1000; // Increment delay for each line (adjust as needed)
+    };
+
+    const intervalId = setInterval(drawNextLine, 1000); // Adjust the interval as needed
   }
 }
+
 window.addEventListener("load", createBox(circleCoordinates));
 
 export default {
