@@ -263,7 +263,7 @@ function handleGridSubmit(event) {
   } else {
     createGrid(inputElementsArray, grid);
     console.log(grid);
-    const lettersArray = drawText(grid, charCoordinates);
+    const lettersArray = drawText(grid, charCoordinates, circleCoordinates);
     // console.log(lettersArray);
     const possibleWordsArray = generatePossibleWords(grid);
     const validWordsArray = addValidWords(possibleWordsArray, grid);
@@ -338,29 +338,39 @@ function Letter(letter, coordinates) {
 }
 
 const circleCoordinates = [
-  { x: 120, y: 80 },
-  { x: 200, y: 80 },
-  { x: 280, y: 80 },
-  { x: 320, y: 120 },
-  { x: 320, y: 200 },
-  { x: 320, y: 280 },
-  { x: 280, y: 320 },
-  { x: 200, y: 320 },
-  { x: 120, y: 320 },
-  { x: 80, y: 280 },
-  { x: 80, y: 200 },
-  { x: 80, y: 120 },
+  [
+    { x: 120, y: 80 },
+    { x: 200, y: 80 },
+    { x: 280, y: 80 },
+  ],
+  [
+    { x: 80, y: 120 },
+    { x: 80, y: 200 },
+    { x: 80, y: 280 },
+  ],
+  [
+    { x: 320, y: 120 },
+    { x: 320, y: 200 },
+    { x: 320, y: 280 },
+  ],
+  [
+    { x: 120, y: 320 },
+    { x: 200, y: 320 },
+    { x: 280, y: 320 },
+  ],
 ];
 
 function createCircle(ctx, circleCoordinates) {
-  for (const coordinates of circleCoordinates) {
-    // ctx.lineWidth = 5;
-    ctx.strokeStyle = "white";
-    ctx.fillStyle = "white";
-    ctx.beginPath();
-    ctx.arc(coordinates.x, coordinates.y, 5, 0, 2 * Math.PI);
-    ctx.fill();
-    ctx.stroke();
+  for (const side of circleCoordinates) {
+    for (const coordinates of side) {
+      // ctx.lineWidth = 5;
+      ctx.strokeStyle = "white";
+      ctx.fillStyle = "white";
+      ctx.beginPath();
+      ctx.arc(coordinates.x, coordinates.y, 5, 0, 2 * Math.PI);
+      ctx.fill();
+      ctx.stroke();
+    }
   }
 }
 
@@ -421,7 +431,7 @@ const charCoordinates = [
 //   }
 // }
 
-function drawText(grid, charCoordinates) {
+function drawText(grid, charCoordinates, circleCoordinates) {
   const canvas = document.getElementById("canvas");
   if (canvas.getContext) {
     const ctx = canvas.getContext("2d");
@@ -438,7 +448,8 @@ function drawText(grid, charCoordinates) {
         );
         lettersArray.push({
           letter: letter,
-          coordinates: charCoordinates[index][index2],
+          letterCoordinates: charCoordinates[index][index2],
+          circleCoordinates: circleCoordinates[index][index2],
         });
       });
     });
@@ -448,8 +459,8 @@ function drawText(grid, charCoordinates) {
 }
 function drawLine(ctx, coordinates1, coordinates2) {
   ctx.beginPath();
-  ctx.moveTo(coordinates1[0], coordinates1[1]);
-  ctx.lineTo(coordinates2[0], coordinates2[1]);
+  ctx.moveTo(coordinates1.x, coordinates1.y);
+  ctx.lineTo(coordinates2.x, coordinates2.y);
   ctx.stroke();
 }
 
@@ -462,7 +473,7 @@ function drawSolution(solution, lettersArray) {
     let wordIndex = 0;
     let letterIndex = 1;
 
-    const drawNextLine = () => {
+    function drawNextLine() {
       if (wordIndex >= solutionArray.length) {
         // All words are drawn, clearInterval
         clearInterval(intervalId);
@@ -480,7 +491,11 @@ function drawSolution(solution, lettersArray) {
         (letterObject) => letterObject.letter === previousLetter
       );
 
-      drawLine(ctx, previousLetterObject.coordinates, letterObject.coordinates);
+      drawLine(
+        ctx,
+        previousLetterObject.circleCoordinates,
+        letterObject.circleCoordinates
+      );
 
       letterIndex++;
 
@@ -495,7 +510,7 @@ function drawSolution(solution, lettersArray) {
       }
 
       delay += 1000; // Increment delay for each line (adjust as needed)
-    };
+    }
 
     const intervalId = setInterval(drawNextLine, 1000); // Adjust the interval as needed
   }
