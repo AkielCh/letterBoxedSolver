@@ -457,6 +457,15 @@ function drawText(grid, charCoordinates, circleCoordinates) {
     return lettersArray;
   }
 }
+
+function reDraw(ctx, linePaths) {
+  for (const linePath of linePaths) {
+    ctx.strokeStyle = "rgba(200, 0, 0, 0.5)";
+    ctx.setLineDash([5, 10]);
+    drawLine(ctx, linePath[0], linePath[1]);
+  }
+}
+
 function drawLine(ctx, coordinates1, coordinates2) {
   ctx.beginPath();
   ctx.moveTo(coordinates1.x, coordinates1.y);
@@ -465,6 +474,7 @@ function drawLine(ctx, coordinates1, coordinates2) {
 }
 
 function drawSolution(solution, lettersArray) {
+  const finalSolutionOutput = document.querySelector("#finalSolution");
   const solutionArray = solution.split(" ");
   const canvas = document.getElementById("canvas");
   if (canvas.getContext) {
@@ -472,6 +482,7 @@ function drawSolution(solution, lettersArray) {
     let delay = 0;
     let wordIndex = 0;
     let letterIndex = 1;
+    const linePaths = [];
 
     function drawNextLine() {
       if (wordIndex >= solutionArray.length) {
@@ -490,7 +501,13 @@ function drawSolution(solution, lettersArray) {
       const previousLetterObject = lettersArray.find(
         (letterObject) => letterObject.letter === previousLetter
       );
-
+      linePaths.push([
+        previousLetterObject.circleCoordinates,
+        letterObject.circleCoordinates,
+      ]);
+      console.log(linePaths);
+      ctx.strokeStyle = "white";
+      ctx.setLineDash([]);
       drawLine(
         ctx,
         previousLetterObject.circleCoordinates,
@@ -501,9 +518,11 @@ function drawSolution(solution, lettersArray) {
 
       if (letterIndex >= word.length) {
         // Move to the next word
-        console.log(word);
+        finalSolutionOutput.textContent += word + "  ";
         ctx.clearRect(80, 80, 240, 240);
         createBox(circleCoordinates);
+        console.log(word);
+        reDraw(ctx, linePaths);
         wordIndex++;
         letterIndex = 1;
         delay += 2000; // Add a break of 2 seconds between words
