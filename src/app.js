@@ -466,6 +466,44 @@ function reDraw(ctx, linePaths) {
   }
 }
 
+// function currentLetterColour(ctx, letterObject) {
+//   ctx.font = "40px serif";
+//   ctx.textAlign = "center";
+//   ctx.textBaseline = "middle";
+//   ctx.fillStyle = "black";
+//   console.log(letterObject);
+//   console.log(letterObject.charCoordinates);
+//   ctx.fillText(
+//     letterObject.letter,
+//     letterObject.letterCoordinates[0],
+//     letterObject.letterCoordinates[1]
+//   );
+// }
+
+// function previousLetterColour(ctx, previousLetterObject) {
+//   ctx.font = "40px serif";
+//   ctx.textAlign = "center";
+//   ctx.textBaseline = "middle";
+//   ctx.fillStyle = "white";
+//   ctx.fillText(
+//     previousLetterObject.letter,
+//     previousLetterObject.letterCoordinates[0],
+//     previousLetterObject.letterCoordinates[1]
+//   );
+// }
+
+function drawLetter(ctx, letterObject, colour) {
+  ctx.font = "40px serif";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillStyle = colour;
+  ctx.fillText(
+    letterObject.letter,
+    letterObject.letterCoordinates[0],
+    letterObject.letterCoordinates[1]
+  );
+}
+
 function drawLine(ctx, coordinates1, coordinates2) {
   ctx.beginPath();
   ctx.moveTo(coordinates1.x, coordinates1.y);
@@ -508,11 +546,17 @@ function drawSolution(solution, lettersArray) {
       console.log(linePaths);
       ctx.strokeStyle = "white";
       ctx.setLineDash([]);
+      console.log(letterObject);
       drawLine(
         ctx,
         previousLetterObject.circleCoordinates,
         letterObject.circleCoordinates
       );
+      // console.log(letterObject);
+      // currentLetterColour(ctx, letterObject);
+      // previousLetterColour(ctx, previousLetterObject);
+      drawLetter(ctx, letterObject, "black");
+      drawLetter(ctx, previousLetterObject, "white");
 
       letterIndex++;
 
