@@ -504,35 +504,31 @@ function drawLetter(ctx, letterObject, colour) {
   );
 }
 
-function drawLine(ctx, coordinates1, coordinates2) {
+function drawLine(ctx, coordinates1, coordinates2, colour) {
+  ctx.strokeStyle = colour;
   ctx.beginPath();
   ctx.moveTo(coordinates1.x, coordinates1.y);
   ctx.lineTo(coordinates2.x, coordinates2.y);
   ctx.stroke();
 }
-
 function drawSolution(solution, lettersArray) {
   const finalSolutionOutput = document.querySelector("#finalSolution");
   const solutionArray = solution.split(" ");
   const canvas = document.getElementById("canvas");
   if (canvas.getContext) {
     const ctx = canvas.getContext("2d");
-    let delay = 0;
+    let delay = 300;
     let wordIndex = 0;
     let letterIndex = 1;
     const linePaths = [];
 
     function drawNextLine() {
       if (wordIndex >= solutionArray.length) {
-        // All words are drawn, clearInterval
-        clearInterval(intervalId);
         return;
       }
-
       const word = solutionArray[wordIndex];
       const previousLetter = word[letterIndex - 1];
       const letter = word[letterIndex];
-
       const letterObject = lettersArray.find(
         (letterObject) => letterObject.letter === letter
       );
@@ -543,41 +539,41 @@ function drawSolution(solution, lettersArray) {
         previousLetterObject.circleCoordinates,
         letterObject.circleCoordinates,
       ]);
-      console.log(linePaths);
       ctx.strokeStyle = "white";
       ctx.setLineDash([]);
-      console.log(letterObject);
       drawLine(
         ctx,
         previousLetterObject.circleCoordinates,
-        letterObject.circleCoordinates
+        letterObject.circleCoordinates,
+        "red"
       );
-      // console.log(letterObject);
-      // currentLetterColour(ctx, letterObject);
-      // previousLetterColour(ctx, previousLetterObject);
       drawLetter(ctx, letterObject, "black");
       drawLetter(ctx, previousLetterObject, "white");
-
       letterIndex++;
-
       if (letterIndex >= word.length) {
-        // Move to the next word
         finalSolutionOutput.textContent += word + "  ";
         ctx.clearRect(80, 80, 240, 240);
+        ctx.strokeStyle = "black";
         createBox(circleCoordinates);
         console.log(word);
         reDraw(ctx, linePaths);
         wordIndex++;
         letterIndex = 1;
-        delay += 2000; // Add a break of 2 seconds between words
+        setTimeout(() => {
+          drawNextLine();
+        }, 1000); //word delay
+      } else {
+        setTimeout(() => {
+          drawNextLine();
+        }, 500); //letter delay
       }
-
-      delay += 1000; // Increment delay for each line (adjust as needed)
     }
-
-    const intervalId = setInterval(drawNextLine, 1000); // Adjust the interval as needed
+    drawNextLine();
   }
 }
+
+//Use of requestAnimationFrame
+//  method tells the browser that you wish to perform an animation. It requests the browser to call a user-supplied callback function prior to the next repaint.
 
 window.addEventListener("load", createBox(circleCoordinates));
 
