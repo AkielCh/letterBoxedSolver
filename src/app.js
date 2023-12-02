@@ -509,10 +509,29 @@ function drawLetter(ctx, letterObject, colour) {
   );
 }
 
-//find gradient 
-function findGradient(coordinates1, coordiantes2){
-  
+//find gradient
+function findGradient(coordinates1, coordinates2) {
+  const gradient =
+    (coordinates2.y - coordinates1.y) / (coordinates2.x - coordinates1.x);
+  return gradient;
+}
 
+//find y intercept
+function findYIntercept(coordinates1, gradient) {
+  const yIntercept = coordinates1.y - gradient * coordinates1.x;
+  return yIntercept;
+}
+
+function findLinePoints(coordinates1, coordinates2) {
+  const gradient = findGradient(coordinates1, coordinates2);
+  const yIntercept = findYIntercept(coordinates1, gradient);
+  const animatedLinePoints = [];
+  for (let i = 0; i < 60; i++) {
+    const x = coordinates1.x + ((coordinates2.x - coordinates1.x) / 60) * i;
+    const y = gradient * x + yIntercept;
+    animatedLinePoints.push({ x: x, y: y });
+  }
+  return animatedLinePoints;
 }
 
 function drawLine(ctx, coordinates1, coordinates2, colour) {
@@ -547,12 +566,15 @@ function drawSolution(solution, lettersArray) {
       const previousLetterObject = lettersArray.find(
         (letterObject) => letterObject.letter === previousLetter
       );
+      console.log(previousLetterObject.circleCoordinates);
+      console.log(letterObject.circleCoordinates);
       linePaths.push([
         previousLetterObject.circleCoordinates,
         letterObject.circleCoordinates,
       ]);
       ctx.strokeStyle = "white";
       ctx.setLineDash([]);
+
       drawLine(
         ctx,
         previousLetterObject.circleCoordinates,
