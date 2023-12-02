@@ -534,13 +534,27 @@ function findLinePoints(coordinates1, coordinates2) {
   return animatedLinePoints;
 }
 
+//using findLinePoints functio to animate line drawing using requestAnimationFrame
+
 function drawLine(ctx, coordinates1, coordinates2, colour) {
   ctx.strokeStyle = colour;
   ctx.beginPath();
-  ctx.moveTo(coordinates1.x, coordinates1.y);
-  ctx.lineTo(coordinates2.x, coordinates2.y);
-  ctx.stroke();
+  const linePoints = findLinePoints(coordinates1, coordinates2);
+  ctx.moveTo(linePoints[0].x, linePoints[0].y);
+  let i = 1;
+  animateLine();
+  function animateLine() {
+    if (i >= linePoints.length) {
+      return;
+    }
+    ctx.lineTo(linePoints[i].x, linePoints[i].y);
+    ctx.stroke();
+    i++;
+    requestAnimationFrame(animateLine);
+  }
 }
+// ctx.moveTo(coordinates1.x, coordinates1.y);
+// ctx.lineTo(coordinates2.x, coordinates2.y);
 
 function drawSolution(solution, lettersArray) {
   const finalSolutionOutput = document.querySelector("#finalSolution");
