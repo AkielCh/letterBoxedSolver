@@ -338,11 +338,16 @@ function Letter(letter, coordinates) {
 }
 
 const circleCoordinates = [
+  //top
+  //left
+  //right:
+  // bottom
   [
     { x: 120, y: 80 },
     { x: 200, y: 80 },
     { x: 280, y: 80 },
   ],
+
   [
     { x: 80, y: 120 },
     { x: 80, y: 200 },
@@ -504,6 +509,12 @@ function drawLetter(ctx, letterObject, colour) {
   );
 }
 
+//find gradient 
+function findGradient(coordinates1, coordiantes2){
+  
+
+}
+
 function drawLine(ctx, coordinates1, coordinates2, colour) {
   ctx.strokeStyle = colour;
   ctx.beginPath();
@@ -511,6 +522,7 @@ function drawLine(ctx, coordinates1, coordinates2, colour) {
   ctx.lineTo(coordinates2.x, coordinates2.y);
   ctx.stroke();
 }
+
 function drawSolution(solution, lettersArray) {
   const finalSolutionOutput = document.querySelector("#finalSolution");
   const solutionArray = solution.split(" ");
