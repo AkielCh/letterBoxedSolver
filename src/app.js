@@ -534,27 +534,37 @@ function findLinePoints(coordinates1, coordinates2) {
   return animatedLinePoints;
 }
 
-//using findLinePoints functio to animate line drawing using requestAnimationFrame
+//using findLinePoints function to animate line drawing using requestAnimationFrame
 
-function drawLine(ctx, coordinates1, coordinates2, colour) {
-  ctx.strokeStyle = colour;
-  ctx.beginPath();
+// ensure that there is an smooth animation between the two points
+
+function drawLine(ctx, coordinates1, coordinates2, colour, callback) {
   const linePoints = findLinePoints(coordinates1, coordinates2);
-  ctx.moveTo(linePoints[0].x, linePoints[0].y);
-  let i = 1;
-  animateLine();
+  let i = 0;
+
   function animateLine() {
-    if (i >= linePoints.length) {
-      return;
+    if (i < linePoints.length) {
+      ctx.beginPath();
+      ctx.moveTo(coordinates1.x, coordinates1.y);
+      ctx.lineTo(linePoints[i].x, linePoints[i].y);
+      ctx.stroke();
+      i++;
+      requestAnimationFrame(animateLine);
+    } else {
+      // Line animation is complete, invoke the callback
+      if (typeof callback === "function") {
+        callback();
+      }
     }
-    ctx.lineTo(linePoints[i].x, linePoints[i].y);
-    ctx.stroke();
-    i++;
-    requestAnimationFrame(animateLine);
   }
+
+  animateLine();
 }
+
 // ctx.moveTo(coordinates1.x, coordinates1.y);
 // ctx.lineTo(coordinates2.x, coordinates2.y);
+
+//modify drawNextLine function
 
 function drawSolution(solution, lettersArray) {
   const finalSolutionOutput = document.querySelector("#finalSolution");
@@ -588,37 +598,65 @@ function drawSolution(solution, lettersArray) {
       ]);
       ctx.strokeStyle = "white";
       ctx.setLineDash([]);
-
       drawLine(
         ctx,
         previousLetterObject.circleCoordinates,
         letterObject.circleCoordinates,
-        "red"
+        "red",
+        function () {
+          // Callback function to be executed when line animation is complete
+          drawLetter(ctx, letterObject, "black");
+          drawLetter(ctx, previousLetterObject, "white");
+
+          letterIndex++;
+
+          if (letterIndex >= word.length) {
+            // ... (other code remains unchanged)
+            finalSolutionOutput.textContent += word + "  ";
+            ctx.clearRect(80, 80, 240, 240);
+            ctx.strokeStyle = "black";
+            createBox(circleCoordinates);
+            console.log(word);
+            reDraw(ctx, linePaths);
+            wordIndex++;
+            letterIndex = 1;
+
+            setTimeout(() => {
+              drawNextLine();
+            }, 1000); // word delay
+          } else {
+            setTimeout(() => {
+              drawNextLine();
+            }, 500); // letter delay
+          }
+        }
       );
-      drawLetter(ctx, letterObject, "black");
-      drawLetter(ctx, previousLetterObject, "white");
-      letterIndex++;
-      if (letterIndex >= word.length) {
-        finalSolutionOutput.textContent += word + "  ";
-        ctx.clearRect(80, 80, 240, 240);
-        ctx.strokeStyle = "black";
-        createBox(circleCoordinates);
-        console.log(word);
-        reDraw(ctx, linePaths);
-        wordIndex++;
-        letterIndex = 1;
-        setTimeout(() => {
-          drawNextLine();
-        }, 1000); //word delay
-      } else {
-        setTimeout(() => {
-          drawNextLine();
-        }, 500); //letter delay
-      }
     }
+
     drawNextLine();
   }
 }
+//       if (letterIndex >= word.length) {
+//         finalSolutionOutput.textContent += word + "  ";
+//         ctx.clearRect(80, 80, 240, 240);
+//         ctx.strokeStyle = "black";
+//         createBox(circleCoordinates);
+//         console.log(word);
+//         reDraw(ctx, linePaths);
+//         wordIndex++;
+//         letterIndex = 1;
+//         setTimeout(() => {
+//           drawNextLine();
+//         }, 1000); //word delay
+//       } else {
+//         setTimeout(() => {
+//           drawNextLine();
+//         }, 500); //letter delay
+//       }
+//     }
+//     drawNextLine();
+//   }
+// }
 
 //Use of requestAnimationFrame
 //  method tells the browser that you wish to perform an animation. It requests the browser to call a user-supplied callback function prior to the next repaint.
