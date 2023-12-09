@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Letter Boxed Solver</title>
+    <link href="./style.css" rel="stylesheet"
+  </head>
+  <body>
+    <h1>Letter Boxed Solver</h1>
+    <input
+      type="text"
+      id="gridTop"
+      placeholder="Top"
+      class="gridInput"
+      maxlength="3"
+    />
+    <input
+      type="text"
+      id="gridLeft"
+      placeholder="Left"
+      class="gridInput"
+      maxlength="3"
+    />
+    <input
+      type="text"
+      id="gridRight"
+      placeholder="Right"
+      class="gridInput"
+      maxlength="3"
+    />
+    <input
+      type="text"
+      id="gridBottom"
+      placeholder="Bottom"
+      class="gridInput"
+      maxlength="3"
+    />
+    <p class="output"></p>
+    <p class="output"></p>
+    <p class="output"></p>
+    <p class="output"></p>
+    <!-- <div class="grid">
+      <p class="gridSubmitOutput" id="gridOutputTop">TOP</p>
+      <p class="gridSubmitOutput" id="gridOutputLeft">LEFT</p>
+      <p class="gridSubmitOutput" id="gridOutputRight">RIGHT</p>
+      <p class="gridSubmitOutput" id="gridOutputBottom">BOTTOM</p>
+    </div> -->
+    <p id="solutionOutput">Solution</p>
+    <canvas id="canvas" class="box" width="400" height="400">Solution</canvas>
+
+    <button id="gridSubmitButton" class="gridSubmitButton">Submit</button>
+    <div>
+      <output id="finalSolution" class="finalSolution"></output>
+    </div>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
