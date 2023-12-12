@@ -466,7 +466,7 @@ function drawText(grid, charCoordinates, circleCoordinates) {
 function reDraw(ctx, linePaths) {
   for (const linePath of linePaths) {
     ctx.strokeStyle = "rgba(200, 0, 0, 0.5)";
-    ctx.setLineDash([5, 10]);
+    ctx.setLineDash([1, 3]);
     drawLine(ctx, linePath[0], linePath[1]);
   }
 }
@@ -527,39 +527,129 @@ function findLinePoints(coordinates1, coordinates2) {
   const yIntercept = findYIntercept(coordinates1, gradient);
   const animatedLinePoints = [];
   for (let i = 0; i < 60; i++) {
-    const x = coordinates1.x + ((coordinates2.x - coordinates1.x) / 60) * i;
+    const x = coordinates1.x + ((coordinates2.x - coordinates1.x) / 61) * i;
     const y = gradient * x + yIntercept;
     animatedLinePoints.push({ x: x, y: y });
   }
   return animatedLinePoints;
 }
 
-//using findLinePoints functio to animate line drawing using requestAnimationFrame
+//using findLinePoints function to animate line drawing using requestAnimationFrame
+function animateLine(ctx, coordinates1, linePoints, i, callback) {
+  if (i < linePoints.length) {
+    ctx.beginPath();
+    ctx.moveTo(coordinates1.x, coordinates1.y);
+    ctx.lineTo(linePoints[i].x, linePoints[i].y);
+    ctx.stroke();
+    i++;
+    requestAnimationFrame(() =>
+      animateLine(ctx, coordinates1, linePoints, i, callback)
+    );
+  } else {
+    if (typeof callback === "function") {
+      callback();
+    }
+  }
+}
 
-function drawLine(ctx, coordinates1, coordinates2, colour) {
+function drawLine(ctx, coordinates1, coordinates2, colour, callback) {
   ctx.strokeStyle = colour;
   ctx.beginPath();
   const linePoints = findLinePoints(coordinates1, coordinates2);
   ctx.moveTo(linePoints[0].x, linePoints[0].y);
-  let i = 1;
-  animateLine();
-  function animateLine() {
-    if (i >= linePoints.length) {
-      return;
-    }
-    ctx.lineTo(linePoints[i].x, linePoints[i].y);
-    ctx.stroke();
-    i++;
-    requestAnimationFrame(animateLine);
-  }
+
+  let i = 0;
+
+  requestAnimationFrame(() =>
+    animateLine(ctx, coordinates1, linePoints, i, callback)
+  );
 }
-// ctx.moveTo(coordinates1.x, coordinates1.y);
-// ctx.lineTo(coordinates2.x, coordinates2.y);
+
+function drawNextLine(
+  ctx,
+  finalSolutionOutput,
+  solutionArray,
+  wordIndex,
+  letterIndex,
+  lettersArray,
+  linePaths
+) {
+  if (wordIndex >= solutionArray.length) {
+    return;
+  }
+
+  const word = solutionArray[wordIndex];
+  const previousLetter = word[letterIndex - 1];
+  const letter = word[letterIndex];
+  const letterObject = lettersArray.find(
+    (letterObject) => letterObject.letter === letter
+  );
+  const previousLetterObject = lettersArray.find(
+    (letterObject) => letterObject.letter === previousLetter
+  );
+
+  linePaths.push([
+    previousLetterObject.circleCoordinates,
+    letterObject.circleCoordinates,
+  ]);
+
+  ctx.strokeStyle = "white";
+  ctx.setLineDash([]);
+
+  drawLine(
+    ctx,
+    previousLetterObject.circleCoordinates,
+    letterObject.circleCoordinates,
+    "red",
+    function () {
+      drawLetter(ctx, letterObject, "black");
+      drawLetter(ctx, previousLetterObject, "white");
+
+      letterIndex++;
+
+      if (letterIndex >= word.length) {
+        finalSolutionOutput.textContent += word + "  ";
+        ctx.clearRect(80, 80, 240, 240);
+        ctx.strokeStyle = "black";
+        createBox(circleCoordinates);
+        reDraw(ctx, linePaths);
+
+        wordIndex++;
+        letterIndex = 1;
+
+        setTimeout(() => {
+          drawNextLine(
+            ctx,
+            finalSolutionOutput,
+            solutionArray,
+            wordIndex,
+            letterIndex,
+            lettersArray,
+            linePaths
+          );
+        }, 2000); // word delay
+      } else {
+        // setTimeout(() => {
+        drawNextLine(
+          ctx,
+          finalSolutionOutput,
+          solutionArray,
+          wordIndex,
+          letterIndex,
+          lettersArray,
+          linePaths
+        );
+        // }, 200); // letter delay
+      }
+    }
+  );
+}
 
 function drawSolution(solution, lettersArray) {
   const finalSolutionOutput = document.querySelector("#finalSolution");
   const solutionArray = solution.split(" ");
   const canvas = document.getElementById("canvas");
+
   if (canvas.getContext) {
     const ctx = canvas.getContext("2d");
     let delay = 300;
@@ -567,56 +657,15 @@ function drawSolution(solution, lettersArray) {
     let letterIndex = 1;
     const linePaths = [];
 
-    function drawNextLine() {
-      if (wordIndex >= solutionArray.length) {
-        return;
-      }
-      const word = solutionArray[wordIndex];
-      const previousLetter = word[letterIndex - 1];
-      const letter = word[letterIndex];
-      const letterObject = lettersArray.find(
-        (letterObject) => letterObject.letter === letter
-      );
-      const previousLetterObject = lettersArray.find(
-        (letterObject) => letterObject.letter === previousLetter
-      );
-      console.log(previousLetterObject.circleCoordinates);
-      console.log(letterObject.circleCoordinates);
-      linePaths.push([
-        previousLetterObject.circleCoordinates,
-        letterObject.circleCoordinates,
-      ]);
-      ctx.strokeStyle = "white";
-      ctx.setLineDash([]);
-
-      drawLine(
-        ctx,
-        previousLetterObject.circleCoordinates,
-        letterObject.circleCoordinates,
-        "red"
-      );
-      drawLetter(ctx, letterObject, "black");
-      drawLetter(ctx, previousLetterObject, "white");
-      letterIndex++;
-      if (letterIndex >= word.length) {
-        finalSolutionOutput.textContent += word + "  ";
-        ctx.clearRect(80, 80, 240, 240);
-        ctx.strokeStyle = "black";
-        createBox(circleCoordinates);
-        console.log(word);
-        reDraw(ctx, linePaths);
-        wordIndex++;
-        letterIndex = 1;
-        setTimeout(() => {
-          drawNextLine();
-        }, 1000); //word delay
-      } else {
-        setTimeout(() => {
-          drawNextLine();
-        }, 500); //letter delay
-      }
-    }
-    drawNextLine();
+    drawNextLine(
+      ctx,
+      finalSolutionOutput,
+      solutionArray,
+      wordIndex,
+      letterIndex,
+      lettersArray,
+      linePaths
+    );
   }
 }
 
