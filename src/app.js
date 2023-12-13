@@ -535,24 +535,24 @@ function findLinePoints(coordinates1, coordinates2) {
 }
 
 //using findLinePoints function to animate line drawing using requestAnimationFrame
-function animateLine(ctx, coordinates1, linePoints, i, callback) {
-  if (i < linePoints.length) {
-    ctx.beginPath();
-    ctx.moveTo(coordinates1.x, coordinates1.y);
-    ctx.lineTo(linePoints[i].x, linePoints[i].y);
-    ctx.stroke();
-    i++;
-    requestAnimationFrame(() =>
-      animateLine(ctx, coordinates1, linePoints, i, callback)
-    );
-  } else {
-    if (typeof callback === "function") {
-      callback();
+function animateLine(ctx, coordinates1, linePoints, i) {
+  return new Promise((resolve) => {
+    if (i < linePoints.length) {
+      ctx.beginPath();
+      ctx.moveTo(coordinates1.x, coordinates1.y);
+      ctx.lineTo(linePoints[i].x, linePoints[i].y);
+      ctx.stroke();
+      i++;
+      requestAnimationFrame(() =>
+        animateLine(ctx, coordinates1, linePoints, i).then(resolve)
+      );
+    } else {
+      resolve();
     }
-  }
+  });
 }
 
-function drawLine(ctx, coordinates1, coordinates2, colour, callback) {
+async function drawLine(ctx, coordinates1, coordinates2, colour) {
   ctx.strokeStyle = colour;
   ctx.beginPath();
   const linePoints = findLinePoints(coordinates1, coordinates2);
@@ -560,12 +560,10 @@ function drawLine(ctx, coordinates1, coordinates2, colour, callback) {
 
   let i = 0;
 
-  requestAnimationFrame(() =>
-    animateLine(ctx, coordinates1, linePoints, i, callback)
-  );
+  await animateLine(ctx, coordinates1, linePoints, i);
 }
 
-function drawNextLine(
+async function drawNextLine(
   ctx,
   finalSolutionOutput,
   solutionArray,
@@ -596,56 +594,55 @@ function drawNextLine(
   ctx.strokeStyle = "white";
   ctx.setLineDash([]);
 
-  drawLine(
+  await drawLine(
     ctx,
     previousLetterObject.circleCoordinates,
     letterObject.circleCoordinates,
-    "red",
-    function () {
-      drawLetter(ctx, letterObject, "black");
-      drawLetter(ctx, previousLetterObject, "white");
-
-      letterIndex++;
-
-      if (letterIndex >= word.length) {
-        finalSolutionOutput.textContent += word + "  ";
-        ctx.clearRect(80, 80, 240, 240);
-        ctx.strokeStyle = "black";
-        createBox(circleCoordinates);
-        reDraw(ctx, linePaths);
-
-        wordIndex++;
-        letterIndex = 1;
-
-        setTimeout(() => {
-          drawNextLine(
-            ctx,
-            finalSolutionOutput,
-            solutionArray,
-            wordIndex,
-            letterIndex,
-            lettersArray,
-            linePaths
-          );
-        }, 2000); // word delay
-      } else {
-        // setTimeout(() => {
-        drawNextLine(
-          ctx,
-          finalSolutionOutput,
-          solutionArray,
-          wordIndex,
-          letterIndex,
-          lettersArray,
-          linePaths
-        );
-        // }, 200); // letter delay
-      }
-    }
+    "red"
   );
+  drawLetter(ctx, letterObject, "black");
+  drawLetter(ctx, previousLetterObject, "white");
+
+  letterIndex++;
+
+  // if (letterIndex >= word.length) {
+  finalSolutionOutput.textContent += word + "  ";
+  ctx.clearRect(80, 80, 240, 240);
+  ctx.strokeStyle = "black";
+  createBox(circleCoordinates);
+  reDraw(ctx, linePaths);
+
+  wordIndex++;
+  letterIndex = 1;
+
+  // setTimeout(() => {
+  await drawNextLine(
+    ctx,
+    finalSolutionOutput,
+    solutionArray,
+    wordIndex,
+    letterIndex,
+    lettersArray,
+    linePaths
+  );
+  // }
+  // }, 2000); // word delay
+  // } else {
+  //   // setTimeout(() => {
+  //   drawNextLine(
+  //     ctx,
+  //     finalSolutionOutput,
+  //     solutionArray,
+  //     wordIndex,
+  //     letterIndex,
+  //     lettersArray,
+  //     linePaths
+  //   );
+  //   // }, 200); // letter delay
+  // }
 }
 
-function drawSolution(solution, lettersArray) {
+async function drawSolution(solution, lettersArray) {
   const finalSolutionOutput = document.querySelector("#finalSolution");
   const solutionArray = solution.split(" ");
   const canvas = document.getElementById("canvas");
