@@ -534,7 +534,6 @@ function findLinePoints(coordinates1, coordinates2) {
   return animatedLinePoints;
 }
 
-//using findLinePoints function to animate line drawing using requestAnimationFrame
 function animateLine(ctx, coordinates1, linePoints, i) {
   return new Promise((resolve) => {
     if (i < linePoints.length) {
