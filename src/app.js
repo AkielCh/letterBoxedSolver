@@ -471,6 +471,141 @@ function reDraw(ctx, linePaths) {
   }
 }
 
+function drawLetter(ctx, letterObject, colour) {
+  ctx.font = "40px serif";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillStyle = colour;
+  ctx.fillText(
+    letterObject.letter,
+    letterObject.letterCoordinates[0],
+    letterObject.letterCoordinates[1]
+  );
+}
+
+//find gradient
+function findGradient(coordinates1, coordinates2) {
+  if (
+    coordinates2.circleCoordinates.x - coordinates1.circleCoordinates.x ===
+    0
+  ) {
+    return undefined;
+  }
+  const gradient =
+    (coordinates2.circleCoordinates.y - coordinates1.circleCoordinates.y) /
+    (coordinates2.circleCoordinates.x - coordinates1.circleCoordinates.x);
+  console.log(gradient);
+  return gradient;
+}
+
+//find y intercept
+function findYIntercept(coordinates1, gradient) {
+  const yIntercept =
+    coordinates1.circleCoordinates.y -
+    gradient * coordinates1.circleCoordinates.x;
+  console.log(yIntercept);
+  return yIntercept;
+}
+
+function findLinePoints(coordinates1, coordinates2) {
+  // console.log(coordinates1, coordinates2);
+  const gradient = findGradient(coordinates1, coordinates2);
+  const animatedLinePoints = [];
+  if (gradient === undefined) {
+    const x = coordinates1.circleCoordinates.x;
+    for (let i = 0; i < 60; i++) {
+      const y =
+        coordinates1.circleCoordinates.y +
+        ((coordinates2.circleCoordinates.y - coordinates1.circleCoordinates.y) /
+          60) *
+          i;
+      animatedLinePoints.push({ x: x, y: y });
+    }
+  } else {
+    const yIntercept = findYIntercept(coordinates1, gradient);
+    for (let i = 0; i < 60; i++) {
+      const x =
+        coordinates1.circleCoordinates.x +
+        ((coordinates2.circleCoordinates.x - coordinates1.circleCoordinates.x) /
+          60) *
+          i;
+      const y = gradient * x + yIntercept;
+
+      animatedLinePoints.push({ x: x, y: y });
+    }
+  }
+  console.log(animatedLinePoints);
+  return animatedLinePoints;
+}
+
+async function drawSolution(solution, lettersInfoArray) {
+  const finalSolutionOutput = document.querySelector("#finalSolution");
+  const solutionArray = solution.split(" ");
+  const canvas = document.getElementById("canvas");
+
+  if (canvas.getContext) {
+    const ctx = canvas.getContext("2d");
+    for (const word of solutionArray) {
+      await drawWord(ctx, lettersInfoArray, word);
+      finalSolutionOutput.textContent += word + "  ";
+    }
+  }
+}
+async function drawWord(ctx, lettersInfoArray, word) {
+  for (let i = 0; i < word.length - 1; i++) {
+    const currentLetter = lettersInfoArray.find(
+      (letterObject) => letterObject.letter === word[i]
+    );
+    console.log(`Drawing black letter: ${currentLetter.letter}`);
+    drawLetter(ctx, currentLetter, "black");
+
+    const nextLetter = lettersInfoArray.find(
+      (letterObject) => letterObject.letter === word[i + 1]
+    );
+
+    // console.log(currentLetter, nextLetter);
+
+    console.log(
+      `Drawing line from ${currentLetter.letter} to ${nextLetter.letter}`
+    );
+    await drawLine(ctx, currentLetter, nextLetter);
+
+    console.log(`Drawing white letter: ${currentLetter.letter}`);
+    drawLetter(ctx, currentLetter, "white");
+  }
+}
+
+async function drawLine(ctx, coordinates1, coordinates2) {
+  ctx.strokeStyle = "rgba(200, 0, 0, 0.5)";
+  ctx.beginPath();
+  const linePoints = findLinePoints(coordinates1, coordinates2);
+  ctx.moveTo(linePoints[0].x, linePoints[0].y);
+
+  let i = 0;
+
+  await animateLine(ctx, coordinates1, linePoints, i);
+}
+function animateLine(ctx, coordinates1, linePoints, i) {
+  return new Promise((resolve) => {
+    if (i < linePoints.length) {
+      ctx.beginPath();
+      ctx.moveTo(
+        coordinates1.circleCoordinates.x,
+        coordinates1.circleCoordinates.y
+      );
+      ctx.lineTo(linePoints[i].x, linePoints[i].y);
+      ctx.stroke();
+      i++;
+      requestAnimationFrame(() =>
+        animateLine(ctx, coordinates1, linePoints, i).then(resolve)
+      );
+    } else {
+      resolve();
+    }
+  });
+}
+
+//-----------PREVIOUS CODE----------------
 // function currentLetterColour(ctx, letterObject) {
 //   ctx.font = "40px serif";
 //   ctx.textAlign = "center";
@@ -497,6 +632,7 @@ function reDraw(ctx, linePaths) {
 //   );
 // }
 
+/*
 function drawLetter(ctx, letterObject, colour) {
   ctx.font = "40px serif";
   ctx.textAlign = "center";
@@ -648,12 +784,11 @@ async function drawSolution(solution, lettersArray) {
 
   if (canvas.getContext) {
     const ctx = canvas.getContext("2d");
-    let delay = 300;
     let wordIndex = 0;
     let letterIndex = 1;
     const linePaths = [];
 
-    drawNextLine(
+    await drawNextLine(
       ctx,
       finalSolutionOutput,
       solutionArray,
@@ -663,112 +798,7 @@ async function drawSolution(solution, lettersArray) {
       linePaths
     );
   }
-}
-
-//MY WORK
-/*
-----------------------
-function drawLetter(ctx, letterObject, colour) {
-  ctx.font = "40px serif";
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.fillStyle = colour;
-  ctx.fillText(
-    letterObject.letter,
-    letterObject.letterCoordinates[0],
-    letterObject.letterCoordinates[1]
-  );
-}
-
-//find gradient
-function findGradient(coordinates1, coordinates2) {
-  const gradient =
-    (coordinates2.y - coordinates1.y) / (coordinates2.x - coordinates1.x);
-  return gradient;
-}
-
-//find y intercept
-function findYIntercept(coordinates1, gradient) {
-  const yIntercept = coordinates1.y - gradient * coordinates1.x;
-  return yIntercept;
-}
-
-function findLinePoints(coordinates1, coordinates2) {
-  const gradient = findGradient(coordinates1, coordinates2);
-  const yIntercept = findYIntercept(coordinates1, gradient);
-  const animatedLinePoints = [];
-  for (let i = 0; i < 60; i++) {
-    const x = coordinates1.x + ((coordinates2.x - coordinates1.x) / 60) * i;
-    const y = gradient * x + yIntercept;
-
-    animatedLinePoints.push({ x: x, y: y });
-  }
-  return animatedLinePoints;
-}
-
-async function drawSolution(solution, lettersInfoArray) {
-  const finalSolutionOutput = document.querySelector("#finalSolution");
-  const solutionArray = solution.split(" ");
-  const canvas = document.getElementById("canvas");
-
-  if (canvas.getContext) {
-    const ctx = canvas.getContext("2d");
-    for (const word of solutionArray) {
-      await drawWord(ctx, lettersInfoArray, word);
-      finalSolutionOutput.textContent += word + "  ";
-    }
-  }
-}
-async function drawWord(ctx, lettersInfoArray, word) {
-  for (let i = 0; i < word.length - 1; i++) {
-    const currentLetter = lettersInfoArray.find(
-      (letterObject) => letterObject.letter === word[i]
-    );
-    console.log(`Drawing black letter: ${currentLetter.letter}`);
-    drawLetter(ctx, currentLetter, "black");
-
-    const nextLetter = lettersInfoArray.find(
-      (letterObject) => letterObject.letter === word[i + 1]
-    );
-    console.log(
-      `Drawing line from ${currentLetter.letter} to ${nextLetter.letter}`
-    );
-    await drawLine(ctx, currentLetter, nextLetter);
-
-    console.log(`Drawing white letter: ${currentLetter.letter}`);
-    drawLetter(ctx, currentLetter, "white");
-  }
-}
-
-async function drawLine(ctx, coordinates1, coordinates2) {
-  ctx.strokeStyle = "rgba(200, 0, 0, 0.5)";
-  ctx.beginPath();
-  const linePoints = findLinePoints(coordinates1, coordinates2);
-  ctx.moveTo(linePoints[0].x, linePoints[0].y);
-
-  let i = 0;
-
-  await animateLine(ctx, coordinates1, linePoints, i);
-}
-function animateLine(ctx, coordinates1, linePoints, i) {
-  return new Promise((resolve) => {
-    if (i < linePoints.length) {
-      ctx.beginPath();
-      ctx.moveTo(coordinates1.x, coordinates1.y);
-      ctx.lineTo(linePoints[i].x, linePoints[i].y);
-      ctx.stroke();
-      i++;
-      requestAnimationFrame(() =>
-        animateLine(ctx, coordinates1, linePoints, i).then(resolve)
-      );
-    } else {
-      resolve();
-    }
-  });
-}
-*/
-
-// -----------------------
+}*/
 
 //Use of requestAnimationFrame
 //  method tells the browser that you wish to perform an animation. It requests the browser to call a user-supplied callback function prior to the next repaint.
