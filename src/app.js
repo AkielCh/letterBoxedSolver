@@ -463,8 +463,9 @@ function drawText(grid, charCoordinates, circleCoordinates) {
   }
 }
 
-function reDraw(ctx, linePaths) {
+async function reDraw(ctx, linePaths) {
   for (const linePath of linePaths) {
+    console.log(linePath);
     ctx.strokeStyle = "rgba(200, 0, 0, 0.5)";
     ctx.setLineDash([1, 3]);
     drawLine(ctx, linePath[0], linePath[1]);
@@ -552,31 +553,33 @@ async function drawSolution(solution, lettersInfoArray) {
   }
 }
 async function drawWord(ctx, lettersInfoArray, word) {
+  const dashedLinePaths = [];
   for (let i = 0; i < word.length - 1; i++) {
     const currentLetter = lettersInfoArray.find(
       (letterObject) => letterObject.letter === word[i]
     );
-    console.log(`Drawing black letter: ${currentLetter.letter}`);
+
     drawLetter(ctx, currentLetter, "black");
 
     const nextLetter = lettersInfoArray.find(
       (letterObject) => letterObject.letter === word[i + 1]
     );
 
-    // console.log(currentLetter, nextLetter);
-
-    console.log(
-      `Drawing line from ${currentLetter.letter} to ${nextLetter.letter}`
-    );
     await drawLine(ctx, currentLetter, nextLetter);
 
     console.log(`Drawing white letter: ${currentLetter.letter}`);
     drawLetter(ctx, currentLetter, "white");
+    dashedLinePaths.push([
+      currentLetter.circleCoordinates,
+      nextLetter.circleCoordinates,
+    ]);
   }
+  // reDraw(ctx, dashedLinePaths);
 }
 
 async function drawLine(ctx, coordinates1, coordinates2) {
-  ctx.strokeStyle = "rgba(200, 0, 0, 0.5)";
+  ctx.strokeStyle = "black";
+
   ctx.beginPath();
   const linePoints = findLinePoints(coordinates1, coordinates2);
   ctx.moveTo(linePoints[0].x, linePoints[0].y);
@@ -605,203 +608,13 @@ function animateLine(ctx, coordinates1, linePoints, i) {
   });
 }
 
-//-----------PREVIOUS CODE----------------
-// function currentLetterColour(ctx, letterObject) {
-//   ctx.font = "40px serif";
-//   ctx.textAlign = "center";
-//   ctx.textBaseline = "middle";
-//   ctx.fillStyle = "black";
-//   console.log(letterObject);
-//   console.log(letterObject.charCoordinates);
-//   ctx.fillText(
-//     letterObject.letter,
-//     letterObject.letterCoordinates[0],
-//     letterObject.letterCoordinates[1]
-//   );
-// }
-
-// function previousLetterColour(ctx, previousLetterObject) {
-//   ctx.font = "40px serif";
-//   ctx.textAlign = "center";
-//   ctx.textBaseline = "middle";
-//   ctx.fillStyle = "white";
-//   ctx.fillText(
-//     previousLetterObject.letter,
-//     previousLetterObject.letterCoordinates[0],
-//     previousLetterObject.letterCoordinates[1]
-//   );
-// }
-
-/*
-function drawLetter(ctx, letterObject, colour) {
-  ctx.font = "40px serif";
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.fillStyle = colour;
-  ctx.fillText(
-    letterObject.letter,
-    letterObject.letterCoordinates[0],
-    letterObject.letterCoordinates[1]
-  );
-}
-
-//find gradient
-function findGradient(coordinates1, coordinates2) {
-  const gradient =
-    (coordinates2.y - coordinates1.y) / (coordinates2.x - coordinates1.x);
-  return gradient;
-}
-
-//find y intercept
-function findYIntercept(coordinates1, gradient) {
-  const yIntercept = coordinates1.y - gradient * coordinates1.x;
-  return yIntercept;
-}
-
-function findLinePoints(coordinates1, coordinates2) {
-  const gradient = findGradient(coordinates1, coordinates2);
-  const yIntercept = findYIntercept(coordinates1, gradient);
-  const animatedLinePoints = [];
-  for (let i = 0; i < 60; i++) {
-    const x = coordinates1.x + ((coordinates2.x - coordinates1.x) / 61) * i;
-    const y = gradient * x + yIntercept;
-    animatedLinePoints.push({ x: x, y: y });
-  }
-  return animatedLinePoints;
-}
-
-function animateLine(ctx, coordinates1, linePoints, i) {
-  return new Promise((resolve) => {
-    if (i < linePoints.length) {
-      ctx.beginPath();
-      ctx.moveTo(coordinates1.x, coordinates1.y);
-      ctx.lineTo(linePoints[i].x, linePoints[i].y);
-      ctx.stroke();
-      i++;
-      requestAnimationFrame(() =>
-        animateLine(ctx, coordinates1, linePoints, i).then(resolve)
-      );
-    } else {
-      resolve();
-    }
-  });
-}
-
-async function drawLine(ctx, coordinates1, coordinates2, colour) {
-  ctx.strokeStyle = colour;
-  ctx.beginPath();
-  const linePoints = findLinePoints(coordinates1, coordinates2);
-  ctx.moveTo(linePoints[0].x, linePoints[0].y);
-
-  let i = 0;
-
-  await animateLine(ctx, coordinates1, linePoints, i);
-}
-
-async function drawNextLine(
-  ctx,
-  finalSolutionOutput,
-  solutionArray,
-  wordIndex,
-  letterIndex,
-  lettersArray,
-  linePaths
-) {
-  if (wordIndex >= solutionArray.length) {
-    return;
-  }
-
-  const word = solutionArray[wordIndex];
-  const previousLetter = word[letterIndex - 1];
-  const letter = word[letterIndex];
-  const letterObject = lettersArray.find(
-    (letterObject) => letterObject.letter === letter
-  );
-  const previousLetterObject = lettersArray.find(
-    (letterObject) => letterObject.letter === previousLetter
-  );
-
-  linePaths.push([
-    previousLetterObject.circleCoordinates,
-    letterObject.circleCoordinates,
-  ]);
-
-  ctx.strokeStyle = "white";
-  ctx.setLineDash([]);
-
-  await drawLine(
-    ctx,
-    previousLetterObject.circleCoordinates,
-    letterObject.circleCoordinates,
-    "red"
-  );
-  drawLetter(ctx, letterObject, "black");
-  drawLetter(ctx, previousLetterObject, "white");
-
-  letterIndex++;
-
-  // if (letterIndex >= word.length) {
-  finalSolutionOutput.textContent += word + "  ";
-  ctx.clearRect(80, 80, 240, 240);
-  ctx.strokeStyle = "black";
-  createBox(circleCoordinates);
-  reDraw(ctx, linePaths);
-
-  wordIndex++;
-  letterIndex = 1;
-
-  // setTimeout(() => {
-  await drawNextLine(
-    ctx,
-    finalSolutionOutput,
-    solutionArray,
-    wordIndex,
-    letterIndex,
-    lettersArray,
-    linePaths
-  );
-  // }
-  // }, 2000); // word delay
-  // } else {
-  //   // setTimeout(() => {
-  //   drawNextLine(
-  //     ctx,
-  //     finalSolutionOutput,
-  //     solutionArray,
-  //     wordIndex,
-  //     letterIndex,
-  //     lettersArray,
-  //     linePaths
-  //   );
-  //   // }, 200); // letter delay
-  // }
-}
-
-async function drawSolution(solution, lettersArray) {
-  const finalSolutionOutput = document.querySelector("#finalSolution");
-  const solutionArray = solution.split(" ");
-  const canvas = document.getElementById("canvas");
-
-  if (canvas.getContext) {
-    const ctx = canvas.getContext("2d");
-    let wordIndex = 0;
-    let letterIndex = 1;
-    const linePaths = [];
-
-    await drawNextLine(
-      ctx,
-      finalSolutionOutput,
-      solutionArray,
-      wordIndex,
-      letterIndex,
-      lettersArray,
-      linePaths
-    );
-  }
-}*/
-
 //Use of requestAnimationFrame
 //  method tells the browser that you wish to perform an animation. It requests the browser to call a user-supplied callback function prior to the next repaint.
+
+//Things to do
+//Change the use of gradient into vectors to improve animation speedc
+//Modify numbers to make it responsive
+//fix redraw of dashed lines
 
 window.addEventListener("load", createBox(circleCoordinates));
 
