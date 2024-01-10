@@ -484,6 +484,43 @@ function drawLetter(ctx, letterObject, colour) {
   );
 }
 
+function calculatePoint(coordinates1, coordinates2) {
+  const vector1 = {
+    x: coordinates1.circleCoordinates.x,
+    y: coordinates1.circleCoordinates.y,
+  };
+  const vector2 = {
+    x: coordinates2.circleCoordinates.x,
+    y: coordinates2.circleCoordinates.y,
+  };
+
+  const directionVector = {
+    x: vector2.x - vector1.x,
+    y: vector2.y - vector1.y,
+  };
+
+  const magnitude = Math.sqrt(directionVector.x ** 2 + directionVector.y ** 2);
+  const linePoints = [];
+  for (let i = 0; i < 60; i++) {
+    
+  }
+
+/*
+
+VECTOR EQUATION OF A LINE
+r=a+t⋅v
+
+Here:
+
+
+r is the position vector of any point on the line,
+
+a is the position vector of a specific point on the line (often called a reference point or a point of origin),
+
+v is the direction vector of the line,
+
+t is a parameter that varies over the real numbers.*/
+
 //find gradient
 function findGradient(coordinates1, coordinates2) {
   if (
@@ -612,7 +649,7 @@ function animateLine(ctx, coordinates1, linePoints, i) {
 //  method tells the browser that you wish to perform an animation. It requests the browser to call a user-supplied callback function prior to the next repaint.
 
 //Things to do
-//Change the use of gradient into vectors to improve animation speedc
+//Change the use of gradient into vectors to improve animation speed
 //Modify numbers to make it responsive
 //fix redraw of dashed lines
 
