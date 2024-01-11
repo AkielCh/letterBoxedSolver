@@ -502,10 +502,19 @@ function calculatePoint(coordinates1, coordinates2) {
   const magnitude = Math.sqrt(directionVector.x ** 2 + directionVector.y ** 2);
   const linePoints = [];
   for (let i = 0; i < 60; i++) {
-    
+
   }
 
 /*
+
+
+create a fixed length for each point
+find the magnitude of the vector
+divide the magnitude by the fixed length
+multiply the direction vector by the result
+add the result to the starting point
+repeat until the end point is reached
+
 
 VECTOR EQUATION OF A LINE
 r=a+t⋅v
