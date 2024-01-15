@@ -506,16 +506,16 @@ function drawLetter(ctx, letterObject, colour) {
 
 function calculateMagnitude(coordinates1, coordinates2) {
   const magnitude = Math.sqrt(
-    (coordinates2.x - coordinates1.x) ** 2 +
-      (coordinates2.y - coordinates1.y) ** 2
+    (coordinates2.circleCoordinates.x - coordinates1.circleCoordinates.x) ** 2 +
+      (coordinates2.circleCoordinates.y - coordinates1.circleCoordinates.y) ** 2
   );
   return magnitude;
 }
 
 function calculateDirectionVector(coordinates1, coordinates2) {
   const directionVector = {
-    x: coordinates2.x - coordinates1.x,
-    y: coordinates2.y - coordinates1.y,
+    x: coordinates2.circleCoordinates.x - coordinates1.circleCoordinates.x,
+    y: coordinates2.circleCoordinates.y - coordinates1.circleCoordinates.y,
   };
   return directionVector;
 }
@@ -531,6 +531,28 @@ function calculatePointOnLine(magnitude, directionVector, x1, y1, t) {
     y: y1 + t * u.y,
   };
   return point;
+}
+
+function calculateAllPoints(coordinates1, coordinates2) {
+  const segmentLength = 5;
+  const magnitude = calculateMagnitude(coordinates1, coordinates2);
+  console.log(magnitude);
+  const maxSegments = Math.floor(magnitude / segmentLength);
+  const directionVector = calculateDirectionVector(coordinates1, coordinates2);
+  console.log(directionVector);
+  const allPoints = [];
+  for (let i = 0; i < maxSegments; i++) {
+    const point = calculatePointOnLine(
+      magnitude,
+      directionVector,
+      coordinates1.circleCoordinates.x,
+      coordinates1.circleCoordinates.y,
+      i * segmentLength
+    );
+    allPoints.push(point);
+  }
+  console.log(allPoints);
+  return allPoints;
 }
 
 // function findLinePoints(coordinates1, coordinates2) {
@@ -689,6 +711,7 @@ async function drawLine(ctx, coordinates1, coordinates2) {
 
   ctx.beginPath();
   const linePoints = calculateAllPoints(coordinates1, coordinates2);
+  console.log(linePoints);
   ctx.moveTo(linePoints[0].x, linePoints[0].y);
 
   let i = 0;
