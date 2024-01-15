@@ -484,27 +484,33 @@ function drawLetter(ctx, letterObject, colour) {
   );
 }
 
-function calculatePoint(coordinates1, coordinates2) {
-  const vector1 = {
-    x: coordinates1.circleCoordinates.x,
-    y: coordinates1.circleCoordinates.y,
-  };
-  const vector2 = {
-    x: coordinates2.circleCoordinates.x,
-    y: coordinates2.circleCoordinates.y,
-  };
+// function calculatePoint(coordinates1, coordinates2) {
+//   const vector1 = {
+//     x: coordinates1.circleCoordinates.x,
+//     y: coordinates1.circleCoordinates.y,
+//   };
+//   const vector2 = {
+//     x: coordinates2.circleCoordinates.x,
+//     y: coordinates2.circleCoordinates.y,
+//   };
 
-  const directionVector = {
-    x: vector2.x - vector1.x,
-    y: vector2.y - vector1.y,
-  };
+//   const directionVector = {
+//     x: vector2.x - vector1.x,
+//     y: vector2.y - vector1.y,
+//   };
 
-  const magnitude = Math.sqrt(directionVector.x ** 2 + directionVector.y ** 2);
-  const linePoints = [];
-  for (let i = 0; i < 60; i++) {
+//   const magnitude = Math.sqrt(directionVector.x ** 2 + directionVector.y ** 2);
+//   const linePoints = [];
+//   for (let i = 0; i < 60; i++) {}
+// }
 
-  }
-
+function calculateMagnitude(coordinates1, coordinates2) {
+  const magnitude = Math.sqrt(
+    (coordinates2.x - coordinates1.x) ** 2 +
+      (coordinates2.y - coordinates1.y) ** 2
+  );
+  return magnitude;
+}
 /*
 
 
