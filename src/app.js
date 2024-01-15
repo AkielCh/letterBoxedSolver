@@ -511,6 +511,48 @@ function calculateMagnitude(coordinates1, coordinates2) {
   );
   return magnitude;
 }
+
+function calculateDirectionVector(coordinates1, coordinates2) {
+  const directionVector = {
+    x: coordinates2.x - coordinates1.x,
+    y: coordinates2.y - coordinates1.y,
+  };
+  return directionVector;
+}
+
+// function findLinePoints(coordinates1, coordinates2) {
+//   // console.log(coordinates1, coordinates2);
+//   const magnitude = calculateMagnitude(coordinates1, coordinates2);
+//   console.log(magnitude);
+//   const directionVector = calculateDirectionVector(coordinates1, coordinates2);
+//   console.log(directionVector);
+//   const animatedLinePoints = [];
+//   if (gradient === undefined) {
+//     const x = coordinates1.circleCoordinates.x;
+//     for (let i = 0; i < 60; i++) {
+//       const y =
+//         coordinates1.circleCoordinates.y +
+//         ((coordinates2.circleCoordinates.y - coordinates1.circleCoordinates.y) /
+//           60) *
+//           i;
+//       animatedLinePoints.push({ x: x, y: y });
+//     }
+//   } else {
+//     const yIntercept = findYIntercept(coordinates1, gradient);
+//     for (let i = 0; i < 60; i++) {
+//       const x =
+//         coordinates1.circleCoordinates.x +
+//         ((coordinates2.circleCoordinates.x - coordinates1.circleCoordinates.x) /
+//           60) *
+//           i;
+//       const y = gradient * x + yIntercept;
+
+//       animatedLinePoints.push({ x: x, y: y });
+//     }
+//   }
+//   console.log(animatedLinePoints);
+//   return animatedLinePoints;
+// }
 /*
 
 
@@ -633,7 +675,7 @@ async function drawLine(ctx, coordinates1, coordinates2) {
   ctx.strokeStyle = "black";
 
   ctx.beginPath();
-  const linePoints = findLinePoints(coordinates1, coordinates2);
+  const linePoints = calculateAllPoints(coordinates1, coordinates2);
   ctx.moveTo(linePoints[0].x, linePoints[0].y);
 
   let i = 0;
