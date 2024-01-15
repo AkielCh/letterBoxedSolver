@@ -520,6 +520,19 @@ function calculateDirectionVector(coordinates1, coordinates2) {
   return directionVector;
 }
 
+function calculatePointOnLine(magnitude, directionVector, x1, y1, t) {
+  const u = {
+    x: directionVector.x / magnitude,
+    y: directionVector.y / magnitude,
+  };
+
+  const point = {
+    x: x1 + t * u.x,
+    y: y1 + t * u.y,
+  };
+  return point;
+}
+
 // function findLinePoints(coordinates1, coordinates2) {
 //   // console.log(coordinates1, coordinates2);
 //   const magnitude = calculateMagnitude(coordinates1, coordinates2);
