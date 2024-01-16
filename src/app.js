@@ -204,46 +204,39 @@ function solutionContainsAllLetters(grid, solutionsArray) {
 const gridInputs = document.querySelectorAll(".gridInput");
 const gridOutputElements = document.querySelectorAll(".output");
 const gridSubmitButton = document.querySelector("#gridSubmitButton");
-const solutionOutput = document.querySelector("#solutionOutput");
 
-// const usedCharacters = [];
+// DISCUSS WITH MENTOR
+const inputValues = new Array(gridInputs.length).fill("");
 
-function updateGridOutput(event, index) {
-  const inputValue = event.target.value;
-  // console.log(inputValue);
-  gridOutputElements[index].textContent = inputValue;
+function updateInputValues(event, index) {
+  const inputValue = event.target.value.toLowerCase();
+  inputValues[index] = inputValue;
+  console.log(inputValues);
 }
-
-function updateSolutionOutput(solution) {
-  solutionOutput.textContent = solution;
-}
-
-//keyCode for backspace is 8
-//keyCode for delete is 46
 
 function validateGridInput(event, index) {
   const inputKey = event.which || event.keyCode;
-  const inputChar = String.fromCharCode(inputKey);
-  let usedCharacters = Array.from(gridInputs)
-    .map((inputElement) => inputElement.value.split(""))
-    .flat();
+  const inputChar =
+    inputKey >= 65 && inputKey <= 90
+      ? String.fromCharCode(inputKey + 32)
+      : String.fromCharCode(inputKey);
+  let usedCharacters = inputValues.join("").toLowerCase().split("");
+
   if (inputKey === 8 || inputKey === 46) {
     handleInputChange(event, index);
   }
+
   const isAlphabetic =
-    (inputKey >= 65 && inputKey <= 90) ||
-    (inputKey >= 97 &&
-      inputKey <= 122 &&
-      event.target.value.length < 3 &&
-      !usedCharacters.includes(inputChar));
-  if (isAlphabetic) {
+    (inputKey >= 65 && inputKey <= 90) || (inputKey >= 97 && inputKey <= 122);
+
+  if (
+    isAlphabetic &&
+    event.target.value.length < 3 &&
+    !usedCharacters.includes(inputChar)
+  ) {
     const inputValue = event.target.value + inputChar;
-    // usedCharacters.push(inputChar);
-    console.log(usedCharacters);
     event.target.value = inputValue;
-    // console.log(inputValue);
-    updateGridOutput(event, index);
-    // console.log(used);
+    updateInputValues(event, index);
   }
 
   event.preventDefault();
@@ -273,7 +266,6 @@ function handleGridSubmit(event) {
     const solution = solutionsArray[0].join(" ");
     console.log(solution);
     drawSolution(solution, lettersArray);
-    updateSolutionOutput(solution);
     // console.log(solution.split(" "));
     // console.log(lettersArray);
     // let findSolutionWithLength = prompt("Length of solution 1-5");
@@ -310,7 +302,7 @@ function createGrid(inputElementsArray, grid) {
 
 gridInputs.forEach((inputElement, index) => {
   inputElement.addEventListener("input", (event) => {
-    updateGridOutput(event, index);
+    updateInputValues(event, index);
   });
   inputElement.addEventListener("keypress", (event) => {
     validateGridInput(event, index);
@@ -320,6 +312,8 @@ gridInputs.forEach((inputElement, index) => {
 gridSubmitButton.addEventListener("click", (event) => {
   handleGridSubmit(event);
 });
+
+//GO BACK
 
 // function createGridObject(grid, charCoordinates) {
 //   const gridObject = {};
@@ -423,19 +417,6 @@ const charCoordinates = [
   ],
 ];
 
-// function drawText(grid, charCoordinates) {
-//   const canvas = document.getElementById("canvas");
-//   if (canvas.getContext) {
-//     const ctx = canvas.getContext("2d");
-//     ctx.font = "20px serif";
-//     grid.forEach((subArray, index) => {
-//       subArray.forEach((letter, index2) => {
-//         ctx.fillText(letter, 100 * index2 + 100, 100 * index + 100);
-//       });
-//     });
-//   }
-// }
-
 function drawText(grid, charCoordinates, circleCoordinates) {
   const canvas = document.getElementById("canvas");
   if (canvas.getContext) {
@@ -464,6 +445,9 @@ function drawText(grid, charCoordinates, circleCoordinates) {
 }
 
 function reDraw(ctx, linePaths) {
+  ctx.strokeStyle = "rgba(0, 0, 0, 0.5)";
+  ctx.clearRect(80, 80, 240, 240);
+  createBox(circleCoordinates);
   console.log(linePaths);
   for (const linePath of linePaths) {
     console.log(linePath);
@@ -495,26 +479,6 @@ function drawLetter(ctx, letterObject, colour) {
     letterObject.letterCoordinates[1]
   );
 }
-
-// function calculatePoint(coordinates1, coordinates2) {
-//   const vector1 = {
-//     x: coordinates1.circleCoordinates.x,
-//     y: coordinates1.circleCoordinates.y,
-//   };
-//   const vector2 = {
-//     x: coordinates2.circleCoordinates.x,
-//     y: coordinates2.circleCoordinates.y,
-//   };
-
-//   const directionVector = {
-//     x: vector2.x - vector1.x,
-//     y: vector2.y - vector1.y,
-//   };
-
-//   const magnitude = Math.sqrt(directionVector.x ** 2 + directionVector.y ** 2);
-//   const linePoints = [];
-//   for (let i = 0; i < 60; i++) {}
-// }
 
 function calculateMagnitude(coordinates1, coordinates2) {
   const magnitude = Math.sqrt(
@@ -565,31 +529,6 @@ function calculateAllPoints(coordinates1, coordinates2) {
   return allPoints;
 }
 
-/*
-create a fixed length for each point
-find the magnitude of the vector
-divide the magnitude by the fixed length
-multiply the direction vector by the result
-add the result to the starting point
-repeat until the end point is reached
-
-
-VECTOR EQUATION OF A LINE
-r=a+t⋅v
-
-Here:
-
-
-r is the position vector of any point on the line,
-
-a is the position vector of a specific point on the line (often called a reference point or a point of origin),
-
-v is the direction vector of the line,
-
-t is a parameter that varies over the real numbers.*/
-
-//find gradient
-
 async function drawSolution(solution, lettersInfoArray) {
   const finalSolutionOutput = document.querySelector("#finalSolution");
   const solutionArray = solution.split(" ");
@@ -616,7 +555,6 @@ async function drawWord(ctx, lettersInfoArray, word, dashedLinePaths) {
     const nextLetter = lettersInfoArray.find(
       (letterObject) => letterObject.letter === word[i + 1]
     );
-    ctx.strokeStyle = "white";
     ctx.setLineDash([]);
     await drawLine(ctx, currentLetter, nextLetter);
 
@@ -627,14 +565,14 @@ async function drawWord(ctx, lettersInfoArray, word, dashedLinePaths) {
       nextLetter.circleCoordinates,
     ]);
   }
-  ctx.clearRect(80, 80, 240, 240);
-  createBox(circleCoordinates);
+
   // console.log(dashedLinePaths);
   reDraw(ctx, reDrawLinePaths);
 }
 
 async function drawLine(ctx, coordinates1, coordinates2) {
-  ctx.strokeStyle = "black";
+  ctx.setLineDash([]);
+  ctx.strokeStyle = "white";
   ctx.beginPath();
   const linePoints = calculateAllPoints(coordinates1, coordinates2);
   ctx.moveTo(linePoints[0].x, linePoints[0].y);
