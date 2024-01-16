@@ -458,18 +458,30 @@ function drawText(grid, charCoordinates, circleCoordinates) {
         });
       });
     });
-    // console.log(lettersArray);
+
     return lettersArray;
   }
 }
 
-async function reDraw(ctx, linePaths) {
+function reDraw(ctx, linePaths) {
+  console.log(linePaths);
   for (const linePath of linePaths) {
     console.log(linePath);
+    // console.log(linePath[0]);
+    // console.log(linePath[1]);
     ctx.strokeStyle = "rgba(200, 0, 0, 0.5)";
     ctx.setLineDash([1, 3]);
-    drawLine(ctx, linePath[0], linePath[1]);
+    drawDashLine(ctx, linePath[0], linePath[1]);
   }
+}
+
+function drawDashLine(ctx, coordinates1, coordinates2) {
+  console.log(coordinates1.x);
+  console.log(coordinates1.y);
+  ctx.beginPath();
+  ctx.moveTo(coordinates1.x, coordinates1.y);
+  ctx.lineTo(coordinates2.x, coordinates2.y);
+  ctx.stroke();
 }
 
 function drawLetter(ctx, letterObject, colour) {
@@ -534,12 +546,11 @@ function calculatePointOnLine(magnitude, directionVector, x1, y1, t) {
 }
 
 function calculateAllPoints(coordinates1, coordinates2) {
-  const segmentLength = 5;
+  //SEGMENT LENGTH IS TO BE PASSED AS PARAMETER AND BASED ON THE SIZE OF THE CANVAS
+  const segmentLength = 3;
   const magnitude = calculateMagnitude(coordinates1, coordinates2);
-  console.log(magnitude);
   const maxSegments = Math.floor(magnitude / segmentLength);
   const directionVector = calculateDirectionVector(coordinates1, coordinates2);
-  console.log(directionVector);
   const allPoints = [];
   for (let i = 0; i < maxSegments; i++) {
     const point = calculatePointOnLine(
@@ -551,46 +562,10 @@ function calculateAllPoints(coordinates1, coordinates2) {
     );
     allPoints.push(point);
   }
-  console.log(allPoints);
   return allPoints;
 }
 
-// function findLinePoints(coordinates1, coordinates2) {
-//   // console.log(coordinates1, coordinates2);
-//   const magnitude = calculateMagnitude(coordinates1, coordinates2);
-//   console.log(magnitude);
-//   const directionVector = calculateDirectionVector(coordinates1, coordinates2);
-//   console.log(directionVector);
-//   const animatedLinePoints = [];
-//   if (gradient === undefined) {
-//     const x = coordinates1.circleCoordinates.x;
-//     for (let i = 0; i < 60; i++) {
-//       const y =
-//         coordinates1.circleCoordinates.y +
-//         ((coordinates2.circleCoordinates.y - coordinates1.circleCoordinates.y) /
-//           60) *
-//           i;
-//       animatedLinePoints.push({ x: x, y: y });
-//     }
-//   } else {
-//     const yIntercept = findYIntercept(coordinates1, gradient);
-//     for (let i = 0; i < 60; i++) {
-//       const x =
-//         coordinates1.circleCoordinates.x +
-//         ((coordinates2.circleCoordinates.x - coordinates1.circleCoordinates.x) /
-//           60) *
-//           i;
-//       const y = gradient * x + yIntercept;
-
-//       animatedLinePoints.push({ x: x, y: y });
-//     }
-//   }
-//   console.log(animatedLinePoints);
-//   return animatedLinePoints;
-// }
 /*
-
-
 create a fixed length for each point
 find the magnitude of the vector
 divide the magnitude by the fixed length
@@ -614,59 +589,6 @@ v is the direction vector of the line,
 t is a parameter that varies over the real numbers.*/
 
 //find gradient
-function findGradient(coordinates1, coordinates2) {
-  if (
-    coordinates2.circleCoordinates.x - coordinates1.circleCoordinates.x ===
-    0
-  ) {
-    return undefined;
-  }
-  const gradient =
-    (coordinates2.circleCoordinates.y - coordinates1.circleCoordinates.y) /
-    (coordinates2.circleCoordinates.x - coordinates1.circleCoordinates.x);
-  console.log(gradient);
-  return gradient;
-}
-
-//find y intercept
-function findYIntercept(coordinates1, gradient) {
-  const yIntercept =
-    coordinates1.circleCoordinates.y -
-    gradient * coordinates1.circleCoordinates.x;
-  console.log(yIntercept);
-  return yIntercept;
-}
-
-function findLinePoints(coordinates1, coordinates2) {
-  // console.log(coordinates1, coordinates2);
-  const gradient = findGradient(coordinates1, coordinates2);
-  const animatedLinePoints = [];
-  if (gradient === undefined) {
-    const x = coordinates1.circleCoordinates.x;
-    for (let i = 0; i < 60; i++) {
-      const y =
-        coordinates1.circleCoordinates.y +
-        ((coordinates2.circleCoordinates.y - coordinates1.circleCoordinates.y) /
-          60) *
-          i;
-      animatedLinePoints.push({ x: x, y: y });
-    }
-  } else {
-    const yIntercept = findYIntercept(coordinates1, gradient);
-    for (let i = 0; i < 60; i++) {
-      const x =
-        coordinates1.circleCoordinates.x +
-        ((coordinates2.circleCoordinates.x - coordinates1.circleCoordinates.x) /
-          60) *
-          i;
-      const y = gradient * x + yIntercept;
-
-      animatedLinePoints.push({ x: x, y: y });
-    }
-  }
-  console.log(animatedLinePoints);
-  return animatedLinePoints;
-}
 
 async function drawSolution(solution, lettersInfoArray) {
   const finalSolutionOutput = document.querySelector("#finalSolution");
@@ -675,14 +597,15 @@ async function drawSolution(solution, lettersInfoArray) {
 
   if (canvas.getContext) {
     const ctx = canvas.getContext("2d");
+    const dashedLinePaths = [];
     for (const word of solutionArray) {
-      await drawWord(ctx, lettersInfoArray, word);
+      await drawWord(ctx, lettersInfoArray, word, dashedLinePaths);
       finalSolutionOutput.textContent += word + "  ";
     }
   }
 }
-async function drawWord(ctx, lettersInfoArray, word) {
-  const dashedLinePaths = [];
+async function drawWord(ctx, lettersInfoArray, word, dashedLinePaths) {
+  const reDrawLinePaths = dashedLinePaths;
   for (let i = 0; i < word.length - 1; i++) {
     const currentLetter = lettersInfoArray.find(
       (letterObject) => letterObject.letter === word[i]
@@ -693,7 +616,8 @@ async function drawWord(ctx, lettersInfoArray, word) {
     const nextLetter = lettersInfoArray.find(
       (letterObject) => letterObject.letter === word[i + 1]
     );
-
+    ctx.strokeStyle = "white";
+    ctx.setLineDash([]);
     await drawLine(ctx, currentLetter, nextLetter);
 
     console.log(`Drawing white letter: ${currentLetter.letter}`);
@@ -703,21 +627,21 @@ async function drawWord(ctx, lettersInfoArray, word) {
       nextLetter.circleCoordinates,
     ]);
   }
-  // reDraw(ctx, dashedLinePaths);
+  ctx.clearRect(80, 80, 240, 240);
+  createBox(circleCoordinates);
+  // console.log(dashedLinePaths);
+  reDraw(ctx, reDrawLinePaths);
 }
 
 async function drawLine(ctx, coordinates1, coordinates2) {
   ctx.strokeStyle = "black";
-
   ctx.beginPath();
   const linePoints = calculateAllPoints(coordinates1, coordinates2);
-  console.log(linePoints);
   ctx.moveTo(linePoints[0].x, linePoints[0].y);
-
   let i = 0;
-
   await animateLine(ctx, coordinates1, linePoints, i);
 }
+
 function animateLine(ctx, coordinates1, linePoints, i) {
   return new Promise((resolve) => {
     if (i < linePoints.length) {
