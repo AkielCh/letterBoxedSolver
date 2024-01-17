@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: wheat;
+  background-color: #fee6e3;
 }
 
 h1 {
@@ -14,14 +14,73 @@ h1 {
 
 .gridInput {
   border: none;
-  border-bottom: 2px solid #6bab90;
-  background-color: #e1f0c4;
+  border-bottom: 2px solid #464f51;
+  background-color: #a4d4b4;
   border-radius: 0.2em 0.2em 0 0;
   padding: 0.4em;
   color: black;
   font-weight: bold;
   outline: none;
   text-transform: uppercase;
+}
+
+/* CSS */
+.button-56 {
+  align-items: center;
+  background-color: #fee6e3;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  cursor: pointer;
+  display: flex;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  height: 48px;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-56:after {
+  background-color: #111;
+  border-radius: 8px;
+  content: "";
+  display: block;
+  height: 48px;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  top: -2px;
+  transform: translate(8px, 8px);
+  transition: transform 0.2s ease-out;
+  z-index: -1;
+}
+
+.button-56:hover:after {
+  transform: translate(0, 0);
+}
+
+.button-56:active {
+  background-color: #ffdeda;
+  outline: 0;
+}
+
+.button-56:hover {
+  outline: 0;
+}
+
+@media (min-width: 768px) {
+  .button-56 {
+    padding: 0 40px;
+  }
 }
 
 .gridSubmitButton {

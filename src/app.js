@@ -222,8 +222,8 @@ function validateGridInput(event, index) {
       : String.fromCharCode(inputKey);
   let usedCharacters = inputValues.join("").toLowerCase().split("");
 
-  if (inputKey === 8 || inputKey === 46) {
-    handleInputChange(event, index);
+  function isLetter(str) {
+    return str.length === 1 && str.match(/[a-z]/i);
   }
 
   const isAlphabetic =
@@ -362,8 +362,8 @@ const circleCoordinates = [
 function createCircle(ctx, circleCoordinates) {
   for (const side of circleCoordinates) {
     for (const coordinates of side) {
-      // ctx.lineWidth = 5;
-      ctx.strokeStyle = "white";
+      ctx.lineWidth = 2;
+      // ctx.strokeStyle = "black";
       ctx.fillStyle = "white";
       ctx.beginPath();
       ctx.arc(coordinates.x, coordinates.y, 5, 0, 2 * Math.PI);
@@ -374,21 +374,23 @@ function createCircle(ctx, circleCoordinates) {
 }
 
 function createSquare(ctx) {
-  // ctx.strokeRect(80, 80, 240, 240);
   ctx.lineWidth = 5;
-  ctx.beginPath();
-  ctx.moveTo(80, 80);
-  ctx.lineTo(320, 80);
-  ctx.lineTo(320, 320);
-  ctx.lineTo(80, 320);
-  ctx.lineTo(80, 80);
-  ctx.stroke();
+  ctx.strokeRect(80, 80, 240, 240);
+
+  // ctx.beginPath();
+  // ctx.moveTo(80, 80);
+  // ctx.lineTo(320, 80);
+  // ctx.lineTo(320, 320);
+  // ctx.lineTo(80, 320);
+  // ctx.lineTo(80, 80);
+  // ctx.stroke();
 }
 
 function createBox(circleCoordinates) {
   const canvas = document.getElementById("canvas");
   if (canvas.getContext) {
     const ctx = canvas.getContext("2d");
+    ctx.strokeStyle = "#62AA87";
     createSquare(ctx);
     createCircle(ctx, circleCoordinates);
   }
@@ -445,7 +447,8 @@ function drawText(grid, charCoordinates, circleCoordinates) {
 }
 
 function reDraw(ctx, linePaths) {
-  ctx.strokeStyle = "rgba(0, 0, 0, 0.5)";
+  ctx.strokeStyle = "rgba(70, 79,81)";
+  ctx.lineWidth = 5;
   ctx.clearRect(80, 80, 240, 240);
   createBox(circleCoordinates);
   console.log(linePaths);
@@ -453,8 +456,9 @@ function reDraw(ctx, linePaths) {
     console.log(linePath);
     // console.log(linePath[0]);
     // console.log(linePath[1]);
-    ctx.strokeStyle = "rgba(200, 0, 0, 0.5)";
-    ctx.setLineDash([1, 3]);
+    ctx.strokeStyle = "rgba(70, 79,81)";
+    ctx.lineWidth = 3;
+    ctx.setLineDash([7, 5]);
     drawDashLine(ctx, linePath[0], linePath[1]);
   }
 }
@@ -489,6 +493,7 @@ function calculateMagnitude(coordinates1, coordinates2) {
 }
 
 function calculateDirectionVector(coordinates1, coordinates2) {
+  console.log(coordinates1);
   const directionVector = {
     x: coordinates2.circleCoordinates.x - coordinates1.circleCoordinates.x,
     y: coordinates2.circleCoordinates.y - coordinates1.circleCoordinates.y,
@@ -511,7 +516,7 @@ function calculatePointOnLine(magnitude, directionVector, x1, y1, t) {
 
 function calculateAllPoints(coordinates1, coordinates2) {
   //SEGMENT LENGTH IS TO BE PASSED AS PARAMETER AND BASED ON THE SIZE OF THE CANVAS
-  const segmentLength = 3;
+  const segmentLength = 7;
   const magnitude = calculateMagnitude(coordinates1, coordinates2);
   const maxSegments = Math.floor(magnitude / segmentLength);
   const directionVector = calculateDirectionVector(coordinates1, coordinates2);
@@ -556,6 +561,7 @@ async function drawWord(ctx, lettersInfoArray, word, dashedLinePaths) {
       (letterObject) => letterObject.letter === word[i + 1]
     );
     ctx.setLineDash([]);
+    ctx.lineWidth = 5;
     await drawLine(ctx, currentLetter, nextLetter);
 
     console.log(`Drawing white letter: ${currentLetter.letter}`);
