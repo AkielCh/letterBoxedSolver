@@ -213,7 +213,7 @@ function updateInputValues(event, index) {
   inputValues[index] = inputValue;
   console.log(inputValues);
 }
-
+// Modify code to use regEx
 function validateGridInput(event, index) {
   const inputKey = event.which || event.keyCode;
   const inputChar =
@@ -312,24 +312,6 @@ gridInputs.forEach((inputElement, index) => {
 gridSubmitButton.addEventListener("click", (event) => {
   handleGridSubmit(event);
 });
-
-//GO BACK
-
-// function createGridObject(grid, charCoordinates) {
-//   const gridObject = {};
-//   grid.forEach((subArray, index) => {
-//     subArray.forEach((letter, index2) => {
-//       gridObject[letter] = charCoordinates[index][index2];
-//     });
-//     console.log(gridObject);
-//   });
-//   return gridObject;
-// }
-
-function Letter(letter, coordinates) {
-  this.letter = letter;
-  this.coordinates = coordinates;
-}
 
 const circleCoordinates = [
   //top
