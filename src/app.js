@@ -498,7 +498,7 @@ function calculatePointOnLine(magnitude, directionVector, x1, y1, t) {
 
 function calculateAllPoints(coordinates1, coordinates2) {
   //SEGMENT LENGTH IS TO BE PASSED AS PARAMETER AND BASED ON THE SIZE OF THE CANVAS
-  const segmentLength = 7;
+  const segmentLength = 5;
   const magnitude = calculateMagnitude(coordinates1, coordinates2);
   const maxSegments = Math.floor(magnitude / segmentLength);
   const directionVector = calculateDirectionVector(coordinates1, coordinates2);
@@ -568,6 +568,14 @@ async function drawLine(ctx, coordinates1, coordinates2) {
   await animateLine(ctx, coordinates1, linePoints, i);
 }
 
+function drawHead(ctx, x, y, colour) {
+  // Draw the black head
+  ctx.beginPath();
+  ctx.arc(x, y, 2, 0, Math.PI * 2); // Adjust the head size as needed
+  ctx.fillStyle = colour;
+  ctx.fill();
+}
+
 function animateLine(ctx, coordinates1, linePoints, i) {
   return new Promise((resolve) => {
     if (i < linePoints.length) {
@@ -578,6 +586,11 @@ function animateLine(ctx, coordinates1, linePoints, i) {
       );
       ctx.lineTo(linePoints[i].x, linePoints[i].y);
       ctx.stroke();
+      if (i < linePoints.length - 1) {
+        drawHead(ctx, linePoints[i].x, linePoints[i].y, "black");
+      } else {
+        drawHead(ctx, linePoints[i - 1].x, linePoints[i - 1].y, "white");
+      }
       i++;
       requestAnimationFrame(() =>
         animateLine(ctx, coordinates1, linePoints, i).then(resolve)
