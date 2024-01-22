@@ -108,32 +108,21 @@ function addWord(word, wordList) {
     return wordList;
   }
 }
-
 function dictionaryWordContainsValidLetters(grid, word) {
-  const mergedGridArray = grid.flat().map((letter) => letter.toLowerCase());
+  const mergedGridSet = new Set(
+    grid.flat().map((letter) => letter.toLowerCase())
+  );
 
-  return word.split("").every((letter) => mergedGridArray.includes(letter));
+  return word.split("").every((letter) => mergedGridSet.has(letter));
 }
 
-//   for (const letter of word){
-//     if (!mergedGridArray.includes(letter)){
-//       return false;
-//     }
-//   }
-//   return true;
-// }
-
 function generatePossibleWords(grid) {
-  const possibleWordsArray = [];
+  const possibleWordsArray = Array.from(dictionary).filter((word) =>
+    dictionaryWordContainsValidLetters(grid, word)
+  );
 
-  for (const word of dictionary) {
-    if (dictionaryWordContainsValidLetters(grid, word)) {
-      possibleWordsArray.push(word);
-    }
-  }
-  return possibleWordsArray.length > 0
-    ? possibleWordsArray
-    : console.log("No words found");
+  console.log(possibleWordsArray);
+  return possibleWordsArray;
 }
 
 //Optimisation
@@ -201,6 +190,17 @@ function solutionContainsAllLetters(grid, solutionsArray) {
   );
 }
 
+function solutionOfNoOfWords(solutionsArray, noOfWords) {
+  console.log(solutionsArray);
+  console.log(noOfWords);
+
+  return solutionsArray.filter(
+    (solution) => solution.length === Number(noOfWords)
+  );
+
+  console.log(correctLengthSolutions);
+}
+
 const gridInputs = document.querySelectorAll(".gridInput");
 const gridOutputElements = document.querySelectorAll(".output");
 const gridSubmitButton = document.querySelector("#gridSubmitButton");
@@ -263,7 +263,9 @@ function handleGridSubmit(event) {
     const noOfWords = prompt("How many words?");
     const solutionsArray = generateSolutions(validWordsArray, noOfWords, grid);
     console.log(solutionsArray);
-    const solution = solutionsArray[0].join(" ");
+    const solution = solutionOfNoOfWords(solutionsArray, noOfWords)[0].join(
+      " "
+    );
     console.log(solution);
     drawSolution(solution, lettersArray);
     // console.log(solution.split(" "));
@@ -601,13 +603,15 @@ function animateLine(ctx, coordinates1, linePoints, i) {
   });
 }
 
-//Use of requestAnimationFrame
-//  method tells the browser that you wish to perform an animation. It requests the browser to call a user-supplied callback function prior to the next repaint.
-
 //Things to do
-//Change the use of gradient into vectors to improve animation speed
+
 //Modify numbers to make it responsive
-//fix redraw of dashed lines
+// Change how line is drawn to  make the point a different colour
+// Change code to make the letters uppercase
+// use regEx to check for checking inputs
+// change magic numbers
+
+// improve visuals
 
 window.addEventListener("load", createBox(circleCoordinates));
 

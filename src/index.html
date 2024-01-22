@@ -7,52 +7,49 @@
     <link href="./style.css" rel="stylesheet"
   </head>
   <body>
-    <h1>Letter Boxed Solver</h1>
-    <input
-      type="text"
-      id="gridTop"
-      placeholder="Top"
-      class="gridInput"
-      maxlength="3"
-    />
-    <input
-      type="text"
-      id="gridLeft"
-      placeholder="Left"
-      class="gridInput"
-      maxlength="3"
-    />
-    <input
-      type="text"
-      id="gridRight"
-      placeholder="Right"
-      class="gridInput"
-      maxlength="3"
-    />
-    <input
-      type="text"
-      id="gridBottom"
-      placeholder="Bottom"
-      class="gridInput"
-      maxlength="3"
-    />
-    <p class="output"></p>
-    <p class="output"></p>
-    <p class="output"></p>
-    <p class="output"></p>
-    <!-- <div class="grid">
-      <p class="gridSubmitOutput" id="gridOutputTop">TOP</p>
-      <p class="gridSubmitOutput" id="gridOutputLeft">LEFT</p>
-      <p class="gridSubmitOutput" id="gridOutputRight">RIGHT</p>
-      <p class="gridSubmitOutput" id="gridOutputBottom">BOTTOM</p>
-    </div> -->
-    <canvas id="canvas" class="box" width="400" height="400">Solution</canvas>
+    <header class="header-container">
+      <h1>Letter Boxed Solver</h1>
+    </header>
+    <section class="main-container">
+      <section class="input-container">
+        <input
+          type="text"
+          id="gridTop"
+          placeholder="Top"
+          class="gridInput"
+          maxlength="3"
+        />
+        <input
+          type="text"
+          id="gridLeft"
+          placeholder="Left"
+          class="gridInput"
+          maxlength="3"
+        />
+        <input
+          type="text"
+          id="gridRight"
+          placeholder="Right"
+          class="gridInput"
+          maxlength="3"
+        />
+        <input
+          type="text"
+          id="gridBottom"
+          placeholder="Bottom"
+          class="gridInput"
+          maxlength="3"
+        />
+      </section>
+      <div class="solution-container">
+        <output id="finalSolution" class="finalSolution"></output>
+      </div>
 
-    <button id="gridSubmitButton" class="gridSubmitButton">Submit</button>
+      <canvas id="canvas" class="box" width="400" height="400">Solution</canvas>
+
+      <button id="gridSubmitButton" class="gridSubmitButton">Submit</button>
+    </section>
     <!-- <button class="button-56" role="button">Button 56</button> -->
-    <div>
-      <output id="finalSolution" class="finalSolution"></output>
-    </div>
     <script type="module" src="app.js"></script>
   </body>
 </html>
