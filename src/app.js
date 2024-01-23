@@ -605,13 +605,15 @@ function animateLine(ctx, coordinates1, linePoints, i) {
 
 //Things to do
 
+//Main task optimise the code to work for a larger dictionary
+
 //Modify numbers to make it responsive
 // Change how line is drawn to  make the point a different colour
 // Change code to make the letters uppercase
 // use regEx to check for checking inputs
 // change magic numbers
-
-// improve visuals
+//Change how line is drawn to  make the point a different colour
+//improve visuals
 
 window.addEventListener("load", createBox(circleCoordinates));
 
