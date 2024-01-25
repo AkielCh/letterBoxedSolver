@@ -121,7 +121,7 @@ function generatePossibleWords(grid) {
     dictionaryWordContainsValidLetters(grid, word)
   );
 
-  console.log(possibleWordsArray);
+  // console.log(possibleWordsArray);
   return possibleWordsArray;
 }
 
@@ -148,7 +148,6 @@ function addValidWords(possibleWordsArray, grid) {
   return validWordsArray;
 }
 
-//NOT WORKING
 function generateSolutions(validWordsArray, noOfWords, grid) {
   return validWordsArray
     .map((word) => {
@@ -259,7 +258,9 @@ function handleGridSubmit(event) {
     const lettersArray = drawText(grid, charCoordinates, circleCoordinates);
     // console.log(lettersArray);
     const possibleWordsArray = generatePossibleWords(grid);
+    console.log(possibleWordsArray);
     const validWordsArray = addValidWords(possibleWordsArray, grid);
+    console.log(validWordsArray);
     const noOfWords = prompt("How many words?");
     const solutionsArray = generateSolutions(validWordsArray, noOfWords, grid);
     console.log(solutionsArray);
@@ -606,6 +607,11 @@ function animateLine(ctx, coordinates1, linePoints, i) {
 //Things to do
 
 //Main task optimise the code to work for a larger dictionary
+//Potential optimisations
+//find the shortest solutions - when recursively finding solutions, if the current solution is longer than the shortest solution, stop searching
+//order valid words in validWordsArray by the number of unique letters and then by the number of letters
+
+//Use a trie data structure
 
 //Modify numbers to make it responsive
 // Change how line is drawn to  make the point a different colour
