@@ -619,6 +619,14 @@ describe("Given a solution and a grid", () => {
   });
 });
 
+describe("Given a valid words array", () => {
+  it.only("should order the words by the number of unique characters", () => {
+    const validWordsArray = ["at", "breaks", "car", "yellow", "bean", "cheese"];
+    const result = app.orderWordsByUniqueCharacters(validWordsArray);
+    expect(result).toEqual(["breaks", "yellow", "bean", "cheese", "car", "at"]);
+  });
+});
+
 //Look AT
 // describe("When given the inputs to submit", () => {
 //   it.only("should check the length and return true if the length of all inputs are valid", () => {
