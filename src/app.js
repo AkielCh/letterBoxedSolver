@@ -148,6 +148,15 @@ function addValidWords(possibleWordsArray, grid) {
   return validWordsArray;
 }
 
+function orderWordsByUniqueCharacters(validWordsArray) {
+  const validWordsInUniqueOrder = validWordsArray.sort((a, b) => {
+    let uniqueA = new Set(a.split(""));
+    let uniqueB = new Set(b.split(""));
+    return uniqueB.size - uniqueA.size;
+  });
+  return validWordsInUniqueOrder;
+}
+
 function generateSolutions(validWordsArray, noOfWords, grid) {
   return validWordsArray
     .map((word) => {
