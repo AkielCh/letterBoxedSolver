@@ -36787,6 +36787,7 @@ kists
 kit
 kitchen
 kitchens
+kitchenware
 kite
 kited
 kitelike

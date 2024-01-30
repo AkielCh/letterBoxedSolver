@@ -284,6 +284,9 @@ function handleGridSubmit(event) {
   );
   const gridOutputElements = document.querySelectorAll(".output");
   console.log(inputElementsArray);
+  const noOfWords = document.querySelector(
+    'input[name="noOfWords"]:checked'
+  ).value;
 
   if (hasInvalidInputLength(inputElementsArray, maxInputLength)) {
     clearInvalidInputs(inputElementsArray, gridOutputElements, maxInputLength);
@@ -299,7 +302,9 @@ function handleGridSubmit(event) {
     const orderedValidWordsArray =
       orderWordsByUniqueCharacters(validWordsArray);
     console.log(orderedValidWordsArray);
-    const noOfWords = prompt("How many words?");
+
+    //HERE
+    // const noOfWords = prompt("How many words?");
     const solutionsArray = generateSolutions(
       orderedValidWordsArray,
       noOfWords,
