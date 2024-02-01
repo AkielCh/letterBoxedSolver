@@ -79346,7 +79346,7 @@ const dictionary = new Set(
   wordsListString
     .split(/\s+/)
     .filter((word) => word.length > 1)
-    .map((dictionaryWord) => dictionaryWord.toLowerCase())
+    .map((dictionaryWord) => dictionaryWord.toUpperCase())
 );
 
 export default dictionary;

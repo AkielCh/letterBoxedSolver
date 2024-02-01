@@ -110,7 +110,7 @@ function addWord(word, wordList) {
 }
 function dictionaryWordContainsValidLetters(grid, word) {
   const mergedGridSet = new Set(
-    grid.flat().map((letter) => letter.toLowerCase())
+    grid.flat().map((letter) => letter.toUpperCase())
   );
 
   return word.split("").every((letter) => mergedGridSet.has(letter));
@@ -128,7 +128,7 @@ function generatePossibleWords(grid) {
 //Optimisation
 function orderLettersByRareness(grid) {
   const orderedLetters = [];
-  const mergedGridArray = grid.flat().map((letter) => letter.toLowerCase());
+  const mergedGridArray = grid.flat().map((letter) => letter.toUpperCase());
   for (const letter of rarenessArray) {
     if (mergedGridArray.includes(letter)) {
       orderedLetters.push(letter);
@@ -217,7 +217,7 @@ function findSolutions(
 }
 
 function solutionContainsAllLetters(grid, solutionsArray) {
-  const mergedGridArray = grid.flat().map((letter) => letter.toLowerCase());
+  const mergedGridArray = grid.flat().map((letter) => letter.toUpperCase());
   const mergedSolutionArray = solutionsArray.flat().join("");
   return mergedGridArray.every((letter) =>
     mergedSolutionArray.includes(letter)
@@ -243,25 +243,26 @@ const gridSubmitButton = document.querySelector("#gridSubmitButton");
 const inputValues = new Array(gridInputs.length).fill("");
 
 function updateInputValues(event, index) {
-  const inputValue = event.target.value.toLowerCase();
+  const inputValue = event.target.value.toUpperCase();
   inputValues[index] = inputValue;
   console.log(inputValues);
 }
 // Modify code to use regEx
 function validateGridInput(event, index) {
   const inputKey = event.which || event.keyCode;
-  const inputChar =
-    inputKey >= 65 && inputKey <= 90
-      ? String.fromCharCode(inputKey + 32)
-      : String.fromCharCode(inputKey);
-  let usedCharacters = inputValues.join("").toLowerCase().split("");
+  // const inputChar =
+  //   inputKey >= 65 && inputKey <= 90
+  //     ? String.fromCharCode(inputKey + 32)
+  //     : String.fromCharCode(inputKey);
+
+  const inputChar = String.fromCharCode(inputKey).toUpperCase();
+  let usedCharacters = inputValues.join("").toUpperCase().split("");
 
   function isLetter(str) {
     return str.length === 1 && str.match(/[a-z]/i);
   }
 
-  const isAlphabetic =
-    (inputKey >= 65 && inputKey <= 90) || (inputKey >= 97 && inputKey <= 122);
+  const isAlphabetic = /^[a-zA-Z]+$/.test(inputChar);
 
   if (
     isAlphabetic &&
@@ -422,7 +423,7 @@ function createBox(circleCoordinates) {
   const canvas = document.getElementById("canvas");
   if (canvas.getContext) {
     const ctx = canvas.getContext("2d");
-    ctx.strokeStyle = "#62AA87";
+    ctx.strokeStyle = "#042A2B";
     createSquare(ctx);
     createCircle(ctx, circleCoordinates);
   }
@@ -459,6 +460,7 @@ function drawText(grid, charCoordinates, circleCoordinates) {
     ctx.font = "40px serif";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
+    ctx.fillStyle = "#042A2B";
     grid.forEach((subArray, index) => {
       subArray.forEach((letter, index2) => {
         ctx.fillText(
@@ -479,7 +481,7 @@ function drawText(grid, charCoordinates, circleCoordinates) {
 }
 
 function reDraw(ctx, linePaths) {
-  ctx.strokeStyle = "rgba(70, 79,81)";
+  ctx.strokeStyle = "#042A2B";
   ctx.lineWidth = 5;
   ctx.clearRect(80, 80, 240, 240);
   createBox(circleCoordinates);
@@ -587,7 +589,7 @@ async function drawWord(ctx, lettersInfoArray, word, dashedLinePaths) {
       (letterObject) => letterObject.letter === word[i]
     );
 
-    drawLetter(ctx, currentLetter, "black");
+    drawLetter(ctx, currentLetter, "white");
 
     const nextLetter = lettersInfoArray.find(
       (letterObject) => letterObject.letter === word[i + 1]
@@ -597,7 +599,7 @@ async function drawWord(ctx, lettersInfoArray, word, dashedLinePaths) {
     await drawLine(ctx, currentLetter, nextLetter);
 
     console.log(`Drawing white letter: ${currentLetter.letter}`);
-    drawLetter(ctx, currentLetter, "white");
+    drawLetter(ctx, currentLetter, "#042A2B");
     dashedLinePaths.push([
       currentLetter.circleCoordinates,
       nextLetter.circleCoordinates,
@@ -610,7 +612,7 @@ async function drawWord(ctx, lettersInfoArray, word, dashedLinePaths) {
 
 async function drawLine(ctx, coordinates1, coordinates2) {
   ctx.setLineDash([]);
-  ctx.strokeStyle = "white";
+  ctx.strokeStyle = "#042A2B";
   ctx.beginPath();
   const linePoints = calculateAllPoints(coordinates1, coordinates2);
   ctx.moveTo(linePoints[0].x, linePoints[0].y);
@@ -637,9 +639,9 @@ function animateLine(ctx, coordinates1, linePoints, i) {
       ctx.lineTo(linePoints[i].x, linePoints[i].y);
       ctx.stroke();
       if (i < linePoints.length - 1) {
-        drawHead(ctx, linePoints[i].x, linePoints[i].y, "black");
+        drawHead(ctx, linePoints[i].x, linePoints[i].y, "white");
       } else {
-        drawHead(ctx, linePoints[i - 1].x, linePoints[i - 1].y, "white");
+        drawHead(ctx, linePoints[i - 1].x, linePoints[i - 1].y, "#042A2B");
       }
       i++;
       requestAnimationFrame(() =>
