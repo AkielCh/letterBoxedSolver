@@ -12,22 +12,39 @@ h1 {
   font-style: italic;
 }
 
-.main-container {
+.header-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+.main-container {
+  display: flex;
+  /* flex-direction: column;
+  align-items: center; */
+  flex-wrap: wrap;
 
   /* justify-content: center; */
 }
 
-.input-container {
+.user-form {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
+}
+
+.input-container {
+  display: grid;
   /* align-items: center; */
+  grid-template-columns: repeat(2, 1fr); /* Two columns with equal width */
+  grid-template-rows: repeat(2, 1fr); /* Two rows with equal height */
+  gap: 10px;
 }
 
 .gridInput {
+  width: 100%;
+  box-sizing: border-box;
   border: none;
   border-bottom: 2px solid #464f51;
   background-color: #a4d4b4;
@@ -39,6 +56,15 @@ h1 {
   text-transform: uppercase;
 }
 
+#solution-length {
+}
+
+.canvas-button-container {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
 /* CSS */
 .button-56 {
   align-items: center;
@@ -118,7 +144,7 @@ h1 {
   text-transform: uppercase;
 }
 
-.box {
+/* .box {
   width: 400px;
   height: 400px;
-}
+} */
