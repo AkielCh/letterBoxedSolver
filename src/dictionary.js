@@ -53303,6 +53303,7 @@ psychic
 psychics
 psyching
 psycho
+psychology
 psychos
 psychs
 psylla
@@ -62226,14 +62227,7 @@ shrugged
 shrugs
 shrunk
 shrunken
-shtetel
-shtetels
-shtetl
-shtetls
-shtick
-shticks
-shtik
-shtiks
+
 shuck
 shucked
 shucker
@@ -78544,6 +78538,7 @@ yakker
 yakkers
 yakking
 yaks
+yakuza
 yald
 yam
 yamalka
