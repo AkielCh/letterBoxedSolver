@@ -7,74 +7,75 @@
     <link href="./style.css" rel="stylesheet"
   </head>
   <body>
-    <header class="header-container">
-      <h1>Letter Boxed Solver</h1>
-    </header>
-    <section class="main-container">
-      <div class="form-solution-container">
-        <form class="user-form">
-          <section class="input-container">
-            <input
-              type="text"
-              id="gridTop"
-              placeholder="Top"
-              class="gridInput"
-              maxlength="3"
-            />
-            <input
-              type="text"
-              id="gridLeft"
-              placeholder="Left"
-              class="gridInput"
-              maxlength="3"
-            />
-            <input
-              type="text"
-              id="gridRight"
-              placeholder="Right"
-              class="gridInput"
-              maxlength="3"
-            />
-            <input
-              type="text"
-              id="gridBottom"
-              placeholder="Bottom"
-              class="gridInput"
-              maxlength="3"
-            />
-          </section>
-          <!-- <form> -->
-          <fieldset id="solution-length">
-            <legend>Solve in</legend>
-            <input type="radio" id="2" value="2" name="noOfWords" checked />
-            <label for="2">2</label>
-            <input type="radio" id="3" value="3" name="noOfWords" />
-            <label for="3">3</label>
-            <input type="radio" id="4" value="4" name="noOfWords" />
-            <label for="4">4</label>
-          </fieldset>
-          <!-- </form> -->
-        </form>
+    <div class="wrapper">
+      <header class="header-container">
+        <h1>Letter Boxed Solver</h1>
+      </header>
+      <section class="main-container">
+        <div class="form-solution-container">
+          <form class="user-form">
+            <section class="input-container">
+              <input
+                type="text"
+                id="gridTop"
+                placeholder="Top"
+                class="gridInput"
+                maxlength="3"
+              />
+              <input
+                type="text"
+                id="gridLeft"
+                placeholder="Left"
+                class="gridInput"
+                maxlength="3"
+              />
+              <input
+                type="text"
+                id="gridRight"
+                placeholder="Right"
+                class="gridInput"
+                maxlength="3"
+              />
+              <input
+                type="text"
+                id="gridBottom"
+                placeholder="Bottom"
+                class="gridInput"
+                maxlength="3"
+              />
+            </section>
+            <!-- <form> -->
+            <fieldset id="solution-length">
+              <legend>Solve in</legend>
+              <input type="radio" id="2" value="2" name="noOfWords" checked />
+              <label for="2">2</label>
+              <input type="radio" id="3" value="3" name="noOfWords" />
+              <label for="3">3</label>
+              <input type="radio" id="4" value="4" name="noOfWords" />
+              <label for="4">4</label>
+            </fieldset>
+            <!-- </form> -->
+          </form>
 
-        <div class="solution-container">
-          <output id="finalSolution" class="finalSolution"></output>
+          <div class="solution-container">
+            <output id="finalSolution" class="finalSolution"></output>
+          </div>
         </div>
-      </div>
 
-      <div class="canvas-button-container">
-        <canvas id="canvas" class="box" width="400" height="400"
-          >Solution</canvas
-        >
+        <div class="canvas-button-container">
+          <canvas id="canvas" class="box" width="400" height="400"
+            >Solution</canvas
+          >
 
-        <button id="gridSubmitButton" class="gridSubmitButton">Submit</button>
-      </div>
-    </section>
-    <!-- <button class="button-56" role="button">Button 56</button> -->
+          <button id="gridSubmitButton" class="gridSubmitButton">Submit</button>
+        </div>
+      </section>
+      <!-- <button class="button-56" role="button">Button 56</button> -->
 
-    <footer>
-      <p>FOOTER</p>
-    </footer>
-
+      <footer>
+        <p>FOOTER</p>
+      </footer>
+    </div>
     <script type="module" src="app.js"></script>
   </body>
 </html>
