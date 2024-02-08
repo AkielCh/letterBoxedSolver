@@ -490,7 +490,7 @@ function reDraw(ctx, linePaths) {
     console.log(linePath);
     // console.log(linePath[0]);
     // console.log(linePath[1]);
-    ctx.strokeStyle = "rgba(70, 79,81)";
+    ctx.strokeStyle = "#CF5C36";
     ctx.lineWidth = 3;
     ctx.setLineDash([7, 5]);
     drawDashLine(ctx, linePath[0], linePath[1]);
