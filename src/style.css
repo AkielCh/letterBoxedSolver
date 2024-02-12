@@ -196,13 +196,27 @@ h1 {
 }
 
 footer {
-  text-align: center;
-  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: white;
 }
-/* .solution-container:not(:empty) {
-  min-height: auto; 
-} */
+
+footer a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+  text-decoration: none; /* Remove underline from anchor text */
+}
+
+footer img {
+  width: 30px; /* Adjust image size as needed */
+}
+
+footer span {
+  margin-top: 5px; /* Adjust spacing between image and text */
+}
 
 @media only screen and (max-width: 600px) {
   .wrapper {
@@ -235,6 +249,25 @@ footer {
   }
 }
 
+@media only screen and (min-width: 900px) {
+  .wrapper {
+    display: flex;
+  }
+  .main-container {
+    flex-direction: row;
+  }
+  .form-solution-container;
+}
+
+@media only screen and (min-width: 1200px) {
+  .wrapper {
+    display: flex;
+  }
+  .main-container {
+    flex-direction: row;
+  }
+  .form-solution-container;
+}
 /*TO DO
 - Add media query for mobile
 - Add media query for tablet

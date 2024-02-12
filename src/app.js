@@ -316,6 +316,8 @@ function handleGridSubmit(event) {
       " "
     );
     console.log(solution);
+    //call drawSolution only if solution hasn't been drawn before
+
     drawSolution(solution, lettersArray);
     // console.log(solution.split(" "));
     // console.log(lettersArray);
@@ -567,6 +569,8 @@ function calculateAllPoints(coordinates1, coordinates2) {
   }
   return allPoints;
 }
+
+// ensure that function can only be called once
 
 async function drawSolution(solution, lettersInfoArray) {
   const finalSolutionOutput = document.querySelector("#finalSolution");
