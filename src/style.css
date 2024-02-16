@@ -249,25 +249,47 @@ footer span {
   }
 }
 
-@media only screen and (min-width: 900px) {
+@media only screen and (max-width: 1100px) {
   .wrapper {
-    display: flex;
+    margin: 0;
   }
   .main-container {
-    flex-direction: row;
+    flex-direction: column;
   }
-  .form-solution-container;
-}
+  .form-solution-container,
+  .canvas-button-container {
+    width: 100%;
+    margin-bottom: 0px;
+  }
 
-@media only screen and (min-width: 1200px) {
+  .canvas-button-container {
+    margin-top: 0;
+  }
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+  }
+
+  .header-container {
+    margin-top: 0;
+  }
+  .user-form {
+    margin-bottom: 0;
+  }
+}
+/* 
+@media only screen and (max-width: 1500px) {
   .wrapper {
     display: flex;
   }
   .main-container {
     flex-direction: row;
   }
-  .form-solution-container;
-}
+  .form-solution-container {
+  }
+} */
 /*TO DO
 - Add media query for mobile
 - Add media query for tablet
