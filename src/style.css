@@ -6,6 +6,10 @@
 
 body {
   background-color: #ded9c2;
+  margin: 0; /* Remove default body margin */
+  padding-bottom: 50px; /* Add padding to the bottom to accommodate the footer */
+  position: relative; /* Set position to relative */
+  min-height: 100vh;
 }
 
 h1 {
@@ -196,10 +200,13 @@ h1 {
 }
 
 footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
 }
 
 footer a {
