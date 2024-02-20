@@ -239,7 +239,6 @@ const gridInputs = document.querySelectorAll(".gridInput");
 const gridOutputElements = document.querySelectorAll(".output");
 const gridSubmitButton = document.querySelector("#gridSubmitButton");
 
-// DISCUSS WITH MENTOR
 const inputValues = new Array(gridInputs.length).fill("");
 
 function updateInputValues(event, index) {
@@ -247,21 +246,11 @@ function updateInputValues(event, index) {
   inputValues[index] = inputValue;
   console.log(inputValues);
 }
-// Modify code to use regEx
+
 function validateGridInput(event, index) {
   const inputKey = event.which || event.keyCode;
-  // const inputChar =
-  //   inputKey >= 65 && inputKey <= 90
-  //     ? String.fromCharCode(inputKey + 32)
-  //     : String.fromCharCode(inputKey);
-
   const inputChar = String.fromCharCode(inputKey).toUpperCase();
   let usedCharacters = inputValues.join("").toUpperCase().split("");
-
-  function isLetter(str) {
-    return str.length === 1 && str.match(/[a-z]/i);
-  }
-
   const isAlphabetic = /^[a-zA-Z]+$/.test(inputChar);
 
   if (
@@ -273,9 +262,9 @@ function validateGridInput(event, index) {
     event.target.value = inputValue;
     updateInputValues(event, index);
   }
-
   event.preventDefault();
 }
+let solutionDrawn = false;
 
 function handleGridSubmit(event) {
   const grid = [];
@@ -284,7 +273,7 @@ function handleGridSubmit(event) {
     document.querySelectorAll(".gridInput")
   );
   const gridOutputElements = document.querySelectorAll(".output");
-  console.log(inputElementsArray);
+
   const noOfWords = document.querySelector(
     'input[name="noOfWords"]:checked'
   ).value;
@@ -293,19 +282,15 @@ function handleGridSubmit(event) {
     clearInvalidInputs(inputElementsArray, gridOutputElements, maxInputLength);
   } else {
     createGrid(inputElementsArray, grid);
-    console.log(grid);
     const lettersArray = drawText(grid, charCoordinates, circleCoordinates);
-    // console.log(lettersArray);
+
     const possibleWordsArray = generatePossibleWords(grid);
-    console.log(possibleWordsArray);
+
     const validWordsArray = addValidWords(possibleWordsArray, grid);
-    console.log(validWordsArray);
+
     const orderedValidWordsArray =
       orderWordsByUniqueCharacters(validWordsArray);
-    console.log(orderedValidWordsArray);
 
-    //HERE
-    // const noOfWords = prompt("How many words?");
     const solutionsArray = generateSolutions(
       orderedValidWordsArray,
       noOfWords,
@@ -316,12 +301,11 @@ function handleGridSubmit(event) {
       " "
     );
     console.log(solution);
-    //call drawSolution only if solution hasn't been drawn before
 
-    drawSolution(solution, lettersArray);
-    // console.log(solution.split(" "));
-    // console.log(lettersArray);
-    // let findSolutionWithLength = prompt("Length of solution 1-5");
+    if (!solutionDrawn) {
+      drawSolution(solution, lettersArray);
+      solutionDrawn = true;
+    }
   }
 }
 
@@ -609,8 +593,6 @@ async function drawWord(ctx, lettersInfoArray, word, dashedLinePaths) {
       nextLetter.circleCoordinates,
     ]);
   }
-
-  // console.log(dashedLinePaths);
   reDraw(ctx, reDrawLinePaths);
 }
 
@@ -625,9 +607,8 @@ async function drawLine(ctx, coordinates1, coordinates2) {
 }
 
 function drawHead(ctx, x, y, colour) {
-  // Draw the black head
   ctx.beginPath();
-  ctx.arc(x, y, 2, 0, Math.PI * 2); // Adjust the head size as needed
+  ctx.arc(x, y, 2, 0, Math.PI * 2);
   ctx.fillStyle = colour;
   ctx.fill();
 }
@@ -659,19 +640,9 @@ function animateLine(ctx, coordinates1, linePoints, i) {
 
 //Things to do
 
-//Main task optimise the code to work for a larger dictionary
-//Potential optimisations
-//find the shortest solutions - when recursively finding solutions, if the current solution is longer than the shortest solution, stop searching
-//order valid words in validWordsArray by the number of unique letters - DONE
+//Use a trie data structure(?)
 
-//Use a trie data structure
-
-//Modify numbers to make it responsive
-// Change how line is drawn to  make the point a different colour
-// Change code to make the letters uppercase
-// use regEx to check for checking inputs
-// change magic numbers
-//Change how line is drawn to  make the point a different colour
+//Modify numbers to make it responsive - magic numbers (IN PROGRESS)
 //improve visuals
 
 window.addEventListener("load", createBox(circleCoordinates));

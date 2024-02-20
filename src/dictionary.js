@@ -78510,6 +78510,7 @@ yachter
 yachters
 yachting
 yachtman
+yachtsman
 yachtmen
 yachts
 yack
