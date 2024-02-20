@@ -294,7 +294,11 @@ function handleGridSubmit(event) {
   } else {
     createGrid(inputElementsArray, grid);
     console.log(grid);
-    const lettersArray = drawText(grid, charCoordinates, circleCoordinates);
+    const lettersArray = drawText(
+      grid,
+      charCoordinates,
+      coordinatesObject.circleCoordinates
+    );
     // console.log(lettersArray);
     const possibleWordsArray = generatePossibleWords(grid);
     console.log(possibleWordsArray);
@@ -366,33 +370,33 @@ gridSubmitButton.addEventListener("click", (event) => {
   handleGridSubmit(event);
 });
 
-const circleCoordinates = [
-  //top
-  //left
-  //right:
-  // bottom
-  [
-    { x: 120, y: 80 },
-    { x: 200, y: 80 },
-    { x: 280, y: 80 },
-  ],
+// const circleCoordinates = [
+//   //top
+//   //left
+//   //right:
+//   // bottom
+//   [
+//     { x: 120, y: 80 },
+//     { x: 200, y: 80 },
+//     { x: 280, y: 80 },
+//   ],
 
-  [
-    { x: 80, y: 120 },
-    { x: 80, y: 200 },
-    { x: 80, y: 280 },
-  ],
-  [
-    { x: 320, y: 120 },
-    { x: 320, y: 200 },
-    { x: 320, y: 280 },
-  ],
-  [
-    { x: 120, y: 320 },
-    { x: 200, y: 320 },
-    { x: 280, y: 320 },
-  ],
-];
+//   [
+//     { x: 80, y: 120 },
+//     { x: 80, y: 200 },
+//     { x: 80, y: 280 },
+//   ],
+//   [
+//     { x: 320, y: 120 },
+//     { x: 320, y: 200 },
+//     { x: 320, y: 280 },
+//   ],
+//   [
+//     { x: 120, y: 320 },
+//     { x: 200, y: 320 },
+//     { x: 280, y: 320 },
+//   ],
+// ];
 
 function createCircle(ctx, circleCoordinates) {
   for (const side of circleCoordinates) {
@@ -408,9 +412,14 @@ function createCircle(ctx, circleCoordinates) {
   }
 }
 
-function createSquare(ctx) {
+function createSquare(ctx, sCoordinates) {
   ctx.lineWidth = 5;
-  ctx.strokeRect(80, 80, 240, 240);
+  ctx.strokeRect(
+    sCoordinates[0],
+    sCoordinates[0],
+    sCoordinates[1],
+    sCoordinates[1]
+  );
 
   // ctx.beginPath();
   // ctx.moveTo(80, 80);
@@ -421,13 +430,13 @@ function createSquare(ctx) {
   // ctx.stroke();
 }
 
-function createBox(circleCoordinates) {
+function createBox(coordinates) {
   const canvas = document.getElementById("canvas");
   if (canvas.getContext) {
     const ctx = canvas.getContext("2d");
     ctx.strokeStyle = "#042A2B";
-    createSquare(ctx);
-    createCircle(ctx, circleCoordinates);
+    createSquare(ctx, coordinates.squareCoordinates);
+    createCircle(ctx, coordinates.circleCoordinates);
   }
 }
 
@@ -486,7 +495,7 @@ function reDraw(ctx, linePaths) {
   ctx.strokeStyle = "#042A2B";
   ctx.lineWidth = 5;
   ctx.clearRect(80, 80, 240, 240);
-  createBox(circleCoordinates);
+  createBox(coordinatesObject);
   console.log(linePaths);
   for (const linePath of linePaths) {
     console.log(linePath);
@@ -674,7 +683,79 @@ function animateLine(ctx, coordinates1, linePoints, i) {
 //Change how line is drawn to  make the point a different colour
 //improve visuals
 
-window.addEventListener("load", createBox(circleCoordinates));
+function createCoordinates(size) {
+  const squareCoordinates = [size / 5, size * 0.6];
+
+  const circleCoordinates = [
+    //top
+    //left
+    //right:
+    // bottom
+    [
+      { x: size * 0.3, y: size * 0.2 },
+      { x: size * 0.5, y: size * 0.2 },
+      { x: size * 0.7, y: size * 0.2 },
+    ],
+
+    [
+      { x: size * 0.2, y: size * 0.3 },
+      { x: size * 0.2, y: size * 0.5 },
+      { x: size * 0.2, y: size * 0.7 },
+    ],
+    [
+      { x: size * 0.8, y: size * 0.3 },
+      { x: size * 0.8, y: size * 0.5 },
+      { x: size * 0.8, y: size * 0.7 },
+    ],
+    [
+      { x: size * 0.3, y: size * 0.8 },
+      { x: size * 0.5, y: size * 0.8 },
+      { x: size * 0.7, y: size * 0.8 },
+    ],
+  ];
+
+  return { squareCoordinates, circleCoordinates };
+}
+
+let coordinatesObject = {}; //global variable Discuss with mentor again
+
+function scaleCanvas() {
+  const canvas = document.getElementById("canvas");
+  const canvasContainer = canvas.parentElement;
+  const ctx = canvas.getContext("2d");
+  const initialsize = Math.min(
+    canvasContainer.offsetWidth,
+    canvasContainer.offsetHeight
+  );
+  const coordinates = createCoordinates(initialsize);
+  console.log(initialsize);
+  canvas.width = initialsize;
+  canvas.height = initialsize;
+
+  const scaleFactor = Math.min(
+    canvasContainer.offsetWidth / canvas.width,
+    canvasContainer.offsetHeight / canvas.height
+  );
+  coordinates.circleCoordinates.forEach((side) => {
+    side.forEach((coordinates) => {
+      coordinates.x *= scaleFactor;
+      coordinates.y *= scaleFactor;
+    });
+  });
+  console.log(coordinates.circleCoordinates);
+
+  coordinates.squareCoordinates = coordinates.squareCoordinates.map(
+    (coordinates) => coordinates * scaleFactor
+  );
+  console.log(coordinates.squareCoordinates);
+
+  ctx.scale(scaleFactor, scaleFactor);
+  coordinatesObject = coordinates;
+  createBox(coordinatesObject);
+}
+
+window.addEventListener("load", scaleCanvas);
+window.addEventListener("resize", scaleCanvas);
 
 export default {
   canAddLetter,
