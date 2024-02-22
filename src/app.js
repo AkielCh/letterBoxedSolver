@@ -1,35 +1,6 @@
 import dictionary from "./dictionary.js";
 import rarenessArray from "./rarenessArray.js";
 
-// function canAddLetter(grid, word, letter) {
-//  const lastLetterOfWord = word.slice(-1);
-//  const letterToAdd = letter;
-//  let lastLetterSubArray;
-//  let letterToAddSubArray;
-
-//  //find subarray that contains last letter of word
-//  for (const subArray of grid){
-//   if (subArray.includes(lastLetterOfWord)){
-//     lastLetterSubArray=subArray;
-//     break;
-//   }
-//  }
-//  //find subarray that contains letter to add
-//  for (const subArray of grid){
-//   if (subArray.includes(letterToAdd)){
-//     letterToAddSubArray =subArray;
-//     break;
-//   }
-//  }
-// //if last letter subarray is not the same as letter to add subarray or word is empty, return true
-//  if (lastLetterSubArray !==letterToAddSubArray || word === ""){
-//   return true;
-//  }
-//  else{
-//   return false;
-//  }
-// }
-
 function canAddLetter(grid, word, letter) {
   if (word === "") {
     return true; // An empty word can always have letters added.
@@ -70,44 +41,6 @@ function canAddWord(grid, word) {
   return true;
 }
 
-//GO OVER AGAIN
-// word.split("").every((letter,index, array)=>{
-//   return !grid.some((subArray)=>{
-//     const hasLetter =subArray.includes(letter)
-//     const hasNextLetter = subArray.includes(array[index+1])
-//     return hasLetter && hasNextLetter
-//   })
-
-// })
-
-//For letterBoxed Game
-function addLetter(grid, word, letter) {
-  if (canAddLetter(grid, word, letter)) {
-    return word + letter;
-  } else {
-    return word;
-  }
-}
-
-//For letterBoxed Game
-function isWord(word) {
-  if (dictionary.has(word.toLowerCase())) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-//For letterBoxed Game
-function addWord(word, wordList) {
-  if (isWord(word)) {
-    wordList.push(word);
-    const lastLetter = word.slice(-1);
-    return [wordList, lastLetter];
-  } else {
-    return wordList;
-  }
-}
 function dictionaryWordContainsValidLetters(grid, word) {
   const mergedGridSet = new Set(
     grid.flat().map((letter) => letter.toUpperCase())
@@ -120,22 +53,20 @@ function generatePossibleWords(grid) {
   const possibleWordsArray = Array.from(dictionary).filter((word) =>
     dictionaryWordContainsValidLetters(grid, word)
   );
-
-  // console.log(possibleWordsArray);
   return possibleWordsArray;
 }
 
 //Optimisation
-function orderLettersByRareness(grid) {
-  const orderedLetters = [];
-  const mergedGridArray = grid.flat().map((letter) => letter.toUpperCase());
-  for (const letter of rarenessArray) {
-    if (mergedGridArray.includes(letter)) {
-      orderedLetters.push(letter);
-    }
-  }
-  return orderedLetters;
-}
+// function orderLettersByRareness(grid) {
+//   const orderedLetters = [];
+//   const mergedGridArray = grid.flat().map((letter) => letter.toUpperCase());
+//   for (const letter of rarenessArray) {
+//     if (mergedGridArray.includes(letter)) {
+//       orderedLetters.push(letter);
+//     }
+//   }
+//   return orderedLetters;
+// }
 
 function addValidWords(possibleWordsArray, grid) {
   const validWordsArray = [];
@@ -198,7 +129,7 @@ function findSolutions(
   const possibleNextWords = validWordsArray.filter((word) => {
     return word.startsWith(nextLetter) && !solutionArray.includes(word);
   });
-  // console.log(nextLetter, possibleNextWords);
+
   const possibleNextSolutions = possibleNextWords.map((word) => {
     return [...solutionArray, word];
   });
@@ -231,12 +162,9 @@ function solutionOfNoOfWords(solutionsArray, noOfWords) {
   return solutionsArray.filter(
     (solution) => solution.length === Number(noOfWords)
   );
-
-  console.log(correctLengthSolutions);
 }
 
 const gridInputs = document.querySelectorAll(".gridInput");
-const gridOutputElements = document.querySelectorAll(".output");
 const gridSubmitButton = document.querySelector("#gridSubmitButton");
 
 const inputValues = new Array(gridInputs.length).fill("");
@@ -281,6 +209,9 @@ function handleGridSubmit(event) {
   if (hasInvalidInputLength(inputElementsArray, maxInputLength)) {
     clearInvalidInputs(inputElementsArray, gridOutputElements, maxInputLength);
   } else {
+    if (solutionDrawn) {
+      return;
+    }
     createGrid(inputElementsArray, grid);
     const lettersArray = drawText(grid, charCoordinates, circleCoordinates);
 
@@ -337,19 +268,6 @@ function createGrid(inputElementsArray, grid) {
   return grid;
 }
 
-gridInputs.forEach((inputElement, index) => {
-  inputElement.addEventListener("input", (event) => {
-    updateInputValues(event, index);
-  });
-  inputElement.addEventListener("keypress", (event) => {
-    validateGridInput(event, index);
-  });
-});
-
-gridSubmitButton.addEventListener("click", (event) => {
-  handleGridSubmit(event);
-});
-
 const circleCoordinates = [
   //top
   //left
@@ -395,14 +313,6 @@ function createCircle(ctx, circleCoordinates) {
 function createSquare(ctx) {
   ctx.lineWidth = 5;
   ctx.strokeRect(80, 80, 240, 240);
-
-  // ctx.beginPath();
-  // ctx.moveTo(80, 80);
-  // ctx.lineTo(320, 80);
-  // ctx.lineTo(320, 320);
-  // ctx.lineTo(80, 320);
-  // ctx.lineTo(80, 80);
-  // ctx.stroke();
 }
 
 function createBox(circleCoordinates) {
@@ -558,6 +468,7 @@ function calculateAllPoints(coordinates1, coordinates2) {
 
 async function drawSolution(solution, lettersInfoArray) {
   const finalSolutionOutput = document.querySelector("#finalSolution");
+  const solutionContainer = document.querySelector(".solution-container");
   const solutionArray = solution.split(" ");
   const canvas = document.getElementById("canvas");
 
@@ -566,10 +477,26 @@ async function drawSolution(solution, lettersInfoArray) {
     const dashedLinePaths = [];
     for (const word of solutionArray) {
       await drawWord(ctx, lettersInfoArray, word, dashedLinePaths);
-      finalSolutionOutput.textContent += word + "  ";
+      // finalSolutionOutput.textContent += word + "  ";
+      for (let i = 0; i < word.length; i++) {
+        solutionContainer.appendChild(createTextNode(word[i], i));
+      }
+      solutionContainer.appendChild(createTextNode("  "));
+      console.log(solutionContainer.textContent);
     }
   }
 }
+
+function createTextNode(letter, i) {
+  const newSpan = document.createElement("span");
+  const text = document.createTextNode(letter);
+  console.log(text);
+  newSpan.setAttribute("class", "solution-letter");
+  newSpan.setAttribute("style", `--i:${i}`);
+  newSpan.appendChild(text); // Append the text node to the newSpan
+  return newSpan; // Return the newSpan
+}
+
 async function drawWord(ctx, lettersInfoArray, word, dashedLinePaths) {
   const reDrawLinePaths = dashedLinePaths;
   for (let i = 0; i < word.length - 1; i++) {
@@ -647,17 +574,43 @@ function animateLine(ctx, coordinates1, linePoints, i) {
 
 window.addEventListener("load", createBox(circleCoordinates));
 
+gridInputs.forEach((inputElement, index) => {
+  inputElement.addEventListener("input", (event) => {
+    updateInputValues(event, index);
+  });
+  inputElement.addEventListener("keypress", (event) => {
+    validateGridInput(event, index);
+  });
+});
+
+gridSubmitButton.addEventListener("click", (event) => {
+  if (solutionDrawn) {
+    location.reload();
+  } else {
+    handleGridSubmit(event);
+    gridSubmitButton.textContent = "Clear";
+  }
+});
+
+// function clearSolution() {
+//   const canvas = document.getElementById("canvas");
+//   const ctx = canvas.getContext("2d");
+//   ctx.clearRect(0, 0, canvas.width, canvas.height);
+//   createBox(circleCoordinates);
+//   solutionDrawn = false;
+//   const finalSolutionOutput = document.querySelector("#finalSolution");
+//   finalSolutionOutput.textContent = "";
+//   gridInputs.forEach((inputElement) => {
+//     inputElement.value = "";
+//   });
+// }
+
 export default {
   canAddLetter,
-  addLetter,
-  isWord,
-  addWord,
   dictionaryWordContainsValidLetters,
   generatePossibleWords,
   addValidWords,
   canAddWord,
-
-  orderLettersByRareness,
   solutionContainsAllLetters,
   orderWordsByUniqueCharacters,
   findSolutions,
