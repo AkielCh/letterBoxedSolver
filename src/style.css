@@ -97,6 +97,7 @@ h1 {
   /* flex-direction: column; */
   align-items: center;
   position: relative;
+  white-space: pre-wrap;
   /* justify-content: center; */
 }
 
@@ -106,7 +107,7 @@ h1 {
   /* font-size: 40px; */
   /* color: #fff; */
   text-transform: uppercase;
-  animation: flip 2s infinite;
+  animation: flip 2s;
   animation-delay: calc(0.2s * var(--i));
 }
 

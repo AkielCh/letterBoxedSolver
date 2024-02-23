@@ -481,7 +481,7 @@ async function drawSolution(solution, lettersInfoArray) {
       for (let i = 0; i < word.length; i++) {
         solutionContainer.appendChild(createTextNode(word[i], i));
       }
-      solutionContainer.appendChild(createTextNode("  "));
+      solutionContainer.appendChild(createTextNode("  ", word.length));
       console.log(solutionContainer.textContent);
     }
   }
