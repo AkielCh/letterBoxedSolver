@@ -5274,6 +5274,7 @@ baths
 bathtub
 bathtubs
 bathyal
+BATHYSPHERE
 batik
 batiks
 bating
