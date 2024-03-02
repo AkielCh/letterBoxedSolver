@@ -176,7 +176,7 @@ function updateInputValues(event, index) {
 }
 
 function validateGridInput(event, index) {
-  const inputKey = event.which || event.keyCode;
+  const inputKey = event.which || event.key;
   const inputChar = String.fromCharCode(inputKey).toUpperCase();
   let usedCharacters = inputValues.join("").toUpperCase().split("");
   const isAlphabetic = /^[a-zA-Z]+$/.test(inputChar);
@@ -186,7 +186,7 @@ function validateGridInput(event, index) {
     event.target.value.length < 3 &&
     !usedCharacters.includes(inputChar)
   ) {
-    const inputValue = event.target.value.toUpperCase() + inputChar;
+    const inputValue = event.target.value + inputChar;
     event.target.value = inputValue;
     updateInputValues(event, index);
   }
@@ -504,7 +504,7 @@ async function drawWord(ctx, lettersInfoArray, word, dashedLinePaths) {
       (letterObject) => letterObject.letter === word[i]
     );
 
-    drawLetter(ctx, currentLetter, "white");
+    drawLetter(ctx, currentLetter, "#bd5532");
 
     const nextLetter = lettersInfoArray.find(
       (letterObject) => letterObject.letter === word[i + 1]
