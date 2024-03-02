@@ -177,7 +177,8 @@ function updateInputValues(event, index) {
 
 function validateGridInput(event, index) {
   const inputKey = event.which || event.keyCode;
-  const inputChar = String.fromCharCode(inputKey).toUpperCase();
+  const inputChar = String.fromCharCode(inputKey);
+  inputChar = inputChar.toUpperCase();
   let usedCharacters = inputValues.join("").toUpperCase().split("");
   const isAlphabetic = /^[a-zA-Z]+$/.test(inputChar);
 
