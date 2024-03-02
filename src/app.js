@@ -592,14 +592,14 @@ gridSubmitButton.addEventListener("click", (event) => {
   }
 });
 
-gridSubmitButton.addEventListener("touchstart", (event) => {
-  if (solutionDrawn) {
-    location.reload();
-  } else {
-    handleGridSubmit(event);
-    gridSubmitButton.textContent = "Clear";
-  }
-});
+// gridSubmitButton.addEventListener("touchstart", (event) => {
+//   if (solutionDrawn) {
+//     location.reload();
+//   } else {
+//     handleGridSubmit(event);
+//     gridSubmitButton.textContent = "Clear";
+//   }
+// });
 
 // function clearSolution() {
 //   const canvas = document.getElementById("canvas");
