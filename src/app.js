@@ -186,7 +186,7 @@ function validateGridInput(event, index) {
     event.target.value.length < 3 &&
     !usedCharacters.includes(inputChar)
   ) {
-    const inputValue = event.target.value + inputChar;
+    const inputValue = event.target.value.toUpperCase() + inputChar;
     event.target.value = inputValue;
     updateInputValues(event, index);
   }
