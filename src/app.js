@@ -56,18 +56,6 @@ function generatePossibleWords(grid) {
   return possibleWordsArray;
 }
 
-//Optimisation
-// function orderLettersByRareness(grid) {
-//   const orderedLetters = [];
-//   const mergedGridArray = grid.flat().map((letter) => letter.toUpperCase());
-//   for (const letter of rarenessArray) {
-//     if (mergedGridArray.includes(letter)) {
-//       orderedLetters.push(letter);
-//     }
-//   }
-//   return orderedLetters;
-// }
-
 function addValidWords(possibleWordsArray, grid) {
   const validWordsArray = [];
   possibleWordsArray.forEach((word) => {
@@ -187,7 +175,7 @@ function validateGridInput(event, index) {
     event.target.value.length < 3 &&
     !usedCharacters.includes(inputChar)
   ) {
-    const inputValue = event.target.value + inputChar;
+    const inputValue = event.target.value.toUpperCase() + inputChar;
     event.target.value = inputValue;
     updateInputValues(event, index);
   }
@@ -592,28 +580,6 @@ gridSubmitButton.addEventListener("click", (event) => {
     gridSubmitButton.textContent = "Clear";
   }
 });
-
-// gridSubmitButton.addEventListener("touchstart", (event) => {
-//   if (solutionDrawn) {
-//     location.reload();
-//   } else {
-//     handleGridSubmit(event);
-//     gridSubmitButton.textContent = "Clear";
-//   }
-// });
-
-// function clearSolution() {
-//   const canvas = document.getElementById("canvas");
-//   const ctx = canvas.getContext("2d");
-//   ctx.clearRect(0, 0, canvas.width, canvas.height);
-//   createBox(circleCoordinates);
-//   solutionDrawn = false;
-//   const finalSolutionOutput = document.querySelector("#finalSolution");
-//   finalSolutionOutput.textContent = "";
-//   gridInputs.forEach((inputElement) => {
-//     inputElement.value = "";
-//   });
-// }
 
 export default {
   canAddLetter,
