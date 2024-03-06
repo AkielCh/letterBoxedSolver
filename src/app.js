@@ -172,11 +172,14 @@ const inputValues = new Array(gridInputs.length).fill("");
 function updateInputValues(event, index) {
   const inputValue = event.target.value.toUpperCase();
   inputValues[index] = inputValue;
+  console.log(inputValue);
+
   console.log(inputValues);
 }
 
 function validateGridInput(event, index) {
   const inputKey = event.which || event.key;
+  console.log(inputKey);
   const inputChar = String.fromCharCode(inputKey).toUpperCase();
   let usedCharacters = inputValues.join("").toUpperCase().split("");
   const isAlphabetic = /^[a-zA-Z]+$/.test(inputChar);
@@ -212,6 +215,9 @@ function handleGridSubmit(event) {
     if (solutionDrawn) {
       return;
     }
+    //discuss with mentor
+    console.log("handleGrid", inputElementsArray);
+    console.log("grid before creategrid", grid);
     createGrid(inputElementsArray, grid);
     const lettersArray = drawText(grid, charCoordinates, circleCoordinates);
 
@@ -261,10 +267,13 @@ function clearInvalidInputs(
 }
 
 function createGrid(inputElementsArray, grid) {
+  console.log(inputElementsArray);
+  console.log(grid);
   inputElementsArray.map((inputElement) => {
     const inputArray = inputElement.value.split("");
     grid.push(inputArray);
   });
+  console.log("grid", grid);
   return grid;
 }
 
