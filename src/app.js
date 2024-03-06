@@ -172,6 +172,7 @@ const inputValues = new Array(gridInputs.length).fill("");
 function updateInputValues(event, index) {
   const inputValue = event.target.value.toUpperCase();
   inputValues[index] = inputValue;
+  event.target.value = inputValue;
   console.log(inputValue);
 
   console.log(inputValues);
