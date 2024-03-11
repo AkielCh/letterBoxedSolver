@@ -216,9 +216,6 @@ function handleGridSubmit(event) {
     if (solutionDrawn) {
       return;
     }
-    //discuss with mentor
-    console.log("handleGrid", inputElementsArray);
-    console.log("grid before creategrid", grid);
     createGrid(inputElementsArray, grid);
     const lettersArray = drawText(grid, charCoordinates, circleCoordinates);
 
@@ -234,15 +231,21 @@ function handleGridSubmit(event) {
       noOfWords,
       grid
     );
-    console.log(solutionsArray);
-    const solution = solutionOfNoOfWords(solutionsArray, noOfWords)[0].join(
-      " "
-    );
-    console.log(solution);
+    if (solutionsArray.length === 0) {
+      alert("No solutions found");
+      location.reload();
+      return;
+    } else {
+      console.log(solutionsArray);
+      const solution = solutionOfNoOfWords(solutionsArray, noOfWords)[0].join(
+        " "
+      );
+      console.log(solution);
 
-    if (!solutionDrawn) {
-      drawSolution(solution, lettersArray);
-      solutionDrawn = true;
+      if (!solutionDrawn && solutionsArray.length > 0) {
+        drawSolution(solution, lettersArray);
+        solutionDrawn = true;
+      }
     }
   }
 }
