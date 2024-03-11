@@ -232,7 +232,7 @@ function handleGridSubmit(event) {
       grid
     );
     if (solutionsArray.length === 0) {
-      alert("No solutions found");
+      alert("No solutions found at that word length. Please try again.");
       location.reload();
       return;
     } else {
