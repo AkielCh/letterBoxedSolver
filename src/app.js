@@ -596,6 +596,12 @@ gridInputs.forEach((inputElement, index) => {
   });
 });
 
+document.body.addEventListener("keydown", function (event) {
+  if (event.key === 13) {
+    document.getElementById("gridSubmitButton").click();
+  }
+});
+
 gridSubmitButton.addEventListener("click", (event) => {
   if (solutionDrawn) {
     location.reload();
