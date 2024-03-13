@@ -597,8 +597,8 @@ gridInputs.forEach((inputElement, index) => {
 });
 
 document.body.addEventListener("keydown", function (event) {
-  if (event.key === 13) {
-    document.getElementById("gridSubmitButton").click();
+  if (event.key === "Enter") {
+    gridSubmitButton.click();
   }
 });
 
