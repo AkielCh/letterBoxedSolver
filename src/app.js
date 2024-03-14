@@ -237,12 +237,20 @@ function handleGridSubmit(event) {
       return;
     } else {
       console.log(solutionsArray);
-      const solution = solutionOfNoOfWords(solutionsArray, noOfWords)[0].join(
-        " "
+      const correctLengthSolutions = solutionOfNoOfWords(
+        solutionsArray,
+        noOfWords
       );
+      if (correctLengthSolutions.length === 0) {
+        alert("No solutions found");
+        location.reload();
+        return;
+      }
+      const solution = correctLengthSolutions[0].join(" ");
+
       console.log(solution);
 
-      if (!solutionDrawn && solutionsArray.length > 0) {
+      if (!solutionDrawn) {
         drawSolution(solution, lettersArray);
         solutionDrawn = true;
       }
