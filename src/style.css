@@ -101,7 +101,7 @@ h1 {
 
 .solution-container {
   display: flex;
-  min-height: 40px;
+  min-height: 50px;
   align-items: center;
   position: relative;
   white-space: pre-wrap;
