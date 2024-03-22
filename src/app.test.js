@@ -535,7 +535,7 @@ describe("When given a list of valid words", () => {
   });
 });
 
-//to discuss with mentor
+
 
 describe("When given a word ", () => {
   it("should check whether the letters in the word are valid", () => {
@@ -584,7 +584,7 @@ describe("Given a solution and a grid", () => {
       ["E", "D", "U"],
       ["Y", "I", "N"],
     ];
-    // const lowercaseGrid = grid.map(row => row.map(char => char.toLowerCase()));
+    
     const solution = [
       "c",
       "r",
@@ -626,60 +626,3 @@ describe("Given a valid words array", () => {
     expect(result).toEqual(["breaks", "yellow", "bean", "cheese", "car", "at"]);
   });
 });
-
-//Look AT
-// describe("When given the inputs to submit", () => {
-//   it.only("should check the length and return true if the length of all inputs are valid", () => {
-//     const inputElementsArray = [
-//       { value: "qwe" },
-//       { value: "rty" },
-//       { value: "uio" },
-//       { value: "asd" },
-//     ];
-//     const maxInputLength = 3;
-//     const result = app.hasInvalidInputLength(
-//       inputElementsArray,
-//       maxInputLength
-//     );
-//     expect(result).toBe(true);
-//   });
-// });
-
-// describe('When given a word from possibleWordsArray',()=>{
-//   it('should add word to a list of valid words',()=>{
-//     const validWordsArray =[];
-//     const word ="RAD";
-//     result = app.addValidWord(word,validWordsArray);
-//     expect(result).toEqual(["RAD"])
-//   })
-// })
-
-// describe('When given words from possibleWordsArray',()=>{
-//   it('should add word to a list of valid words validWordsArray contains element',()=>{
-//     const validWordsArray =["Rad"];
-//     const word="Yes" ;
-//     result = app.addValidWord(word,validWordsArray);
-//     expect(result).toEqual(["Rad","Yes"])
-//   })
-// })
-
-// describe('When given a grid',()=>{
-//   it('should generate a single letter and two letter word from a 1x2 grid',()=>{
-//     const grid =[
-//       ["A","B"],
-//         ]
-//     const result = app.generatePossibleWords(grid);
-//     expect(result).toEqual(["A","AB"])
-//   })
-// })
-
-// describe('When given a grid',()=>{
-//   it('should generate words from a 2x2 grid with adjacent letters', () => {
-//     const grid = [
-//       ['C'],
-//       ['T'],
-//     ];
-//     const result = app.generatePossibleWords(grid);
-//     expect(result).toEqual(['CAT', 'CATR', 'CAR', 'CA', 'CT', 'CTR', 'CR']);
-//   });
-// })

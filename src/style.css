@@ -8,8 +8,8 @@
 }
 
 body {
-  position: relative; /* Set position to relative */
-  min-height: 100vh; /* Set minimum height to 100% of the viewport height */
+  position: relative;
+  min-height: 100vh;
 }
 
 h1 {
@@ -19,7 +19,7 @@ h1 {
 }
 
 .content-container {
-  padding-bottom: 2.5rem; /* Add padding to the bottom to accommodate the footer */
+  padding-bottom: 2.5rem;
 }
 
 .header-container {
@@ -49,13 +49,11 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* margin-bottom: 2rem; */
 }
 .user-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* margin-bottom: rem; */
 }
 .input-container {
   display: flex;
@@ -63,21 +61,6 @@ h1 {
   align-items: center;
   margin-bottom: 1rem;
 }
-
-/* .input-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 10px;
-  margin-bottom: 10px;
-} */
-
-/* .input-container span {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-} */
 
 .input-container span {
   width: 100%;
@@ -119,11 +102,9 @@ h1 {
 .solution-container {
   display: flex;
   min-height: 40px;
-  /* flex-direction: column; */
   align-items: center;
   position: relative;
   white-space: pre-wrap;
-  /* justify-content: center; */
 }
 
 .solution-container span {
@@ -131,7 +112,7 @@ h1 {
   position: relative;
   display: inline-block;
   font-size: 2rem;
-  /* color: #fff; */
+
   text-transform: uppercase;
   animation: flip 2s;
   animation-delay: calc(0.2s * var(--i));
@@ -159,7 +140,6 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* Add these styles for the button */
 button {
   --b: 3px; /* border thickness */
   --s: 0.15em; /* size of the corner */
@@ -179,12 +159,12 @@ button {
   outline: var(--b) solid #0000;
   outline-offset: 0.2em;
 
-  font-family: system-ui, sans-serif; /* added font-family */
-  font-weight: bold; /* added font-weight */
-  font-size: 2rem; /* added font-size */
-  cursor: pointer; /* added cursor */
-  border: none; /* added border */
-  margin: 0.1em; /* added margin */
+  font-family: system-ui, sans-serif;
+  font-weight: bold;
+  font-size: 2rem;
+  cursor: pointer;
+  border: none;
+  margin: 0.1em;
 }
 
 button:hover,
@@ -255,8 +235,6 @@ footer img {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
-    /* justify-content: space-between; */
   }
 
   button {
@@ -268,7 +246,7 @@ footer img {
   }
 
   footer img {
-    width: 2.5rem; /* Adjust image size as needed */
+    width: 2.5rem;
   }
 }
 
@@ -338,88 +316,3 @@ footer img {
     margin-bottom: 10px;
   }
 } */
-/* 
-@media only screen and (max-width: 600px) {
-  .wrapper {
-    margin: 0;
-  }
-  .main-container {
-    flex-direction: column;
-  }
-  .form-solution-container,
-  .canvas-button-container {
-    width: 100%;
-    margin-bottom: 0px;
-  }
-
-  .canvas-button-container {
-    margin-top: 0;
-  }
-  .input-container {
-    display: flex;
-    flex-direction: column;
-   
-    justify-content: center;
-  }
-
-  .header-container {
-    margin-top: 0;
-  }
-  .user-form {
-    margin-bottom: 0;
-  }
-}
-
-@media only screen and (max-width: 1100px) {
-  .wrapper {
-    margin: 0;
-  }
-  .main-container {
-    flex-direction: column;
-  }
-  .form-solution-container,
-  .canvas-button-container {
-    width: 100%;
-    margin-bottom: 0px;
-  }
-
-  .canvas-button-container {
-    margin-top: 0;
-  }
-  .input-container {
-    display: flex;
-    flex-direction: column;
-
-    justify-content: center;
-  }
-
-  .header-container {
-    margin-top: 0;
-  }
-  .user-form {
-    margin-bottom: 0;
-  }
-} */
-/* 
-@media only screen and (max-width: 1500px) {
-  .wrapper {
-    display: flex;
-  }
-  .main-container {
-    flex-direction: row;
-  }
-  .form-solution-container {
-  }
-} */
-/*TO DO
-- Add media query for mobile
-- Add media query for tablet
-- Add media query for desktop
-- modify button
-- change colours
-- styling of footer, center text
-- solution styling
-*/
-/* -------------------------------- */
-
-/*  */

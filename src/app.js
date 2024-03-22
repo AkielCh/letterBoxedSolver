@@ -3,20 +3,15 @@ import rarenessArray from "./rarenessArray.js";
 
 function canAddLetter(grid, word, letter) {
   if (word === "") {
-    return true; // An empty word can always have letters added.
+    return true;
   }
-
   const lastLetterOfWord = word.slice(-1);
-
-  // Find subarrays that contain the last letter of the word and the letter to add.
   const lastLetterSubArray = grid.find((subArray) =>
     subArray.includes(lastLetterOfWord)
   );
   const letterToAddSubArray = grid.find((subArray) =>
     subArray.includes(letter)
   );
-
-  // If either subarray is not found or they are not the same, return true.
   return (
     !lastLetterSubArray ||
     !letterToAddSubArray ||
@@ -93,8 +88,6 @@ function generateSolutions(validWordsArray, noOfWords, grid) {
   return validWordsArray
     .map((word) => {
       const solutionArray = [word];
-      console.log(solutionArray);
-      console.log(shortestSolution.length);
 
       return findSolutions(
         validWordsArray,
@@ -121,8 +114,6 @@ function findSolutions(
   if (noOfWords === 0 || solutionArray.length >= shortestSolution.length) {
     return [];
   }
-  console.log(solutionArray);
-  console.log(shortestSolution);
 
   const nextLetter = solutionArray[solutionArray.length - 1].slice(-1);
 
@@ -156,9 +147,6 @@ function solutionContainsAllLetters(grid, solutionsArray) {
 }
 
 function solutionOfNoOfWords(solutionsArray, noOfWords) {
-  console.log(solutionsArray);
-  console.log(noOfWords);
-
   return solutionsArray.filter(
     (solution) => solution.length === Number(noOfWords)
   );
@@ -173,14 +161,11 @@ function updateInputValues(event, index) {
   const inputValue = event.target.value.toUpperCase();
   inputValues[index] = inputValue;
   event.target.value = inputValue;
-  console.log(inputValue);
-
-  console.log(inputValues);
 }
 
 function validateGridInput(event, index) {
   const inputKey = event.which || event.key;
-  console.log(inputKey);
+
   const inputChar = String.fromCharCode(inputKey).toUpperCase();
   let usedCharacters = inputValues.join("").toUpperCase().split("");
   const isAlphabetic = /^[a-zA-Z]+$/.test(inputChar);
@@ -236,7 +221,6 @@ function handleGridSubmit(event) {
       location.reload();
       return;
     } else {
-      console.log(solutionsArray);
       const correctLengthSolutions = solutionOfNoOfWords(
         solutionsArray,
         noOfWords
@@ -247,8 +231,6 @@ function handleGridSubmit(event) {
         return;
       }
       const solution = correctLengthSolutions[0].join(" ");
-
-      console.log(solution);
 
       if (!solutionDrawn) {
         drawSolution(solution, lettersArray);
@@ -279,13 +261,11 @@ function clearInvalidInputs(
 }
 
 function createGrid(inputElementsArray, grid) {
-  console.log(inputElementsArray);
-  console.log(grid);
   inputElementsArray.map((inputElement) => {
     const inputArray = inputElement.value.split("");
     grid.push(inputArray);
   });
-  console.log("grid", grid);
+
   return grid;
 }
 
@@ -321,7 +301,7 @@ function createCircle(ctx, circleCoordinates) {
   for (const side of circleCoordinates) {
     for (const coordinates of side) {
       ctx.lineWidth = 2;
-      // ctx.strokeStyle = "black";
+
       ctx.fillStyle = "white";
       ctx.beginPath();
       ctx.arc(coordinates.x, coordinates.y, 5, 0, 2 * Math.PI);
@@ -402,11 +382,8 @@ function reDraw(ctx, linePaths) {
   ctx.lineWidth = 5;
   ctx.clearRect(80, 80, 240, 240);
   createBox(circleCoordinates);
-  console.log(linePaths);
+
   for (const linePath of linePaths) {
-    console.log(linePath);
-    // console.log(linePath[0]);
-    // console.log(linePath[1]);
     ctx.strokeStyle = "#CF5C36";
     ctx.lineWidth = 3;
     ctx.setLineDash([7, 5]);
@@ -415,8 +392,6 @@ function reDraw(ctx, linePaths) {
 }
 
 function drawDashLine(ctx, coordinates1, coordinates2) {
-  console.log(coordinates1.x);
-  console.log(coordinates1.y);
   ctx.beginPath();
   ctx.moveTo(coordinates1.x, coordinates1.y);
   ctx.lineTo(coordinates2.x, coordinates2.y);
@@ -444,7 +419,6 @@ function calculateMagnitude(coordinates1, coordinates2) {
 }
 
 function calculateDirectionVector(coordinates1, coordinates2) {
-  console.log(coordinates1);
   const directionVector = {
     x: coordinates2.circleCoordinates.x - coordinates1.circleCoordinates.x,
     y: coordinates2.circleCoordinates.y - coordinates1.circleCoordinates.y,
@@ -485,8 +459,6 @@ function calculateAllPoints(coordinates1, coordinates2) {
   return allPoints;
 }
 
-// ensure that function can only be called once
-
 async function drawSolution(solution, lettersInfoArray) {
   const finalSolutionOutput = document.querySelector("#finalSolution");
   const solutionContainer = document.querySelector(".solution-container");
@@ -498,12 +470,10 @@ async function drawSolution(solution, lettersInfoArray) {
     const dashedLinePaths = [];
     for (const word of solutionArray) {
       await drawWord(ctx, lettersInfoArray, word, dashedLinePaths);
-      // finalSolutionOutput.textContent += word + "  ";
       for (let i = 0; i < word.length; i++) {
         solutionContainer.appendChild(createTextNode(word[i], i));
       }
       solutionContainer.appendChild(createTextNode("  ", word.length));
-      console.log(solutionContainer.textContent);
     }
   }
 }
@@ -511,11 +481,10 @@ async function drawSolution(solution, lettersInfoArray) {
 function createTextNode(letter, i) {
   const newSpan = document.createElement("span");
   const text = document.createTextNode(letter);
-  console.log(text);
   newSpan.setAttribute("class", "solution-letter");
   newSpan.setAttribute("style", `--i:${i}`);
-  newSpan.appendChild(text); // Append the text node to the newSpan
-  return newSpan; // Return the newSpan
+  newSpan.appendChild(text);
+  return newSpan;
 }
 
 async function drawWord(ctx, lettersInfoArray, word, dashedLinePaths) {
@@ -534,7 +503,6 @@ async function drawWord(ctx, lettersInfoArray, word, dashedLinePaths) {
     ctx.lineWidth = 5;
     await drawLine(ctx, currentLetter, nextLetter);
 
-    console.log(`Drawing white letter: ${currentLetter.letter}`);
     drawLetter(ctx, currentLetter, "#042A2B");
     dashedLinePaths.push([
       currentLetter.circleCoordinates,
@@ -586,13 +554,6 @@ function animateLine(ctx, coordinates1, linePoints, i) {
   });
 }
 
-//Things to do
-
-//Use a trie data structure(?)
-
-//Modify numbers to make it responsive - magic numbers (IN PROGRESS)
-//improve visuals
-
 window.addEventListener("load", createBox(circleCoordinates));
 
 gridInputs.forEach((inputElement, index) => {
@@ -619,28 +580,6 @@ gridSubmitButton.addEventListener("click", (event) => {
   }
 });
 
-// gridSubmitButton.addEventListener("touchstart", (event) => {
-//   if (solutionDrawn) {
-//     location.reload();
-//   } else {
-//     handleGridSubmit(event);
-//     gridSubmitButton.textContent = "Clear";
-//   }
-// });
-
-// function clearSolution() {
-//   const canvas = document.getElementById("canvas");
-//   const ctx = canvas.getContext("2d");
-//   ctx.clearRect(0, 0, canvas.width, canvas.height);
-//   createBox(circleCoordinates);
-//   solutionDrawn = false;
-//   const finalSolutionOutput = document.querySelector("#finalSolution");
-//   finalSolutionOutput.textContent = "";
-//   gridInputs.forEach((inputElement) => {
-//     inputElement.value = "";
-//   });
-// }
-
 export default {
   canAddLetter,
   dictionaryWordContainsValidLetters,
@@ -652,5 +591,3 @@ export default {
   findSolutions,
   generateSolutions,
 };
-//
-// #004D4D
