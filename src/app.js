@@ -1,6 +1,79 @@
 import dictionary from "./dictionary.js";
 import rarenessArray from "./rarenessArray.js";
 
+//GLOBAL VARIABLES
+//DOM elements
+const gridInputs = document.querySelectorAll(".gridInput");
+const gridSubmitButton = document.querySelector("#gridSubmitButton");
+const inputValues = new Array(gridInputs.length).fill("");
+
+const circleCoordinates = [
+  //top
+  //left
+  //right:
+  // bottom
+  [
+    { x: 120, y: 80 },
+    { x: 200, y: 80 },
+    { x: 280, y: 80 },
+  ],
+
+  [
+    { x: 80, y: 120 },
+    { x: 80, y: 200 },
+    { x: 80, y: 280 },
+  ],
+  [
+    { x: 320, y: 120 },
+    { x: 320, y: 200 },
+    { x: 320, y: 280 },
+  ],
+  [
+    { x: 120, y: 320 },
+    { x: 200, y: 320 },
+    { x: 280, y: 320 },
+  ],
+];
+
+const charCoordinates = [
+  [
+    [120, 60],
+    [200, 60],
+    [280, 60],
+  ],
+  [
+    [60, 120],
+    [60, 200],
+    [60, 280],
+  ],
+  [
+    [340, 120],
+    [340, 200],
+    [340, 280],
+  ],
+  [
+    [120, 350],
+    [200, 350],
+    [280, 350],
+  ],
+];
+
+let solutionDrawn = false;
+
+//GRID GENERATION ----------------------------------------------------
+
+function createGrid(inputElementsArray, grid) {
+  inputElementsArray.map((inputElement) => {
+    const inputArray = inputElement.value.split("");
+    grid.push(inputArray);
+  });
+
+  return grid;
+}
+
+//Validation functions
+
+//DICIONARY SEARCH VALIDATION
 function canAddLetter(grid, word, letter) {
   if (word === "") {
     return true;
@@ -40,7 +113,6 @@ function dictionaryWordContainsValidLetters(grid, word) {
   const mergedGridSet = new Set(
     grid.flat().map((letter) => letter.toUpperCase())
   );
-
   return word.split("").every((letter) => mergedGridSet.has(letter));
 }
 
@@ -70,10 +142,10 @@ function addValidWords(possibleWordsArray, grid) {
       validWordsArray.push(word);
     }
   });
-
   return validWordsArray;
 }
 
+//OPTIMISATION
 function orderWordsByUniqueCharacters(validWordsArray) {
   const validWordsInUniqueOrder = validWordsArray.sort((a, b) => {
     let uniqueA = new Set(a.split(""));
@@ -83,12 +155,12 @@ function orderWordsByUniqueCharacters(validWordsArray) {
   return validWordsInUniqueOrder;
 }
 
+//SOLUTION GENERATION -------------------------------------------------------
 function generateSolutions(validWordsArray, noOfWords, grid) {
   let shortestSolution = { length: 10 };
   return validWordsArray
     .map((word) => {
       const solutionArray = [word];
-
       return findSolutions(
         validWordsArray,
         solutionArray,
@@ -114,17 +186,13 @@ function findSolutions(
   if (noOfWords === 0 || solutionArray.length >= shortestSolution.length) {
     return [];
   }
-
   const nextLetter = solutionArray[solutionArray.length - 1].slice(-1);
-
   const possibleNextWords = validWordsArray.filter((word) => {
     return word.startsWith(nextLetter) && !solutionArray.includes(word);
   });
-
   const possibleNextSolutions = possibleNextWords.map((word) => {
     return [...solutionArray, word];
   });
-
   return possibleNextSolutions
     .map((solution) => {
       return findSolutions(
@@ -138,6 +206,7 @@ function findSolutions(
     .flat();
 }
 
+//SOLUTION VALIDATION---------------------------------------------------------
 function solutionContainsAllLetters(grid, solutionsArray) {
   const mergedGridArray = grid.flat().map((letter) => letter.toUpperCase());
   const mergedSolutionArray = solutionsArray.flat().join("");
@@ -152,24 +221,24 @@ function solutionOfNoOfWords(solutionsArray, noOfWords) {
   );
 }
 
-const gridInputs = document.querySelectorAll(".gridInput");
-const gridSubmitButton = document.querySelector("#gridSubmitButton");
-
-const inputValues = new Array(gridInputs.length).fill("");
-
+//USER INPUT VALIDATION AND HANDLING------------------------------------------
 function updateInputValues(event, index) {
   const inputValue = event.target.value.toUpperCase();
   inputValues[index] = inputValue;
   event.target.value = inputValue;
 }
 
+function hasInvalidInputLength(inputElementsArray, maxInputLength) {
+  return inputElementsArray.some(
+    (inputElement) => inputElement.value.length !== maxInputLength
+  );
+}
+
 function validateGridInput(event, index) {
   const inputKey = event.which || event.key;
-
   const inputChar = String.fromCharCode(inputKey).toUpperCase();
   let usedCharacters = inputValues.join("").toUpperCase().split("");
   const isAlphabetic = /^[a-zA-Z]+$/.test(inputChar);
-
   if (
     isAlphabetic &&
     event.target.value.length < 3 &&
@@ -180,70 +249,6 @@ function validateGridInput(event, index) {
     updateInputValues(event, index);
   }
   event.preventDefault();
-}
-let solutionDrawn = false;
-
-function handleGridSubmit(event) {
-  const grid = [];
-  const maxInputLength = 3;
-  const inputElementsArray = Array.from(
-    document.querySelectorAll(".gridInput")
-  );
-  const gridOutputElements = document.querySelectorAll(".output");
-
-  const noOfWords = document.querySelector(
-    'input[name="noOfWords"]:checked'
-  ).value;
-
-  if (hasInvalidInputLength(inputElementsArray, maxInputLength)) {
-    clearInvalidInputs(inputElementsArray, gridOutputElements, maxInputLength);
-  } else {
-    if (solutionDrawn) {
-      return;
-    }
-    createGrid(inputElementsArray, grid);
-    const lettersArray = drawText(grid, charCoordinates, circleCoordinates);
-
-    const possibleWordsArray = generatePossibleWords(grid);
-
-    const validWordsArray = addValidWords(possibleWordsArray, grid);
-
-    const orderedValidWordsArray =
-      orderWordsByUniqueCharacters(validWordsArray);
-
-    const solutionsArray = generateSolutions(
-      orderedValidWordsArray,
-      noOfWords,
-      grid
-    );
-    if (solutionsArray.length === 0) {
-      alert("No solutions found at that word length. Please try again.");
-      location.reload();
-      return;
-    } else {
-      const correctLengthSolutions = solutionOfNoOfWords(
-        solutionsArray,
-        noOfWords
-      );
-      if (correctLengthSolutions.length === 0) {
-        alert("No solutions found");
-        location.reload();
-        return;
-      }
-      const solution = correctLengthSolutions[0].join(" ");
-
-      if (!solutionDrawn) {
-        drawSolution(solution, lettersArray);
-        solutionDrawn = true;
-      }
-    }
-  }
-}
-
-function hasInvalidInputLength(inputElementsArray, maxInputLength) {
-  return inputElementsArray.some(
-    (inputElement) => inputElement.value.length !== maxInputLength
-  );
 }
 
 function clearInvalidInputs(
@@ -260,43 +265,7 @@ function clearInvalidInputs(
   });
 }
 
-function createGrid(inputElementsArray, grid) {
-  inputElementsArray.map((inputElement) => {
-    const inputArray = inputElement.value.split("");
-    grid.push(inputArray);
-  });
-
-  return grid;
-}
-
-const circleCoordinates = [
-  //top
-  //left
-  //right:
-  // bottom
-  [
-    { x: 120, y: 80 },
-    { x: 200, y: 80 },
-    { x: 280, y: 80 },
-  ],
-
-  [
-    { x: 80, y: 120 },
-    { x: 80, y: 200 },
-    { x: 80, y: 280 },
-  ],
-  [
-    { x: 320, y: 120 },
-    { x: 320, y: 200 },
-    { x: 320, y: 280 },
-  ],
-  [
-    { x: 120, y: 320 },
-    { x: 200, y: 320 },
-    { x: 280, y: 320 },
-  ],
-];
-
+//CANVAS DRAWING FUNCTIONS----------------------------------------------------
 function createCircle(ctx, circleCoordinates) {
   for (const side of circleCoordinates) {
     for (const coordinates of side) {
@@ -326,29 +295,6 @@ function createBox(circleCoordinates) {
   }
 }
 
-const charCoordinates = [
-  [
-    [120, 60],
-    [200, 60],
-    [280, 60],
-  ],
-  [
-    [60, 120],
-    [60, 200],
-    [60, 280],
-  ],
-  [
-    [340, 120],
-    [340, 200],
-    [340, 280],
-  ],
-  [
-    [120, 350],
-    [200, 350],
-    [280, 350],
-  ],
-];
-
 function drawText(grid, charCoordinates, circleCoordinates) {
   const canvas = document.getElementById("canvas");
   if (canvas.getContext) {
@@ -377,39 +323,7 @@ function drawText(grid, charCoordinates, circleCoordinates) {
   }
 }
 
-function reDraw(ctx, linePaths) {
-  ctx.strokeStyle = "#042A2B";
-  ctx.lineWidth = 5;
-  ctx.clearRect(80, 80, 240, 240);
-  createBox(circleCoordinates);
-
-  for (const linePath of linePaths) {
-    ctx.strokeStyle = "#CF5C36";
-    ctx.lineWidth = 3;
-    ctx.setLineDash([7, 5]);
-    drawDashLine(ctx, linePath[0], linePath[1]);
-  }
-}
-
-function drawDashLine(ctx, coordinates1, coordinates2) {
-  ctx.beginPath();
-  ctx.moveTo(coordinates1.x, coordinates1.y);
-  ctx.lineTo(coordinates2.x, coordinates2.y);
-  ctx.stroke();
-}
-
-function drawLetter(ctx, letterObject, colour) {
-  ctx.font = "40px serif";
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.fillStyle = colour;
-  ctx.fillText(
-    letterObject.letter,
-    letterObject.letterCoordinates[0],
-    letterObject.letterCoordinates[1]
-  );
-}
-
+//LINE CALCULATIONS-----------------------------------------------------------
 function calculateMagnitude(coordinates1, coordinates2) {
   const magnitude = Math.sqrt(
     (coordinates2.circleCoordinates.x - coordinates1.circleCoordinates.x) ** 2 +
@@ -459,6 +373,7 @@ function calculateAllPoints(coordinates1, coordinates2) {
   return allPoints;
 }
 
+//SOLUTION DRAWING--------------------------------------------------------------
 async function drawSolution(solution, lettersInfoArray) {
   const finalSolutionOutput = document.querySelector("#finalSolution");
   const solutionContainer = document.querySelector(".solution-container");
@@ -478,31 +393,19 @@ async function drawSolution(solution, lettersInfoArray) {
   }
 }
 
-function createTextNode(letter, i) {
-  const newSpan = document.createElement("span");
-  const text = document.createTextNode(letter);
-  newSpan.setAttribute("class", "solution-letter");
-  newSpan.setAttribute("style", `--i:${i}`);
-  newSpan.appendChild(text);
-  return newSpan;
-}
-
 async function drawWord(ctx, lettersInfoArray, word, dashedLinePaths) {
   const reDrawLinePaths = dashedLinePaths;
   for (let i = 0; i < word.length - 1; i++) {
     const currentLetter = lettersInfoArray.find(
       (letterObject) => letterObject.letter === word[i]
     );
-
     drawLetter(ctx, currentLetter, "#bd5532");
-
     const nextLetter = lettersInfoArray.find(
       (letterObject) => letterObject.letter === word[i + 1]
     );
     ctx.setLineDash([]);
     ctx.lineWidth = 5;
     await drawLine(ctx, currentLetter, nextLetter);
-
     drawLetter(ctx, currentLetter, "#042A2B");
     dashedLinePaths.push([
       currentLetter.circleCoordinates,
@@ -510,6 +413,18 @@ async function drawWord(ctx, lettersInfoArray, word, dashedLinePaths) {
     ]);
   }
   reDraw(ctx, reDrawLinePaths);
+}
+
+function drawLetter(ctx, letterObject, colour) {
+  ctx.font = "40px serif";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillStyle = colour;
+  ctx.fillText(
+    letterObject.letter,
+    letterObject.letterCoordinates[0],
+    letterObject.letterCoordinates[1]
+  );
 }
 
 async function drawLine(ctx, coordinates1, coordinates2) {
@@ -554,6 +469,38 @@ function animateLine(ctx, coordinates1, linePoints, i) {
   });
 }
 
+function reDraw(ctx, linePaths) {
+  ctx.strokeStyle = "#042A2B";
+  ctx.lineWidth = 5;
+  ctx.clearRect(80, 80, 240, 240);
+  createBox(circleCoordinates);
+
+  for (const linePath of linePaths) {
+    ctx.strokeStyle = "#CF5C36";
+    ctx.lineWidth = 3;
+    ctx.setLineDash([7, 5]);
+    drawDashLine(ctx, linePath[0], linePath[1]);
+  }
+}
+
+function drawDashLine(ctx, coordinates1, coordinates2) {
+  ctx.beginPath();
+  ctx.moveTo(coordinates1.x, coordinates1.y);
+  ctx.lineTo(coordinates2.x, coordinates2.y);
+  ctx.stroke();
+}
+
+//DOM SOLUTION LETTER ELEMENT CREATION ---------------------------------------
+function createTextNode(letter, i) {
+  const newSpan = document.createElement("span");
+  const text = document.createTextNode(letter);
+  newSpan.setAttribute("class", "solution-letter");
+  newSpan.setAttribute("style", `--i:${i}`);
+  newSpan.appendChild(text);
+  return newSpan;
+}
+
+//EVENT LISTENERS-------------------------------------------------------------
 window.addEventListener("load", createBox(circleCoordinates));
 
 gridInputs.forEach((inputElement, index) => {
@@ -579,6 +526,57 @@ gridSubmitButton.addEventListener("click", (event) => {
     gridSubmitButton.textContent = "Clear";
   }
 });
+
+//GRID SUBMISSION HANDLING----------------------------------------------------
+function handleGridSubmit(event) {
+  const grid = [];
+  const maxInputLength = 3;
+  const inputElementsArray = Array.from(
+    document.querySelectorAll(".gridInput")
+  );
+  const gridOutputElements = document.querySelectorAll(".output");
+  const noOfWords = document.querySelector(
+    'input[name="noOfWords"]:checked'
+  ).value;
+  if (hasInvalidInputLength(inputElementsArray, maxInputLength)) {
+    clearInvalidInputs(inputElementsArray, gridOutputElements, maxInputLength);
+  } else {
+    if (solutionDrawn) {
+      return;
+    }
+    createGrid(inputElementsArray, grid);
+    const lettersArray = drawText(grid, charCoordinates, circleCoordinates);
+    const possibleWordsArray = generatePossibleWords(grid);
+    const validWordsArray = addValidWords(possibleWordsArray, grid);
+    const orderedValidWordsArray =
+      orderWordsByUniqueCharacters(validWordsArray);
+    const solutionsArray = generateSolutions(
+      orderedValidWordsArray,
+      noOfWords,
+      grid
+    );
+    if (solutionsArray.length === 0) {
+      alert("No solutions found at that word length. Please try again.");
+      location.reload();
+      return;
+    } else {
+      const correctLengthSolutions = solutionOfNoOfWords(
+        solutionsArray,
+        noOfWords
+      );
+      if (correctLengthSolutions.length === 0) {
+        alert("No solutions found");
+        location.reload();
+        return;
+      }
+      const solution = correctLengthSolutions[0].join(" ");
+      if (!solutionDrawn) {
+        drawSolution(solution, lettersArray);
+        solutionDrawn = true;
+      }
+    }
+  }
+}
 
 export default {
   canAddLetter,
