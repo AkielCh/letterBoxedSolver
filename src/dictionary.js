@@ -2,6 +2,7 @@
 //set methods add, has, delete,size
 
 const wordsListString = `
+
 aah
 aahed
 aahing
@@ -585,9 +586,12 @@ acolytes
 acone
 aconic
 aconine
+aconitate
 aconite
 aconites
+aconitia
 aconitic
+aconitine
 aconitum
 acorn
 acorned
@@ -673,6 +677,7 @@ actas
 acted
 actin
 actinal
+actine
 acting
 actings
 actinia
@@ -681,11 +686,14 @@ actinian
 actinias
 actinic
 actinide
+actinin
 actinism
 actinium
 actinoid
 actinon
 actinons
+actinote
+actinozoan
 actins
 action
 actions
@@ -1349,6 +1357,7 @@ agnosias
 agnostic
 ago
 agog
+agogic
 agogo
 agon
 agonal
@@ -1438,6 +1447,7 @@ aidmen
 aids
 aie
 aiga
+aight
 aiglet
 aiglets
 aigret
@@ -1446,6 +1456,8 @@ aigrette
 aiguille
 aikido
 aikidos
+aikinite
+aikona
 ail
 ailed
 aileron
@@ -2529,6 +2541,8 @@ anaemia
 anaemias
 anaemic
 anaerobe
+anagen
+anagenetic
 anaglyph
 anagoge
 anagoges
@@ -2600,6 +2614,7 @@ anchovy
 anchusa
 anchusas
 anchusin
+ancien
 ancient
 ancients
 ancilla
@@ -4140,6 +4155,7 @@ asystolic
 at
 atabal
 atabals
+atactic
 ataghan
 ataghans
 atalaya
@@ -11573,6 +11589,7 @@ catechus
 category
 catena
 catenae
+catenane
 catenary
 catenas
 catenate
@@ -13147,6 +13164,7 @@ cicoree
 cicorees
 cider
 ciders
+cig
 cigar
 cigaret
 cigarets
@@ -13256,6 +13274,7 @@ cit
 citable
 citadel
 citadels
+citate
 citation
 citator
 citators
@@ -13281,6 +13300,7 @@ citifies
 citify
 citing
 citizen
+citizenize
 citizens
 citola
 citolas
@@ -13967,6 +13987,7 @@ coatees
 coater
 coaters
 coati
+coatigan
 coating
 coatings
 coatis
@@ -14019,6 +14040,7 @@ coca
 cocain
 cocaine
 cocaines
+cocainize
 cocains
 cocas
 coccal
@@ -14286,6 +14308,7 @@ cohesion
 cohesive
 coho
 cohobate
+cohoe
 cohog
 cohogs
 coholder
@@ -14735,6 +14758,7 @@ con
 conation
 conative
 conatus
+concatenate
 concave
 concaved
 concaves
@@ -16633,6 +16657,7 @@ cryptos
 crypts
 crystal
 crystals
+ctene
 ctenidia
 ctenoid
 cub
@@ -22176,6 +22201,7 @@ eighth
 eighthly
 eighths
 eighties
+eightieth
 eights
 eightvo
 eightvos
@@ -22183,6 +22209,7 @@ eighty
 eikon
 eikones
 eikons
+eina
 einkorn
 einkorns
 einstein
@@ -23766,6 +23793,7 @@ etesians
 eth
 ethane
 ethanes
+ethanoate
 ethanol
 ethanols
 ethene
@@ -23799,6 +23827,7 @@ ethnical
 ethnics
 ethnogenesis
 ethnogenesises
+ethnogenic
 ethnologise
 ethnologist
 ethnologists
@@ -28201,6 +28230,7 @@ gaboon
 gaboons
 gabs
 gaby
+gack
 gad
 gadabout
 gadarene
@@ -28534,6 +28564,7 @@ ganja
 ganjah
 ganjahs
 ganjas
+gank
 gannet
 gannets
 ganof
@@ -28868,6 +28899,7 @@ gazump
 gazumped
 gazumper
 gazumps
+gean
 gear
 gearbox
 gearcase
@@ -28973,6 +29005,8 @@ gemsboks
 gemsbuck
 gemstone
 gen
+gena
+genae
 gendarme
 gender
 gendered
@@ -28991,6 +29025,7 @@ genesis
 genesises
 genet
 genetic
+geneticize
 genetics
 genets
 genette
@@ -28999,6 +29034,7 @@ geneva
 genevas
 genial
 genially
+genian
 genic
 genie
 genies
@@ -29076,7 +29112,9 @@ geodic
 geodized
 geoduck
 geoducks
+geogenic
 geognosy
+geogonic
 geoid
 geoidal
 geoids
@@ -29098,9 +29136,11 @@ geoprobe
 georgic
 georgics
 geos
+geotactic
 geotag
 geotaxes
 geotaxis
+geotic
 gerah
 gerahs
 geranial
@@ -29469,6 +29509,7 @@ gismos
 gist
 gists
 git
+gitana
 gitano
 gitanos
 gite
@@ -30060,6 +30101,7 @@ goiters
 goitre
 goitres
 goitrous
+goke
 golconda
 gold
 goldarn
@@ -30126,6 +30168,7 @@ gonging
 gonglike
 gongs
 gonia
+goniatite
 gonidia
 gonidial
 gonidic
@@ -31499,10 +31542,12 @@ hackee
 hackees
 hacker
 hackers
+hacket
 hackia
 hackie
 hackies
 hacking
+hackit
 hackle
 hackled
 hackler
@@ -32313,6 +32358,7 @@ hawse
 hawser
 hawsers
 hawses
+hawt
 hawthorn
 hay
 haycock
@@ -33331,10 +33377,12 @@ hoboism
 hoboisms
 hobos
 hobs
+hoc
 hock
 hocked
 hocker
 hockers
+hocket
 hockey
 hockeys
 hocking
@@ -33390,6 +33438,8 @@ hognose
 hognoses
 hognut
 hognuts
+hogo
+hogoh
 hogs
 hogshead
 hogtie
@@ -33399,6 +33449,8 @@ hogtying
 hogwash
 hogweed
 hogweeds
+hoha
+hoho
 hoick
 hoicked
 hoicking
@@ -33416,10 +33468,12 @@ hoister
 hoisters
 hoisting
 hoists
+hok
 hoke
 hoked
 hokes
 hokey
+hoki
 hokier
 hokiest
 hokily
@@ -33621,6 +33675,7 @@ honeying
 honeys
 hong
 hongs
+honi
 honied
 honing
 honk
@@ -33891,6 +33946,7 @@ hotching
 hotchpot
 hotdog
 hotdogs
+hote
 hotel
 hoteldom
 hotelier
@@ -33902,6 +33958,7 @@ hotfoots
 hothead
 hotheads
 hothouse
+hoti
 hotline
 hotlines
 hotly
@@ -34522,6 +34579,7 @@ icon
 icones
 iconic
 iconical
+iconize
 iconolatry
 iconostasis
 icons
@@ -37550,6 +37608,7 @@ keirin
 keirs
 keister
 keisters
+keitai
 keitloa
 keitloas
 kelep
@@ -37577,6 +37636,7 @@ kemp
 kemps
 kempt
 ken
+kena
 kenaf
 kenafs
 kench
@@ -37661,6 +37721,7 @@ kete
 ketene
 ketenes
 keto
+ketogenic
 ketol
 ketols
 ketone
@@ -37723,6 +37784,7 @@ khamseen
 khamsin
 khamsins
 khan
+khana
 khanate
 khanates
 khans
@@ -38055,6 +38117,7 @@ kithes
 kithing
 kiths
 kiting
+kitke
 kitling
 kitlings
 kits
@@ -38117,6 +38180,7 @@ knackers
 knackery
 knacking
 knacks
+knag
 knap
 knapped
 knapper
@@ -38168,6 +38232,7 @@ knelt
 knesset
 knessets
 knew
+knick
 knickers
 knife
 knifed
@@ -38176,6 +38241,7 @@ knifers
 knifes
 knifing
 knight
+knightage
 knighted
 knightly
 knights
@@ -38271,6 +38337,7 @@ kobs
 kochia
 koel
 koels
+koha
 kohl
 kohlrabi
 kohls
@@ -38479,6 +38546,7 @@ kvetch
 kvetched
 kvetches
 kwacha
+kwaito
 kwanza
 kwanzas
 kwela
@@ -46347,6 +46415,7 @@ nachas
 naches
 nacho
 nachos
+nacket
 nacre
 nacred
 nacreous
@@ -46358,13 +46427,16 @@ nadiral
 nadirs
 nads
 nae
+naeo
 naething
 naevi
 naevoid
 naevus
 nag
+naga
 nagana
 naganas
+nage
 nagged
 nagger
 naggers
@@ -46379,8 +46451,10 @@ naiad
 naiades
 naiads
 naiant
+naieo
 naif
 naifs
+naik
 nail
 nailed
 nailer
@@ -46445,6 +46519,7 @@ nandin
 nandins
 nanism
 nanisms
+nanite
 nankeen
 nankeens
 nankin
@@ -46467,6 +46542,7 @@ nanto
 nantos
 nants
 nanty
+nao
 naoi
 naos
 nap
@@ -46593,6 +46669,7 @@ natation
 natatorial
 natatory
 natch
+nate
 nates
 nathless
 nation
@@ -46604,6 +46681,7 @@ natives
 nativism
 nativist
 nativity
+natkhat
 natrium
 natriums
 natron
@@ -46665,6 +46743,7 @@ nawab
 nawabi
 nawabs
 nawal
+nawn
 nay
 nayaka
 nayika
@@ -46678,6 +46757,7 @@ nazifies
 nazify
 nazis
 ne
+neanic
 neap
 neaps
 near
@@ -46835,6 +46915,7 @@ nenta
 neocon
 neogenesis
 neogenesises
+neogenetic
 neoist
 neoists
 neolith
@@ -46870,6 +46951,8 @@ neoteny
 neoteric
 neotesite
 neotesites
+neotocite
+neotokite
 neotype
 neotypes
 neoza
@@ -47053,6 +47136,7 @@ newsroom
 newsy
 newt
 newton
+newtonite
 newtons
 newts
 nexal
@@ -47114,13 +47198,19 @@ nickname
 nicks
 nicol
 nicols
+nicotian
+nicotiana
 nicotin
+nicotinate
 nicotine
+nicotinean
 nicotinic
+nicotinize
 nicotins
 nictate
 nictated
 nictates
+nictitate
 nicy
 nidal
 nide
@@ -47180,6 +47270,7 @@ nighness
 nighs
 night
 nightcap
+nighthawk
 nightie
 nighties
 nightish
@@ -47245,6 +47336,7 @@ ninesome
 ninesomes
 nineteen
 nineties
+ninetieth
 ninety
 ninja
 ninjas
@@ -47437,6 +47529,7 @@ nodulose
 nodulous
 nodus
 noegenesis
+noegenetic
 noel
 noels
 noeme
@@ -47536,6 +47629,7 @@ non
 nona
 nonacid
 nonacids
+nonactin
 nonactor
 nonadult
 nonage
@@ -47543,6 +47637,8 @@ nonages
 nonagon
 nonagons
 nonan
+nonane
+nonanoate
 nonanoyl
 nonanoyls
 nonart
@@ -47561,6 +47657,7 @@ nonc
 noncash
 nonce
 nonces
+noncitizen
 nonclass
 noncling
 nonclinical
@@ -47879,6 +47976,7 @@ notional
 notionist
 notionists
 notions
+notitia
 notornis
 notour
 nots
@@ -48435,6 +48533,7 @@ ocotillo
 ocrea
 ocreae
 ocreate
+octactinian
 octad
 octadic
 octads
@@ -48445,6 +48544,7 @@ octan
 octane
 octanes
 octangle
+octanoate
 octanol
 octanols
 octanoyl
@@ -48461,13 +48561,16 @@ octave
 octaves
 octavo
 octavos
+octene
 octet
 octets
 octette
 octettes
 octic
 octile
+octine
 octli
+octoate
 octocoral
 octocorals
 octode
@@ -48669,6 +48772,7 @@ oglers
 ogles
 ogling
 ogo
+ogonek
 ogos
 ogre
 ogreish
@@ -48693,6 +48797,7 @@ ohmic
 ohmmeter
 ohms
 oho
+ohone
 ohs
 oick
 oidia
@@ -48757,12 +48862,14 @@ oke
 oked
 okeh
 okehs
+okenite
 okes
 okeydoke
 okie
 okole
 okra
 okras
+okta
 ola
 olamic
 olas
@@ -48905,9 +49012,12 @@ onanists
 onboard
 once
 oncidium
+oncogen
 oncogene
+oncogenic
 oncology
 oncoming
+oncotic
 ondogram
 one
 onefold
@@ -50574,6 +50684,8 @@ oyster
 oystered
 oysterer
 oysters
+ozeki
+ozena
 ozone
 ozones
 ozonic
@@ -71299,6 +71411,7 @@ synch
 synched
 synching
 synchro
+synchronicity
 synchros
 synchs
 syncing
@@ -71499,6 +71612,7 @@ tackers
 tacket
 tackets
 tackey
+tackie
 tackier
 tackiest
 tackify
@@ -71522,6 +71636,7 @@ tact
 tactful
 tactic
 tactical
+tactician
 tactics
 tactile
 taction
@@ -71573,6 +71688,7 @@ tagrag
 tagrags
 tags
 tagua
+tahina
 tahini
 tahinis
 tahr
@@ -71580,9 +71696,12 @@ tahrs
 tahsil
 tahsils
 tai
+taiaha
 taiga
 taigas
 taiglach
+taihoa
+taiko
 tail
 tailback
 tailbone
@@ -72117,6 +72236,7 @@ tater
 taters
 tates
 tathata
+tatie
 tatouay
 tatouays
 tats
@@ -72210,6 +72330,7 @@ tawse
 tawsed
 tawses
 tawsing
+tawtie
 tax
 taxa
 taxable
@@ -72427,6 +72548,7 @@ tegumina
 teiglach
 teiid
 teiids
+tein
 teind
 teinds
 tej
@@ -72664,6 +72786,7 @@ tenurial
 tenuti
 tenuto
 tenutos
+tenzon
 teocalli
 teopan
 teopans
@@ -72893,6 +73016,7 @@ thacked
 thacking
 thacks
 thae
+thai
 thairm
 thairms
 thalami
@@ -72908,6 +73032,7 @@ thalloid
 thallous
 thallus
 than
+thana
 thanage
 thanages
 thanatos
@@ -72936,6 +73061,7 @@ thawers
 thawing
 thawless
 thaws
+thawt
 the
 thearchy
 theater
@@ -73072,6 +73198,7 @@ thickets
 thickety
 thickish
 thickly
+thicko
 thicks
 thickset
 thief
@@ -73100,7 +73227,9 @@ think
 thinker
 thinkers
 thinking
+thinko
 thinks
+thinktank
 thinly
 thinned
 thinner
@@ -73157,6 +73286,7 @@ tholes
 tholing
 tholoi
 tholos
+thon
 thong
 thonged
 thongs
@@ -73188,6 +73318,7 @@ thorpe
 thorpes
 thorps
 those
+thot
 thou
 thoued
 though
@@ -73351,6 +73482,7 @@ thwack
 thwacked
 thwacker
 thwacks
+thwaite
 thwart
 thwarted
 thwarter
@@ -73383,6 +73515,7 @@ thyrsoid
 thyrsus
 thyself
 ti
+tian
 tiara
 tiaraed
 tiaras
@@ -73484,6 +73617,7 @@ tighten
 tightens
 tighter
 tightest
+tightknit
 tightly
 tights
 tightwad
@@ -73499,6 +73633,7 @@ tika
 tike
 tikes
 tiki
+tikia
 tikis
 tikitaka
 til
@@ -73654,6 +73789,7 @@ tinkles
 tinklier
 tinkling
 tinkly
+tinktinkie
 tinlike
 tinman
 tinmen
@@ -73766,10 +73902,12 @@ titan
 titanate
 titaness
 titania
+titanian
 titanias
 titanic
 titanism
 titanite
+titanitic
 titanium
 titanous
 titans
@@ -73794,6 +73932,7 @@ tithing
 tithings
 tithis
 tithonia
+tithonic
 tithymal
 titi
 titian
@@ -73986,6 +74125,7 @@ token
 tokened
 tokening
 tokenism
+tokenize
 tokens
 toker
 tokers
@@ -75934,6 +76074,7 @@ twae
 twaes
 twain
 twains
+twaite
 twang
 twanged
 twanger
@@ -79664,11 +79805,13 @@ wags
 wagsome
 wagtail
 wagtails
+wah
 wahconda
 wahine
 wahines
 wahoo
 wahoos
+wahwah
 waiata
 waif
 waifed
@@ -80389,6 +80532,7 @@ weewees
 weft
 wefts
 weftwise
+wei
 weigela
 weigelas
 weigelia
@@ -82598,8 +82742,10 @@ zests
 zesty
 zeta
 zetas
+zetetic
 zeugma
 zeugmas
+zho
 zibeline
 zibet
 zibeth
@@ -82636,6 +82782,7 @@ zincites
 zincked
 zincking
 zincky
+zinco
 zincoid
 zincous
 zincs
@@ -82662,6 +82809,7 @@ zinkify
 zinky
 zinnia
 zinnias
+zino
 zip
 zipless
 zipped
@@ -82719,6 +82867,7 @@ zombie
 zombies
 zombiism
 zombis
+zona
 zonal
 zonally
 zonary
