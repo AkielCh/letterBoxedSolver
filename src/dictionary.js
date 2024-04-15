@@ -12930,7 +12930,6 @@ cholers
 choli
 cholic
 choline
-cholines
 cholis
 cholla
 chollas
