@@ -13693,6 +13693,7 @@ cliquish
 cliquy
 clitella
 clitic
+cliticise
 clitoral
 clitoric
 clitoris
