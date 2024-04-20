@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Letter Boxed Solver</title>
+    <link rel="icon" href="LBS-favicon-no-background.svg" />
+
+    <link
+      href="./src/style.css"
+      rel="stylesheet"
+      <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="content-container">
+      <header class="header-container">
+        <h1 class="playfair-display-header">Letter Boxed Solver</h1>
+      </header>
+      <main>
+        <main class="main-container">
+          <div class="form-solution-container">
+            <form class="user-form">
+              <section
+                class="input-container"
+                aria-label="input letters of each side"
+              >
+                <span class="input-label">
+                  <label for="gridTop">Top</label>
+                  <input
+                    type="text"
+                    id="gridTop"
+                    name="Top"
+                    class="gridInput"
+                    maxlength="3"
+                /></span>
+                <span class="input-label">
+                  <label for="gridLeft">Left</label>
+                  <input
+                    type="text"
+                    id="gridLeft"
+                    name="Left"
+                    class="gridInput"
+                    maxlength="3"
+                  />
+                </span>
+                <span class="input-label">
+                  <label for="gridRight">Right</label>
+                  <input
+                    type="text"
+                    id="gridRight"
+                    name="Right"
+                    class="gridInput"
+                    maxlength="3"
+                  />
+                </span>
+                <span class="input-label">
+                  <label for="gridBottom">Bottom</label>
+                  <input
+                    type="text"
+                    id="gridBottom"
+                    name="Bottom"
+                    class="gridInput"
+                    maxlength="3"
+                  />
+                </span>
+              </section>
+              <!-- <form> -->
+              <fieldset id="solution-length" role="radiogroup">
+                <legend>Solve in</legend>
+                <input type="radio" id="2" value="2" name="noOfWords" checked />
+                <label for="2">2</label>
+                <input type="radio" id="3" value="3" name="noOfWords" />
+                <label for="3">3</label>
+                <input type="radio" id="4" value="4" name="noOfWords" />
+                <label for="4">4</label>
+              </fieldset>
+              <!-- </form> -->
+            </form>
+
+            <div class="solution-container">
+              <output id="finalSolution" class="finalSolution"></output>
+            </div>
+          </div>
+
+          <div class="canvas-button-container">
+            <canvas id="canvas" class="box" width="400" height="400"
+              >Solution</canvas
+            >
+
+            <button id="gridSubmitButton" class="gridSubmitButton">
+              Solve
+            </button>
+          </div>
+        </main>
+      </main>
+      <footer>
+        <a href="https://github.com/AkielCh" target="_blank">
+          <img
+            src="https://img.icons8.com/ios-glyphs/30/000000/github.png"
+            alt="github"
+          />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/akiel-chaudry-6666bb156/"
+          target="_blank"
+        >
+          <img
+            src="https://img.icons8.com/ios-glyphs/30/000000/linkedin.png"
+            alt="linkedin"
+          />
+        </a>
+      </footer>
+    </div>
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>
+
+<!-- Add links to footer- github with icon linkedin with icon -->

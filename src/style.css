@@ -1,0 +1,318 @@
+/* MOBILE FIRST DESIGN */
+/* Small phone */
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Playfair Display", serif, Arial, Helvetica, sans-serif;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 2.5rem;
+  /* margin-bottom: 3rem; */
+}
+
+.content-container {
+  padding-bottom: 2.5rem;
+}
+
+.header-container {
+  text-align: center;
+  background-color: wheat;
+  margin-bottom: 2rem;
+}
+
+.playfair-display-header {
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-solution-container,
+.canvas-button-container {
+  width: 50%;
+}
+
+.form-solution-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.user-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.input-container span {
+  width: 100%;
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 0.3rem;
+}
+
+.gridInput {
+  width: 3rem;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid #464f51;
+  background-color: #a4d4b4;
+  border-radius: 0.2em 0.2em 0 0;
+  padding: 0.4em;
+  color: black;
+  font-weight: bold;
+  outline: none;
+  text-transform: uppercase;
+  margin: 0.2rem;
+}
+
+#solution-length {
+  width: 60%;
+  min-width: 100px;
+  border: none;
+  border-bottom: 2px solid #464f51;
+  border-radius: 0.2em 0.2em 0 0;
+  padding: 0.4em;
+  color: black;
+  font-weight: bold;
+  outline: none;
+}
+
+.solution-container {
+  display: flex;
+  min-height: 50px;
+  align-items: center;
+  position: relative;
+  white-space: pre-wrap;
+}
+
+.solution-container span {
+  min-width: 0.1em;
+  position: relative;
+  display: inline-block;
+  font-size: 2rem;
+
+  text-transform: uppercase;
+  animation: flip 2s;
+  animation-delay: calc(0.2s * var(--i));
+}
+
+@keyframes flip {
+  0%,
+  80% {
+    transform: rotateY(360deg);
+  }
+}
+
+.final-solution {
+  display: block;
+}
+
+.finalSolution:not(:empty) {
+  display: inline-block;
+}
+
+.canvas-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+button {
+  --b: 3px; /* border thickness */
+  --s: 0.15em; /* size of the corner */
+  --c: #bd5532;
+
+  padding: calc(0.05em + var(--s)) calc(0.3em + var(--s));
+  color: var(--c);
+  --_p: var(--s);
+  background: conic-gradient(
+      from 90deg at var(--b) var(--b),
+      #0000 90deg,
+      var(--c) 0
+    )
+    var(--_p) var(--_p) / calc(100% - var(--b) - 2 * var(--_p))
+    calc(100% - var(--b) - 2 * var(--_p));
+  transition: 0.3s linear, color 0s, background-color 0s;
+  outline: var(--b) solid #0000;
+  outline-offset: 0.2em;
+
+  font-family: system-ui, sans-serif;
+  font-weight: bold;
+  font-size: 2rem;
+  cursor: pointer;
+  border: none;
+  margin: 0.1em;
+}
+
+button:hover,
+button:focus-visible {
+  --_p: 0px;
+  outline-color: var(--c);
+  outline-offset: 0.05em;
+}
+
+button:active {
+  background: var(--c);
+  color: #fff;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem; /* Set height of footer */
+  background-color: #96bbbb;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+  text-decoration: none;
+}
+
+footer img {
+  width: 2rem; /* Adjust image size as needed */
+}
+
+/* IPHONE 12 MAX */
+/* @media only screen and (min-width: 390px) {
+} */
+
+/* IPAD MINI   INPUT 2*2*/
+@media screen and (min-width: 600px) {
+  .main-container {
+    flex-direction: column;
+  }
+
+  .header-container {
+    margin-bottom: 5rem;
+  }
+
+  .playfair-display-header {
+    font-size: 4rem;
+    background-color: wheat;
+  }
+
+  .input-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .input-container span {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  button {
+    margin-bottom: 2rem;
+  }
+
+  footer {
+    height: auto;
+  }
+
+  footer img {
+    width: 2.5rem;
+  }
+}
+
+/* desktop media queries */
+@media screen and (min-width: 992px) {
+  .main-container {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .form-solution-container,
+  .canvas-button-container {
+    width: 50%;
+  }
+
+  .user-form {
+    margin-bottom: 3rem;
+  }
+}
+
+/* @media only screen and (min-width: 1024px) {
+  .wrapper {
+    margin: 0;
+    height: 100%;
+  }
+  .main-container {
+    height: 90%;
+    flex-direction: column;
+  }
+
+  .form-solution-container,
+  .canvas-button-container {
+    width: 100%;
+    margin-bottom: 0px;
+  }
+
+  .input-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+} */
+
+/* IPAD PRO  INPUT 2*2*/
+/* @media screen and (min-width: 1024px) {
+  .wrapper {
+    margin: 0;
+    height: 100%;
+  }
+  .main-container {
+    height: 90%;
+    flex-direction: column;
+  }
+
+  .form-solution-container,
+  .canvas-button-container {
+    width: 100%;
+    margin-bottom: 0px;
+  }
+
+  .input-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+} */
