@@ -1,7 +1,8 @@
 //Use set to prevent duplicate words
 //set methods add, has, delete,size
 
-const wordsListString = `aah
+const wordsListString = `
+aah
 aahed
 aahing
 aahs
@@ -6474,6 +6475,7 @@ beltline
 belts
 beltway
 beltways
+beltwise
 beluga
 belugas
 belve
@@ -6538,7 +6540,10 @@ bendee
 bendees
 bender
 benders
+bendiest
 bending
+bendlet
+bendlets
 bends
 bendways
 bendwise
@@ -7007,6 +7012,9 @@ bidet
 bidets
 bidi
 biding
+bidis
+bidon
+bidons
 bids
 bield
 bielded
@@ -7478,6 +7486,7 @@ bitts
 bitty
 bitumen
 bitumens
+bitwise
 biunique
 bivalent
 bivalve
@@ -7914,13 +7923,17 @@ blueline
 bluely
 blueness
 bluenose
+bluenoses
 bluer
 blues
 bluesier
+bluesiest
 bluesman
 bluesmen
 bluest
 bluestem
+bluestone
+bluestones
 bluesy
 bluet
 bluets
@@ -8052,6 +8065,7 @@ bobeches
 bobol
 bobolink
 bobols
+bobotie
 bobs
 bobsled
 bobsleds
@@ -8298,6 +8312,8 @@ bondmen
 bonds
 bondsman
 bondsmen
+bondstone
+bondstones
 bonduc
 bonducs
 bone
@@ -8677,8 +8693,11 @@ bouchee
 bouchees
 boucle
 boucles
+boudin
+boudins
 boudoir
 boudoirs
+boue
 bouffant
 bouffe
 bouffes
@@ -8698,6 +8717,8 @@ boule
 boules
 boulle
 boulles
+boult
+boults
 bounce
 bounced
 bouncer
@@ -8752,6 +8773,7 @@ boutu
 bouvier
 bouviers
 bouzouki
+bove
 bovid
 bovids
 bovine
@@ -8776,6 +8798,8 @@ bowfins
 bowfront
 bowhead
 bowheads
+bowie
+bowies
 bowing
 bowingly
 bowings
@@ -8809,8 +8833,13 @@ bowsed
 bowses
 bowshot
 bowshots
+bowsie
+bowsies
 bowsing
 bowsprit
+bowtel
+bowtie
+bowties
 bowwow
 bowwowed
 bowwows
@@ -9685,6 +9714,7 @@ budgies
 budging
 budless
 budlike
+budo
 buds
 budworm
 budworms
@@ -19670,6 +19700,7 @@ didi
 didicoi
 didie
 didies
+didis
 dido
 didoes
 didos
@@ -19925,6 +19956,8 @@ dinned
 dinner
 dinners
 dinning
+dino
+dinos
 dinosaur
 dins
 dint
@@ -20063,6 +20096,7 @@ dirtily
 dirts
 dirty
 dirtying
+dis
 disable
 disabled
 disables
@@ -20131,6 +20165,7 @@ disease
 diseased
 diseases
 disendow
+disendows
 diseuse
 diseuses
 disfavor
@@ -20161,6 +20196,10 @@ dishrags
 dishware
 dishy
 disinter
+disinvest
+disinvests
+disinvite
+disinvites
 disject
 disjects
 disjoin
@@ -20273,6 +20312,7 @@ distaste
 distaves
 distend
 distends
+distensible
 distent
 distich
 distichs
@@ -20380,6 +20420,7 @@ dividers
 divides
 dividing
 dividual
+diviest
 divine
 divined
 divinely
@@ -20390,10 +20431,15 @@ divinest
 diving
 divining
 divinise
+divinises
+divinities
 divinity
 divinize
 divinized
 divinizing
+divis
+divisi
+divisible
 division
 divisive
 divisor
@@ -20444,16 +20490,19 @@ doat
 doated
 doating
 doats
+dob
 dobber
 dobbers
 dobbies
 dobbin
 dobbins
 dobby
+dobe
 dobie
 dobies
 dobla
 doblas
+doble
 doblon
 doblones
 doblons
@@ -20917,6 +20966,8 @@ doubler
 doublers
 doubles
 doublet
+doubleton
+doubletons
 doublets
 doubling
 doubloon
@@ -20937,6 +20988,7 @@ douche
 douched
 douches
 douching
+doudou
 dough
 doughboy
 doughier
@@ -21024,6 +21076,7 @@ downhill
 downier
 downiest
 downing
+downlevel
 download
 downlow
 downplay
@@ -21038,6 +21091,7 @@ downtrod
 downturn
 downvote
 downvoted
+downvotes
 downvoting
 downward
 downwarp
@@ -21055,6 +21109,7 @@ dowsers
 dowses
 dowsing
 dowt
+dowts
 dox
 doxed
 doxie
@@ -21613,6 +21668,7 @@ dudes
 dudgeon
 dudgeons
 dudine
+dudines
 duding
 dudish
 dudishly
@@ -21873,6 +21929,8 @@ dusky
 dust
 dustbin
 dustbins
+dustbowl
+dustbowls
 dusted
 duster
 dusters
@@ -23402,6 +23460,8 @@ ensue
 ensued
 ensues
 ensuing
+ensuite
+ensuites
 ensure
 ensured
 ensurer
@@ -35683,6 +35743,8 @@ inditing
 indium
 indiums
 individ
+individs
+indivisible
 indocile
 indol
 indole
@@ -35745,6 +35807,7 @@ inearths
 inedible
 inedita
 inedited
+ineludible
 inept
 ineptly
 inequity
@@ -40353,6 +40416,8 @@ leses
 lesion
 lesioned
 lesions
+leso
+lesos
 less
 lessee
 lessees
@@ -41891,9 +41956,12 @@ lucky
 lucre
 lucres
 luculent
+lud
 lude
 ludes
 ludic
+ludo
+luds
 lues
 luetic
 luetics
@@ -41927,6 +41995,7 @@ lullaby
 lulled
 lulling
 lulls
+luls
 lulu
 lulus
 lum
@@ -47478,6 +47547,7 @@ nebulae
 nebular
 nebulas
 nebule
+nebules
 nebulise
 nebulize
 nebulose
@@ -47644,6 +47714,7 @@ neotenise
 neotenize
 neotenized
 neotenizing
+neotenous
 neoteny
 neoteric
 neotesite
@@ -47753,6 +47824,7 @@ nettling
 nettly
 netts
 netty
+netwise
 network
 networks
 neu
@@ -48126,6 +48198,7 @@ niters
 nitery
 nites
 nitid
+nitidous
 nitinol
 nitinols
 niton
@@ -48171,12 +48244,14 @@ nitty
 nitwit
 nitwits
 niu
+nius
 nival
 nivel
 nivels
 nivenite
 nivenites
 niveous
+nivosities
 nix
 nixe
 nixed
@@ -48211,6 +48286,8 @@ nobby
 nobelium
 nobility
 noble
+nobleite
+nobleites
 nobleman
 noblemen
 nobler
@@ -48265,6 +48342,8 @@ nodule
 nodules
 nodulose
 nodulous
+nodulus
+noduluses
 nodus
 noegenesis
 noegenetic
@@ -48458,6 +48537,8 @@ nonionic
 noniron
 nonis
 nonissue
+nonius
+noniuses
 nonjuror
 nonjury
 nonleaded
@@ -48510,6 +48591,8 @@ nonrural
 nonself
 nonsense
 nonsenses
+nonsensible
+nonsensities
 nonsked
 nonskeds
 nonskid
@@ -48638,6 +48721,7 @@ noshi
 noshing
 noshis
 nosier
+nosies
 nosiest
 nosily
 nosiness
@@ -48692,6 +48776,8 @@ notecase
 noted
 notedly
 noteless
+notelet
+notelets
 notepad
 notepads
 noter
@@ -48721,6 +48807,7 @@ nots
 notturni
 notturno
 notum
+noud
 nougat
 nougats
 nought
@@ -48738,6 +48825,8 @@ nouny
 nourish
 nous
 nouses
+noust
+nousts
 nouveau
 nova
 novae
@@ -48745,6 +48834,9 @@ novalike
 novas
 novation
 novel
+novelese
+novelet
+novelets
 novelise
 novelist
 novelize
@@ -48753,6 +48845,7 @@ novellas
 novelle
 novelly
 novels
+novelties
 novelty
 novena
 novenae
@@ -48760,6 +48853,9 @@ novenas
 novercal
 novice
 novices
+novies
+novities
+novo
 now
 nowadays
 noway
@@ -48767,6 +48863,7 @@ noways
 nowhere
 nowheres
 nowise
+nown
 nowness
 nows
 nowt
@@ -49208,6 +49305,7 @@ obtusely
 obtuser
 obtusest
 obtusity
+obulus
 obverse
 obverses
 obvert
@@ -49797,7 +49895,10 @@ onerous
 onery
 ones
 oneself
+onesie
+onesies
 onetime
+oneuse
 ongoing
 oniomania
 oniomanias
@@ -50379,8 +50480,10 @@ ossuary
 osteal
 osteitic
 osteitis
+ostensible
 ostension
 ostensions
+ostensive
 osteogenesis
 osteoid
 osteoids
@@ -50461,12 +50564,14 @@ ottomans
 ottos
 ouabain
 ouabains
+ouboet
 ouch
 ouched
 ouches
 ouching
 oud
 ouds
+ouens
 ought
 oughted
 oughting
@@ -50491,6 +50596,7 @@ ourie
 ourn
 ours
 ourself
+ous
 ousel
 ousels
 oust
@@ -50498,6 +50604,8 @@ ousted
 ouster
 ousters
 ousting
+oustiti
+oustitis
 ousts
 out
 outa
@@ -51328,6 +51436,8 @@ overwork
 overworn
 overzeal
 ovibos
+ovibovine
+ovibovines
 ovicidal
 ovicide
 ovicides
@@ -51341,6 +51451,8 @@ ovipara
 oviposit
 ovisac
 ovisacs
+ovist
+ovists
 ovo
 ovoid
 ovoidal
@@ -51350,6 +51462,8 @@ ovolo
 ovolos
 ovonic
 ovonics
+ovotestes
+ovotestis
 ovular
 ovulary
 ovulate
@@ -51363,6 +51477,8 @@ owari
 owe
 owed
 owes
+owie
+owies
 owing
 owl
 owlet
@@ -51376,6 +51492,8 @@ ownable
 owned
 owner
 owners
+ownest
+ownests
 owning
 ownio
 owns
@@ -65220,7 +65338,10 @@ sensors
 sensory
 sensu
 sensual
+sensuist
+sensuists
 sensum
+sensuosities
 sensuous
 sent
 sentence
@@ -65467,6 +65588,7 @@ setulose
 setulous
 setup
 setups
+seul
 sev
 seven
 sevens
@@ -66523,6 +66645,7 @@ sickouts
 sickroom
 sicks
 sics
+sid
 siddur
 siddurim
 siddurs
@@ -66562,6 +66685,7 @@ sidler
 sidlers
 sidles
 sidling
+sids
 siege
 sieged
 sieges
@@ -66958,6 +67082,8 @@ sitars
 sitch
 sitcom
 sitcoms
+sitdown
+sitdowns
 site
 sited
 sites
@@ -67716,6 +67842,8 @@ sluices
 sluicing
 sluicy
 sluing
+sluit
+sluits
 slum
 slumber
 slumbers
@@ -68267,6 +68395,7 @@ snows
 snowshed
 snowshoe
 snowsuit
+snowsuits
 snowy
 snub
 snubbed
@@ -68955,6 +69084,7 @@ southron
 souths
 souvenir
 souvlaki
+sov
 soviet
 soviets
 sovkhoz
@@ -70650,6 +70780,7 @@ stoats
 stob
 stobbed
 stobbing
+stobie
 stobs
 stoccado
 stoccata
@@ -70841,6 +70972,7 @@ stove
 stover
 stovers
 stoves
+stovies
 stow
 stowable
 stowage
@@ -71317,6 +71449,8 @@ subdeans
 subdeb
 subdebs
 subdepot
+subdivisible
+subdivisive
 subdual
 subduals
 subduce
@@ -71595,6 +71729,7 @@ sucrose
 sucroses
 suction
 suctions
+sud
 sudaria
 sudaries
 sudarium
@@ -71662,6 +71797,7 @@ sugh
 sughed
 sughing
 sughs
+sui
 suicidal
 suicide
 suicided
@@ -72290,6 +72426,7 @@ sweven
 swevens
 swidden
 swiddens
+swies
 swift
 swifter
 swifters
@@ -72324,6 +72461,7 @@ swindler
 swindles
 swine
 swinepox
+swines
 swing
 swingby
 swingbys
@@ -73586,6 +73724,7 @@ teazle
 teazled
 teazles
 teazling
+teboul
 tec
 tech
 teched
@@ -73718,7 +73857,9 @@ telelenses
 teleman
 telemark
 telemen
+teleosis
 teleost
+teleosteous
 teleosts
 telepath
 teleplay
@@ -73839,11 +73980,15 @@ tenderer
 tenderly
 tenders
 tending
+tendinitis
+tendinous
 tendon
+tendonitis
 tendons
 tendril
 tendrils
 tends
+tendu
 tenebrae
 tenement
 tenens
@@ -75231,6 +75376,7 @@ toddy
 todea
 todies
 todo
+todos
 tods
 tody
 toe
@@ -75774,9 +75920,11 @@ toter
 toters
 totes
 tother
+totiest
 toting
 toto
 tots
+totsiens
 totted
 totter
 tottered
@@ -75880,6 +76028,7 @@ towhee
 towhees
 towie
 towies
+towiest
 towing
 towline
 towlines
@@ -75898,8 +76047,11 @@ townish
 townless
 townlet
 townlets
+towno
 towns
 township
+townsite
+townsites
 townsman
 townsmen
 townward
@@ -76873,6 +77025,8 @@ tsotsis
 tsp
 tsps
 tsuba
+tsubo
+tsubos
 tsunami
 tsunamic
 tsunamis
@@ -77394,6 +77548,7 @@ twins
 twinset
 twinsets
 twinship
+twinsies
 twiny
 twirl
 twirled
@@ -77410,6 +77565,7 @@ twisted
 twister
 twisters
 twistier
+twistiest
 twisting
 twists
 twisty
@@ -77419,6 +77575,8 @@ twitched
 twitcher
 twitches
 twitchy
+twite
+twites
 twits
 twitted
 twitter
@@ -77564,6 +77722,7 @@ udders
 udo
 udometer
 udometry
+udon
 udos
 ufology
 ugali
@@ -79921,7 +80080,9 @@ veinless
 veinlet
 veinlets
 veinlike
+veinous
 veins
+veinstone
 veinule
 veinules
 veinulet
@@ -80024,6 +80185,7 @@ venomous
 venoms
 venose
 venosity
+venosus
 venous
 venously
 vent
@@ -80216,6 +80378,8 @@ vested
 vestee
 vestees
 vestiary
+vestibule
+vestibules
 vestige
 vestiges
 vestigia
@@ -80364,6 +80528,7 @@ videttes
 vidicon
 vidicons
 vidiot
+vids
 viduity
 vie
 vied
@@ -80699,6 +80864,7 @@ vivify
 vivipara
 vivisect
 vivo
+vivos
 vixen
 vixenish
 vixenly
@@ -80876,6 +81042,7 @@ votes
 voting
 votive
 votively
+votives
 votress
 vouch
 vouched
@@ -80885,6 +81052,7 @@ voucher
 vouchers
 vouches
 vouching
+voulu
 voussoir
 vouvray
 vouvrays
@@ -80935,7 +81103,10 @@ vulgates
 vulgo
 vulgus
 vulguses
+vuln
+vulns
 vulpine
+vult
 vulture
 vultures
 vulva
@@ -82409,6 +82580,7 @@ wielded
 wielder
 wielders
 wieldier
+wieldiest
 wielding
 wields
 wieldy
@@ -82819,6 +82991,7 @@ wivern
 wiverns
 wivers
 wives
+wivestobe
 wiving
 wiz
 wizard
@@ -83154,8 +83327,10 @@ wow
 wowed
 wowing
 wows
+wowse
 wowser
 wowsers
+wowses
 wrack
 wracked
 wrackful
@@ -83303,6 +83478,7 @@ wryneck
 wrynecks
 wryness
 wud
+wudu
 wurst
 wursts
 wurzel
